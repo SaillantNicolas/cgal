@@ -24,7 +24,7 @@ typedef double Scalar;
 class Surface_mesh_performance : public Performance_test_2
 {
 public:
-
+ 
   Surface_mesh_performance() : Performance_test_2()
   {
     points = mesh.property_map<Surface_mesh::Vertex_index,Point_3>("v:point").first;
