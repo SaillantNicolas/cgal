@@ -29,6 +29,9 @@ CGAL_add_named_parameter(metis_options_t, METIS_options, METIS_options)
 CGAL_add_named_parameter(vertex_partition_id_t, vertex_partition_id, vertex_partition_id_map)
 CGAL_add_named_parameter(face_partition_id_t, face_partition_id, face_partition_id_map)
 
+CGAL_add_named_parameter(vertex_output_iterator_t, vertex_output_iterator, vertex_output_iterator)
+CGAL_add_named_parameter(face_output_iterator_t, face_output_iterator, face_output_iterator)
+
 CGAL_add_named_parameter(vertex_to_vertex_output_iterator_t, vertex_to_vertex_output_iterator, vertex_to_vertex_output_iterator)
 CGAL_add_named_parameter(halfedge_to_halfedge_output_iterator_t, halfedge_to_halfedge_output_iterator, halfedge_to_halfedge_output_iterator)
 CGAL_add_named_parameter(face_to_face_output_iterator_t, face_to_face_output_iterator, face_to_face_output_iterator)
@@ -156,6 +159,7 @@ CGAL_add_named_parameter(random_seed_t, random_seed, random_seed)
 CGAL_add_named_parameter(do_lock_mesh_t, do_lock_mesh, do_lock_mesh)
 CGAL_add_named_parameter(do_simplify_border_t, do_simplify_border, do_simplify_border)
 CGAL_add_named_parameter(algorithm_t, algorithm, algorithm)
+CGAL_add_named_parameter(use_smoothing_t, use_smoothing, use_smoothing)
 
 //internal
 CGAL_add_named_parameter(weight_calculator_t, weight_calculator, weight_calculator)
@@ -247,9 +251,19 @@ CGAL_add_named_parameter(maximum_running_time_t, maximum_running_time, maximum_r
 CGAL_add_named_parameter(overlap_t, overlap, overlap)
 CGAL_add_named_parameter(maximum_normal_deviation_t, maximum_normal_deviation, maximum_normal_deviation)
 
+// List of named parameters used in Shape_detection package
+CGAL_add_named_parameter(maximum_angle_t, maximum_angle, maximum_angle)
+CGAL_add_named_parameter(maximum_distance_t, maximum_distance, maximum_distance)
+CGAL_add_named_parameter(minimum_region_size_t, minimum_region_size, minimum_region_size)
+CGAL_add_named_parameter(sphere_radius_t, sphere_radius, sphere_radius)
+CGAL_add_named_parameter(k_neighbors_t, k_neighbors, k_neighbors)
+CGAL_add_named_parameter(item_map_t, item_map, item_map)
+CGAL_add_named_parameter(cosine_of_maxium_angle_t, cosine_of_maxium_angle, cosine_of_maxium_angle)
+CGAL_add_named_parameter(minimum_radius_t, minimum_radius, minimum_radius)
+CGAL_add_named_parameter(maximum_radius_t, maximum_radius, maximum_radius)
+
 // List of named parameters used in Shape_regularization package
 CGAL_add_named_parameter(minimum_length_t, minimum_length, minimum_length)
-CGAL_add_named_parameter(maximum_angle_t, maximum_angle, maximum_angle)
 CGAL_add_named_parameter(maximum_offset_t, maximum_offset, maximum_offset)
 CGAL_add_named_parameter(regularize_parallelism_t, regularize_parallelism, regularize_parallelism)
 CGAL_add_named_parameter(regularize_orthogonality_t, regularize_orthogonality, regularize_orthogonality)
@@ -327,4 +341,3 @@ CGAL_add_named_parameter_with_compatibility_ref_only(sizing_field_param_t, sizin
 
 CGAL_add_named_parameter_with_compatibility(function_param_t, function_param, function)
 CGAL_add_named_parameter_with_compatibility(bounding_object_param_t, bounding_object_param, bounding_object)
-

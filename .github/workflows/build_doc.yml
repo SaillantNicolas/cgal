@@ -48,7 +48,7 @@ jobs:
            //get pullrequest url
            const pr_number = context.payload.issue.number
            return pr_number
-           
+
       - name: Emoji-comment
         uses: actions/github-script@v6
         if: steps.get_round.outputs.result != 'stop'
@@ -60,14 +60,13 @@ jobs:
               repo: context.repo.repo,
               content: 'rocket'
             })
-            
+
       - uses: actions/checkout@v3
         name: "checkout branch"
         if: steps.get_round.outputs.result != 'stop'
         with:
            repository: ${{ github.repository }}
            ref: refs/pull/${{ steps.get_pr_number.outputs.result }}/merge
-           token: ${{ secrets.PUSH_TO_CGAL_GITHUB_IO_TOKEN }}
            fetch-depth: 2
 
       - name: install dependencies
@@ -161,7 +160,8 @@ jobs:
         with:
           script: |
             const error = process.env.ERRORMSG
-            const msg = "There was an error while building the doc: \n"+error
+            const job_url = `${context.serverUrl}/CGAL/cgal/actions/runs/${context.runId}`
+            const msg = "There was an error while building the doc: \n"+error + "\n" + job_url
             github.rest.issues.createComment({
               owner: "CGAL",
               repo: "cgal",
