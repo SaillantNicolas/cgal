@@ -346,8 +346,8 @@ template&lt;<a class="el" href="group__PMP__intersection__grp.html#ga10428990783
   <table class="params">
     <tr><td class="paramname">source</td><td>the triangle mesh that should be mapped onto <code>target</code> </td></tr>
     <tr><td class="paramname">target</td><td>the target triangle mesh </td></tr>
-    <tr><td class="paramname">vtm</td><td>a writeable vertex property map of <code>source</code> to store the translation vector of the registration </td></tr>
-    <tr><td class="paramname">vrm</td><td>a writeable vertex property map of <code>source</code> to store the rotation part of the registration </td></tr>
+    <tr><td class="paramname">vtm</td><td>a writable vertex property map of <code>source</code> to store the translation vector of the registration </td></tr>
+    <tr><td class="paramname">vrm</td><td>a writable vertex property map of <code>source</code> to store the rotation part of the registration </td></tr>
     <tr><td class="paramname">np1</td><td>an optional sequence of <a class="el" href="group__PMP__intersection__grp.html#ga10428990783d0fc500bb1be8e5d10a42">Named Parameters1</a> of the <code>source</code> and the method among the ones listed below </td></tr>
     <tr><td class="paramname">np2</td><td>an optional sequence of <a class="el" href="group__PMP__intersection__grp.html#ga10428990783d0fc500bb1be8e5d10a42">Named Parameters2</a> of the <code>target</code> providing a vertex point map and a vertex normal map </td></tr>
     <tr><td class="paramname">correspondences</td><td>a vector given matching points between the <code>source</code> and the <code>target</code></td></tr>
@@ -396,7 +396,7 @@ the weight of the point to matching point distance in the registration </li>
 <tr>
 <td> <button class="collapsible"> <b>as_rigid_as_possible_energy</b> </button> <div class="content"><ul>
 <li>
-uses the topology of the mesh to determine how a vertex it deforming with respect to its neighbors. </li>
+defines the rigidity of the registration </li>
 <li>
 <b>Type: </b>double </li>
 <li>
@@ -406,9 +406,9 @@ uses the topology of the mesh to determine how a vertex it deforming with respec
 <p class="endtd"></p>
 </td></tr>
 <tr>
-<td> <button class="collapsible"> <b>max_matching_dist</b> </button> <div class="content"><ul>
+<td> <button class="collapsible"> <b>maximum_matching_distance</b> </button> <div class="content"><ul>
 <li>
-the maximum distance for a vertex in <code>source</code> to match with a vertex in <code>target</code>. 0 means that there is no max distance. </li>
+the maximum distance for a vertex in <code>source</code> to match with a point in <code>target</code>. The default value 0 means no maximum matching distance. </li>
 <li>
 <b>Type: </b>double </li>
 <li>
@@ -514,9 +514,9 @@ template&lt;<a class="el" href="group__PMP__intersection__grp.html#ga10428990783
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">source</td><td>the triangle mesh that should be mapped onto <code>target</code>. </td></tr>
-    <tr><td class="paramname">target</td><td>the target triangle mesh. </td></tr>
-    <tr><td class="paramname">vtm</td><td>a writeable vertex property map of <code>source</code> to store the translation vector of the registration. </td></tr>
-    <tr><td class="paramname">vrm</td><td>a writeable vertex property map of <code>source</code> to store the rotation part of the registration. </td></tr>
+    <tr><td class="paramname">target</td><td>the target point set. </td></tr>
+    <tr><td class="paramname">vtm</td><td>a writable vertex property map of <code>source</code> to store the translation vector of the registration. </td></tr>
+    <tr><td class="paramname">vrm</td><td>a writable vertex property map of <code>source</code> to store the rotation part of the registration. </td></tr>
     <tr><td class="paramname">np1</td><td>an optional sequence of <a class="el" href="group__PMP__intersection__grp.html#ga10428990783d0fc500bb1be8e5d10a42">Named Parameters</a> among the ones listed below </td></tr>
     <tr><td class="paramname">np2</td><td>an optional sequence of <a class="el" href="group__PMP__intersection__grp.html#ga10428990783d0fc500bb1be8e5d10a42">Named Parameters</a> providing a point_map and normal_map for the <code>PointRange</code> </td></tr>
     <tr><td class="paramname">correspondences</td><td>a vector given matching points between the <code>source</code> and the <code>target</code></td></tr>
@@ -565,11 +565,11 @@ the weight of the point to matching point distance in the registration </li>
 <tr>
 <td> <button class="collapsible"> <b>as_rigid_as_possible_energy</b> </button> <div class="content"><ul>
 <li>
-uses the topology of the mesh to determine how a vertex it deforming with respect to its neighbors </li>
+defines the rigidity of the registration </li>
 <li>
 <b>Type: </b>double </li>
 <li>
-<b>Default: </b><code>20</code> </li>
+<b>Default: </b><code>50</code> </li>
 </ul>
  </div>  </td><td><p class="starttd"></p>
 <p class="endtd"></p>
@@ -577,7 +577,7 @@ uses the topology of the mesh to determine how a vertex it deforming with respec
 <tr>
 <td> <button class="collapsible"> <b>max_matching_dist</b> </button> <div class="content"><ul>
 <li>
-the maximum distance for a vertex in source to match with a point in target </li>
+the maximum distance for a vertex in <code>source</code> to match with a point in <code>target</code>. The default value 0 means no maximum matching distance. </li>
 <li>
 <b>Type: </b>double </li>
 <li>

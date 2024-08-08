@@ -212,14 +212,9 @@ $(function(){initNavTree('Polygon_mesh_processing_2non_rigid_mesh_registration_e
 <div class="line">  std::vector&lt;std::pair&lt;Mesh::Vertex_index, Mesh::Vertex_index&gt;&gt; correspondences_mesh;</div>
 <div class="line">  std::ifstream corr(corr_fn);</div>
 <div class="line">  <span class="keywordflow">if</span> (corr.is_open()) {</div>
-<div class="line">    std::string line;</div>
-<div class="line">    <span class="keywordflow">while</span> (std::getline(corr, line)) {</div>
-<div class="line">      <span class="keywordflow">if</span> (line.size() == 0) <span class="keywordflow">continue</span>;</div>
-<div class="line">      std::istringstream iss(line);</div>
-<div class="line"> </div>
-<div class="line">      std::size_t v0, v1;</div>
-<div class="line">      <span class="keywordflow">if</span> (iss &gt;&gt; v0 &gt;&gt; v1)</div>
-<div class="line">        Mesh source, target;</div>
+<div class="line">    std::size_t v0, v1;</div>
+<div class="line">    <span class="keywordflow">while</span> (corr &gt;&gt; v0 &gt;&gt; v1) {</div>
+<div class="line">      std::cout &lt;&lt; v0 &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; v1 &lt;&lt; std::endl;</div>
 <div class="line">      correspondences_mesh.push_back(std::make_pair(*(source.vertices_begin() + v0), *(target.vertices_begin() + v1)));</div>
 <div class="line">    }</div>
 <div class="line"> </div>
@@ -230,28 +225,12 @@ $(function(){initNavTree('Polygon_mesh_processing_2non_rigid_mesh_registration_e
 <div class="line">  <span class="keywordflow">if</span> (vnm.second)</div>
 <div class="line">    PMP::compute_vertex_normals(target, vnm.first);</div>
 <div class="line"> </div>
-<div class="line">  <span class="keyword">typename</span> Mesh::Property_map&lt;Mesh::Vertex_index, CGAL::Aff_transformation_3&lt;K&gt;&gt; vrm = source.add_property_map&lt;Mesh::Vertex_index, CGAL::Aff_transformation_3&lt;K&gt;&gt;(<span class="stringliteral">&quot;v:rotation&quot;</span>).first;</div>
-<div class="line">  <span class="keyword">typename</span> Mesh::Property_map&lt;Mesh::Vertex_index, K::Vector_3&gt; vtm = source.add_property_map&lt;Mesh::Vertex_index, K::Vector_3&gt;(<span class="stringliteral">&quot;v:transformations&quot;</span>).first;</div>
-<div class="line"> </div>
-<div class="line"><span class="comment">/*</span></div>
-<div class="line"><span class="comment">  CGAL::Point_set_3&lt;K::Point_3&gt; points;</span></div>
-<div class="line"><span class="comment">  points.reserve(target.num_vertices());</span></div>
-<div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">  for (auto v : target.vertices())</span></div>
-<div class="line"><span class="comment">    points.insert(target.point(v), get(vnm.first, v));</span></div>
-<div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">  std::vector&lt;std::pair&lt;Mesh::Vertex_index, std::size_t&gt;&gt; correspondences_pts;</span></div>
-<div class="line"><span class="comment">  correspondences_pts.reserve(correspondences_mesh.size());</span></div>
-<div class="line"><span class="comment">  for (auto p : correspondences_mesh)</span></div>
-<div class="line"><span class="comment">    correspondences_pts.push_back(std::make_pair(p.first, static_cast&lt;std::size_t&gt;(p.second)));</span></div>
-<div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">  PMP::non_rigid_mesh_to_points_registration(source, points, vtm, vrm, correspondences_pts, CGAL::parameters::point_to_plane_energy(2.0).point_to_point_energy(0.1).as_rigid_as_possible_energy(10));</span></div>
-<div class="line"><span class="comment">  PMP::apply_non_rigid_transformation(source, vtm, vrm);</span></div>
-<div class="line"><span class="comment">  CGAL::IO::write_polygon_mesh(&quot;mapped.off&quot;, source);*/</span></div>
+<div class="line">  Mesh::Property_map&lt;Mesh::Vertex_index, CGAL::Aff_transformation_3&lt;K&gt;&gt; vrm = source.add_property_map&lt;Mesh::Vertex_index, CGAL::Aff_transformation_3&lt;K&gt;&gt;(<span class="stringliteral">&quot;v:rotation&quot;</span>).first;</div>
+<div class="line">  Mesh::Property_map&lt;Mesh::Vertex_index, K::Vector_3&gt; vtm = source.add_property_map&lt;Mesh::Vertex_index, K::Vector_3&gt;(<span class="stringliteral">&quot;v:translation&quot;</span>).first;</div>
 <div class="line"> </div>
 <div class="line">  FT w1 = 1.0;</div>
 <div class="line">  FT w2 = 2.0;</div>
-<div class="line">  FT w3 = 5000000;</div>
+<div class="line">  FT w3 = 500;</div>
 <div class="line"> </div>
 <div class="line">  PMP::non_rigid_mesh_to_mesh_registration(source, target, vtm, vrm, correspondences_mesh, CGAL::parameters::point_to_point_energy(w1).point_to_plane_energy(w2).as_rigid_as_possible_energy(w3));</div>
 <div class="line">  PMP::apply_non_rigid_transformation(source, vtm, vrm);</div>
