@@ -2823,7 +2823,7 @@ Non-Rigid Mesh Registration</h1>
 <li>\(N(\mathbf{v}_i)\) denotes the set of vertices adjacent to \(\mathbf{v}_i\).</li>
 </ul>
 <p>The \(\mathbf{E_{match}}\) energy penalizes the distance between point pairs \(\mathbf{v}_i\) and \(\mathbf{\tilde{v}}_i\). The point pairs are restablished after each iteration. In addition, the method can take fixed point pairs of correspondences between source and target. This greatly improves the quality of the registration and is generally required for non-simple meshes.</p>
-<p>The \(\mathbf{E_{point\_to\_plane}}\) energy, point to plane, is similar to \(\mathbf{E_{match}}\), but instead penalizes the distance to the plane given by the target vertex and its normal. This energy compensates for different discretizations, i.e., for source and target mesh that were not created by deforming one mesh into the other.</p>
+<p>The \(\mathbf{E_{point\_to\_plane}}\) energy is similar to \(\mathbf{E_{match}}\), but instead penalizes the distance to the plane given by the target vertex and its normal. This energy compensates for different discretizations, i.e., for source and target mesh that were not created by deforming one mesh into the other.</p>
 <p>The \(\mathbf{E_{arap}}\) energy, as-rigid-as-possible, controls the rigidity of the transformation. It measures the deformation of the edges connected to each vertex that results from applying an individual transformation to each vertex of the source mesh.</p>
 <h2><a class="anchor" id="PMPNonRigidRegistrationParameters"></a>
 Parameters</h2>
