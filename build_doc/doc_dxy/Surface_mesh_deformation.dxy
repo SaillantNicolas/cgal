@@ -1,0 +1,6 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Surface_mesh_deformation_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - Triangulated Surface Mesh Deformation"
+EXTRACT_ALL                =  false
+HIDE_UNDOC_MEMBERS         =  true
+HIDE_UNDOC_CLASSES         =  true

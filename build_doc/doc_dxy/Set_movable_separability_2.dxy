@@ -1,0 +1,3 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Set_movable_separability_2_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - 2D Movable Separability of Sets"

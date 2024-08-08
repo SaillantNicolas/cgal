@@ -1,0 +1,8 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Surface_mesh_approximation_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - Triangulated Surface Mesh Approximation"
+
+# custom options for this package
+EXTRACT_ALL                =  false
+HIDE_UNDOC_MEMBERS         =  true
+HIDE_UNDOC_CLASSES         =  true

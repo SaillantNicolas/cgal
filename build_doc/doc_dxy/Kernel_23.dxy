@@ -1,0 +1,5 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Kernel_23_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - 2D and 3D Linear Geometry Kernel"
+EXAMPLE_PATH              +=  /home/snicolas/CGAL/cgal/Filtered_kernel/examples
+EXAMPLE_PATH              +=  /home/snicolas/CGAL/cgal/Triangulation_2/examples

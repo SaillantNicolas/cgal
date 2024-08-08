@@ -1,0 +1,6 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Scale_space_reconstruction_3_defaults.dxy
+
+PROJECT_NAME		 = "CGAL 6.0 - Scale-Space Surface Reconstruction"
+EXTRACT_ALL		=  NO
+HIDE_UNDOC_CLASSES	=  YES
+HIDE_UNDOC_MEMBERS	=  YES

@@ -1,0 +1,6 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Surface_mesh_shortest_path_defaults.dxy
+PROJECT_NAME = "CGAL 6.0 - Triangulated Surface Mesh Shortest Paths"
+INTERNAL_DOCS = NO
+EXTRACT_ALL = NO
+HIDE_UNDOC_CLASSES = YES
+HIDE_UNDOC_MEMBERS = YES

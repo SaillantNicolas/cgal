@@ -1,0 +1,40 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Polygon_mesh_processing_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - Polygon Mesh Processing"
+# custom options for this package
+EXTRACT_ALL                =  false
+HIDE_UNDOC_CLASSES         =  true
+WARN_IF_UNDOCUMENTED       =  false
+
+INPUT += /home/snicolas/CGAL/cgal/Polygon_mesh_processing/include//CGAL/Polygon_mesh_processing/IO/polygon_mesh_io.h
+INPUT += /home/snicolas/CGAL/cgal/Mesh_3/include/CGAL/Polygon_mesh_processing/surface_Delaunay_remeshing.h \
+         /home/snicolas/CGAL/cgal/Mesh_3/include/CGAL/Mesh_facet_topology.h \
+         /home/snicolas/CGAL/cgal/Shape_detection/include/CGAL/Polygon_mesh_processing/region_growing.h
+STRIP_FROM_PATH += /home/snicolas/CGAL/cgal/Mesh_3/include
+STRIP_FROM_PATH += /home/snicolas/CGAL/cgal/Shape_detection/include
+
+# macros to be used inside the code
+ALIASES += "cgalDescribePolylineType=A polyline is defined as a sequence of points, each pair of contiguous points defines a segment of the polyline. If the first and last points of the polyline are identical, the polyline is closed."
+
+EXAMPLE_PATH += /home/snicolas/CGAL/cgal/Poisson_surface_reconstruction_3/examples
+
+EXCLUDE_SYMBOLS += experimental
+
+HTML_EXTRA_FILES           = /home/snicolas/CGAL/cgal/Polygon_mesh_processing/doc/Polygon_mesh_processing/fig/selfintersections.jpg \
+                             /home/snicolas/CGAL/cgal/Polygon_mesh_processing/doc/Polygon_mesh_processing/fig/mesh_smoothing.png \
+                             /home/snicolas/CGAL/cgal/Polygon_mesh_processing/doc/Polygon_mesh_processing/fig/shape_smoothing.png \
+                             /home/snicolas/CGAL/cgal/Polygon_mesh_processing/doc/Polygon_mesh_processing/fig/bimba-dmax0.040000-0.000000.jpg \
+                             /home/snicolas/CGAL/cgal/Polygon_mesh_processing/doc/Polygon_mesh_processing/fig/bimba-dmin0.040000-0.000000.jpg \
+                             /home/snicolas/CGAL/cgal/Polygon_mesh_processing/doc/Polygon_mesh_processing/fig/bimba-gaussian0.040000-0.000000.jpg \
+                             /home/snicolas/CGAL/cgal/Polygon_mesh_processing/doc/Polygon_mesh_processing/fig/bimba-mean0.020000-0.000000.jpg \
+                             /home/snicolas/CGAL/cgal/Polygon_mesh_processing/doc/Polygon_mesh_processing/fig/bimba-mean0.020000-0.002000.jpg \
+                             /home/snicolas/CGAL/cgal/Polygon_mesh_processing/doc/Polygon_mesh_processing/fig/bimba-mean0.030000-0.000000.jpg \
+                             /home/snicolas/CGAL/cgal/Polygon_mesh_processing/doc/Polygon_mesh_processing/fig/bimba-mean0.030000-0.002000.jpg \
+                             /home/snicolas/CGAL/cgal/Polygon_mesh_processing/doc/Polygon_mesh_processing/fig/bimba-mean0.040000-0.000000.jpg \
+                             /home/snicolas/CGAL/cgal/Polygon_mesh_processing/doc/Polygon_mesh_processing/fig/bimba-mean0.040000-0.002000.jpg \
+                             /home/snicolas/CGAL/cgal/Polygon_mesh_processing/doc/Polygon_mesh_processing/fig/bimba-mean0.050000-0.000000.jpg \
+                             /home/snicolas/CGAL/cgal/Polygon_mesh_processing/doc/Polygon_mesh_processing/fig/bimba-mean0.050000-0.002000.jpg \
+                             /home/snicolas/CGAL/cgal/Polygon_mesh_processing/doc/Polygon_mesh_processing/fig/decimate_cheese.png \
+                             /home/snicolas/CGAL/cgal/Polygon_mesh_processing/doc/Polygon_mesh_processing/fig/decimate_colors.png \
+                             /home/snicolas/CGAL/cgal/Polygon_mesh_processing/doc/Polygon_mesh_processing/fig/decimate_rg_joint.png
+

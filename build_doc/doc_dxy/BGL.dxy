@@ -1,0 +1,43 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/BGL_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - CGAL and the Boost Graph Library"
+INPUT += /home/snicolas/CGAL/cgal/BGL/include//CGAL/IO/polygon_mesh_io.h \
+         /home/snicolas/CGAL/cgal/BGL/include//CGAL/boost/graph/Euler_operations.h \
+         /home/snicolas/CGAL/cgal/BGL/include//CGAL/boost/graph/iterator.h \
+         /home/snicolas/CGAL/cgal/BGL/include//CGAL/boost/graph/helpers.h \
+         /home/snicolas/CGAL/cgal/BGL/include//CGAL/boost/graph/generators.h \
+         /home/snicolas/CGAL/cgal/BGL/include//CGAL/boost/graph/selection.h \
+         /home/snicolas/CGAL/cgal/BGL/include//CGAL/boost/graph/split_graph_into_polylines.h \
+         /home/snicolas/CGAL/cgal/BGL/include//CGAL/boost/graph/copy_face_graph.h \
+         /home/snicolas/CGAL/cgal/BGL/include//CGAL/boost/graph/Graph_with_descriptor_with_graph.h \
+         /home/snicolas/CGAL/cgal/BGL/include//CGAL/boost/graph/Face_filtered_graph.h \
+         /home/snicolas/CGAL/cgal/BGL/include//CGAL/boost/graph/Dual.h \
+         /home/snicolas/CGAL/cgal/BGL/include//CGAL/boost/graph/Seam_mesh.h \
+         /home/snicolas/CGAL/cgal/BGL/include//CGAL/boost/graph/io.h \
+         /home/snicolas/CGAL/cgal/BGL/include//CGAL/boost/graph/IO/ \
+         /home/snicolas/CGAL/cgal/BGL/include//CGAL/boost/graph/partition.h \
+         /home/snicolas/CGAL/cgal/BGL/include//CGAL/boost/graph/METIS/partition_graph.h \
+         /home/snicolas/CGAL/cgal/BGL/include//CGAL/boost/graph/METIS/partition_dual_graph.h \
+         /home/snicolas/CGAL/cgal/BGL/include//CGAL/boost/graph/alpha_expansion_graphcut.h \
+         /home/snicolas/CGAL/cgal/BGL/include//CGAL/boost/graph/graph_traits_inheritance_macros.h
+
+
+EXAMPLE_PATH               +=  /home/snicolas/CGAL/cgal/Surface_mesh_skeletonization/examples \
+                               /home/snicolas/CGAL/cgal/Surface_mesh_segmentation/examples \
+                               /home/snicolas/CGAL/cgal/Polygon_mesh_processing/examples \
+                               /home/snicolas/CGAL/cgal/Surface_mesh/examples \
+                               /home/snicolas/CGAL/cgal/Property_map/examples \
+                               /home/snicolas/CGAL/cgal/Polyhedron/examples
+
+ALIASES +=  "bgllink{1}=<a href=\"http://www.boost.org/libs/graph/doc/\1.html\"><code>\1</code></a>"
+
+EXTRACT_ALL=NO
+HIDE_UNDOC_MEMBERS         =  YES
+HIDE_UNDOC_CLASSES         =  YES
+WARN_IF_INCOMPLETE_DOC     =  NO
+
+# macros to be used inside the code
+ALIASES += "cgalAssociatedTypesBegin=<dl class=\"params\"><dt>Associated Types</dt><dd> <table class=\"params\">"
+ALIASES += "cgalAssociatedTypesEnd=</table> </dd> </dl>"
+ALIASES += "cgalAssociatedTypeBegin{1}=<tr><td class=\"paramname\">\1</td><td>"
+ALIASES += "cgalAssociatedTypeEnd=</td></tr>"

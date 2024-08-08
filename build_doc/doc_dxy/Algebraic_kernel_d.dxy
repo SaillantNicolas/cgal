@@ -1,0 +1,7 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Algebraic_kernel_d_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - Algebraic Kernel"
+SORT_GROUP_NAMES           =  true
+
+
+

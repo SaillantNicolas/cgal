@@ -1,0 +1,7 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Optimal_transportation_reconstruction_2_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - Optimal Transportation Curve Reconstruction"
+
+EXTRACT_ALL                =  false
+HIDE_UNDOC_CLASSES         =  true
+WARN_IF_UNDOCUMENTED       =  false

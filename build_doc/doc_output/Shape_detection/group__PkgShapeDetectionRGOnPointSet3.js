@@ -1,0 +1,27 @@
+var group__PkgShapeDetectionRGOnPointSet3 =
+[
+    [ "CGAL::Shape_detection::Point_set::K_neighbor_query::K_neighbor_query_for_point_set", "group__PkgShapeDetectionRGOnPointSet3.html#gae759474b2d8a68ac7f21fb64d1e0bfd1", null ],
+    [ "CGAL::Shape_detection::Point_set::Least_squares_circle_fit_region::Least_squares_circle_fit_region_for_point_set", "group__PkgShapeDetectionRGOnPointSet3.html#ga934452b184c7901d92f9ffc889dbf450", null ],
+    [ "CGAL::Shape_detection::Point_set::Least_squares_circle_fit_sorting::Least_squares_circle_fit_sorting_for_point_set", "group__PkgShapeDetectionRGOnPointSet3.html#gadaa8e362952265dab082edc8c2174568", null ],
+    [ "CGAL::Shape_detection::Point_set::Least_squares_cylinder_fit_region::Least_squares_cylinder_fit_region_for_point_set", "group__PkgShapeDetectionRGOnPointSet3.html#ga40064ae08919e7ff31f1c35f1435f22a", null ],
+    [ "CGAL::Shape_detection::Point_set::Least_squares_cylinder_fit_sorting::Least_squares_cylinder_fit_sorting_for_point_set", "group__PkgShapeDetectionRGOnPointSet3.html#ga3dc9b27d352f1de9e7987e90a8bded17", null ],
+    [ "CGAL::Shape_detection::Point_set::Least_squares_line_fit_region::Least_squares_line_fit_region_for_point_set", "group__PkgShapeDetectionRGOnPointSet3.html#gaef68c835110667ad8bd1f1369e3316e4", null ],
+    [ "CGAL::Shape_detection::Point_set::Least_squares_line_fit_sorting::Least_squares_line_fit_sorting_for_point_set", "group__PkgShapeDetectionRGOnPointSet3.html#ga8a68b9e2a82ddbbbde0c5dca2ad62f4b", null ],
+    [ "CGAL::Shape_detection::Point_set::Least_squares_plane_fit_region::Least_squares_plane_fit_region_for_point_set", "group__PkgShapeDetectionRGOnPointSet3.html#ga138232a415b431cf0c95281e71da62e1", null ],
+    [ "CGAL::Shape_detection::Point_set::Least_squares_plane_fit_sorting::Least_squares_plane_fit_sorting_for_point_set", "group__PkgShapeDetectionRGOnPointSet3.html#gadfeccaeec27ed383755ed7feed4694e4", null ],
+    [ "CGAL::Shape_detection::Point_set::Least_squares_sphere_fit_region::Least_squares_sphere_fit_region_for_point_set", "group__PkgShapeDetectionRGOnPointSet3.html#ga31f6a6f7462fe2f856573535a7e2d1c0", null ],
+    [ "CGAL::Shape_detection::Point_set::Least_squares_sphere_fit_sorting::Least_squares_sphere_fit_sorting_for_point_set", "group__PkgShapeDetectionRGOnPointSet3.html#ga1b482775adc90e331b42c1f2582ea61f", null ],
+    [ "CGAL::Shape_detection::Point_set::Sphere_neighbor_query::Sphere_neighbor_query_for_point_set", "group__PkgShapeDetectionRGOnPointSet3.html#gaff7bd46d3c70b7d809440bf2421891ea", null ],
+    [ "CGAL::Shape_detection::Point_set::K_neighbor_query::make_k_neighbor_query", "group__PkgShapeDetectionRGOnPointSet3.html#ga52be33ec5ef09a073c754000e03f174a", null ],
+    [ "CGAL::Shape_detection::Point_set::Least_squares_circle_fit_region::make_least_squares_circle_fit_region", "group__PkgShapeDetectionRGOnPointSet3.html#ga98028376532032ce39ca73ec0d0a4290", null ],
+    [ "CGAL::Shape_detection::Point_set::Least_squares_circle_fit_sorting::make_least_squares_circle_fit_sorting", "group__PkgShapeDetectionRGOnPointSet3.html#gae5721053042d8520f34ab84b4d0a58d0", null ],
+    [ "CGAL::Shape_detection::Point_set::Least_squares_cylinder_fit_region::make_least_squares_cylinder_fit_region", "group__PkgShapeDetectionRGOnPointSet3.html#ga99a5a954bbbee8caa18069dd81de0103", null ],
+    [ "CGAL::Shape_detection::Point_set::Least_squares_cylinder_fit_sorting::make_least_squares_cylinder_fit_sorting", "group__PkgShapeDetectionRGOnPointSet3.html#ga2cea5715bdf24455232bc42a5780a90f", null ],
+    [ "CGAL::Shape_detection::Point_set::Least_squares_line_fit_region::make_least_squares_line_fit_region", "group__PkgShapeDetectionRGOnPointSet3.html#ga5587563d9f9a7b3ce779bb8badd08e37", null ],
+    [ "CGAL::Shape_detection::Point_set::Least_squares_line_fit_sorting::make_least_squares_line_fit_sorting", "group__PkgShapeDetectionRGOnPointSet3.html#ga98815ab02c713ff0f3534b08510a7e5f", null ],
+    [ "CGAL::Shape_detection::Point_set::Least_squares_plane_fit_region::make_least_squares_plane_fit_region", "group__PkgShapeDetectionRGOnPointSet3.html#gac4c1c31e24bf462c6a302007fef90538", null ],
+    [ "CGAL::Shape_detection::Point_set::Least_squares_plane_fit_sorting::make_least_squares_plane_fit_sorting", "group__PkgShapeDetectionRGOnPointSet3.html#ga2123a8a09f0799bd9083f25900e4cec9", null ],
+    [ "CGAL::Shape_detection::Point_set::Least_squares_sphere_fit_region::make_least_squares_sphere_fit_region", "group__PkgShapeDetectionRGOnPointSet3.html#ga08dcd76b0147699dd6585eb71456990a", null ],
+    [ "CGAL::Shape_detection::Point_set::Least_squares_sphere_fit_sorting::make_least_squares_sphere_fit_sorting", "group__PkgShapeDetectionRGOnPointSet3.html#gac73a2de603953300289dc3350331abd0", null ],
+    [ "CGAL::Shape_detection::Point_set::Sphere_neighbor_query::make_sphere_neighbor_query", "group__PkgShapeDetectionRGOnPointSet3.html#gae19d6d2225dca432f7d720bdf4e1f99b", null ]
+];

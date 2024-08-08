@@ -1,0 +1,526 @@
+<!-- HTML header for doxygen 1.9.6-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<link rel="icon" type="image/png" href="../Manual/g-196x196-doc.png"/>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CGAL 6.0 - Optimal Distances: CGAL::Polytope_distance_d_traits_2&lt; K, ET, NT &gt; Class Template Reference</title>
+<!-- <link href="../Manual/tabs.css" rel="stylesheet" type="text/css"/> -->
+<script type="text/javascript" src="../Manual/jquery.js"></script>
+<script type="text/javascript" src="../Manual/dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script src="../Manual/hacks.js" type="text/javascript"></script>
+<!-- Manually include treeview and search to avoid bloat and to fix
+     paths to the directory Manual . -->
+<!-- $.treeview -->
+<!-- $.search -->
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script src="../Manual/cookie.js" type="text/javascript"></script>
+<script type="text/javascript" src="../Manual/resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="../Manual/search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../Manual/search/searchdata.js"></script>
+<script type="text/javascript" src="../Manual/search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="../Manual/search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../Manual/search/search.js"></script>
+<!-- Manually done below. -->
+<link href="../Manual/doxygen.css" rel="stylesheet" type="text/css" />
+<!-- This should probably be an extrastylesheet instead of hardcoded. -->
+<link href="../Manual/cgal_stylesheet.css" rel="stylesheet" type="text/css" />
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+//<![CDATA[
+MathJax.Hub.Config(
+{
+  TeX: {
+      Macros: {
+          qprel: [ "{\\gtreqless}", 0],
+          qpx: [ "{\\mathbf{x}}", 0],
+          qpl: [ "{\\mathbf{l}}", 0],
+          qpu: [ "{\\mathbf{u}}", 0],
+          qpc: [ "{\\mathbf{c}}", 0],
+          qpb: [ "{\\mathbf{b}}", 0],
+          qpy: [ "{\\mathbf{y}}", 0],
+          qpw: [ "{\\mathbf{w}}", 0],
+          qplambda: [ "{\\mathbf{\\lambda}}", 0],
+          ssWpoint: [ "{\\bf #1}", 1],
+          ssWeight: [ "{w_{#1}}", 1],
+          dabs: [ "{\\parallel\\! #1 \\!\\parallel}", 1],
+          E: [ "{\\mathrm{E}}", 0],
+          A: [ "{\\mathrm{A}}", 0],
+          R: [ "{\\mathrm{R}}", 0],
+          N: [ "{\\mathrm{N}}", 0],
+          Q: [ "{\\mathrm{Q}}", 0],
+          Z: [ "{\\mathrm{Z}}", 0],
+          ccSum: [ "{\\sum_{#1}^{#2}{#3}}", 3],
+          ccProd: [ "{\\prod_{#1}^{#2}{#3}}", 3],
+          pyr: [ "{\\operatorname{Pyr}}", 0],
+          aff: [ "{\\operatorname{aff}}", 0],
+          Ac: [ "{\\cal A}", 0],
+          Sc: [ "{\\cal S}", 0],
+      },
+      equationNumbers: { autoNumber: "AMS" }
+  }
+}
+);
+//]]>
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<script src="topics.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="back-nav">
+  <ul>
+    <li><a href="https://www.cgal.org/">cgal.org</a></li>
+    <li><a href="../Manual/index.html">Top</a></li>
+    <li><a href="../Manual/general_intro.html">Getting Started</a></li>
+    <li><a href="../Manual/tutorials.html">Tutorials</a></li>
+    <li><a href="../Manual/packages.html">Package Overview</a></li>
+    <li><a href="../Manual/how_to_cite_cgal.html">Acknowledging CGAL</a></li>
+  </ul>
+  <!-- In a package SEARCHENGINE = false, so we cannot use 
+       insertion. That's why we have to do it manually here. Notice
+       that we also take pngs from the Manual. -->
+  <div id="MSearchBox" class="MSearchBoxInactive">
+      <span class="left">
+         <span id="MSearchSelect"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()">&#160;
+        </span>
+        <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)"
+               onblur="searchBox.OnSearchFieldFocus(false)"
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+      </span>
+      <span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../Manual/search/close.svg" alt=""/></a>
+      </span>
+  </div>
+</div>
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CGAL 6.0 - Optimal Distances
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- Code below is usually inserted by doxygen when SEARCHENGINE =
+     true. Notice that the path to the search directory is adjusted to
+     the top-level.-->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../Manual/search/",'.html');
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.10.0 -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classCGAL_1_1Polytope__distance__d__traits__2.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="classCGAL_1_1Polytope__distance__d__traits__2-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">CGAL::Polytope_distance_d_traits_2&lt; K, ET, NT &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__PkgPolytopeDistanceDRef.html">Optimal Distances Reference</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;CGAL/Polytope_distance_d_traits_2.h&gt;</code></p>
+<a name="details" id="details"></a><h2 class="groupheader">Definition</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename K, typename <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a>, typename <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a>&gt;<br />
+class CGAL::Polytope_distance_d_traits_2&lt; K, ET, NT &gt;</div><p>The class <code><a class="el" href="classCGAL_1_1Polytope__distance__d__traits__2.html" title="The class Polytope_distance_d_traits_2 is a traits class for the -dimensional optimisation algorithms...">Polytope_distance_d_traits_2</a></code> is a traits class for the \( d\)-dimensional optimisation algorithms using the two-dimensional CGAL kernel. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">K</td><td>must be a model for <code>Kernel</code>.</td></tr>
+    <tr><td class="paramname">ET</td><td>NT must be models for <code>RingNumberType</code>. Their default is <code>K::RT</code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl>
+<dt>Is model of</dt>
+<dd><code><a class="el" href="classPolytopeDistanceDTraits.html" title="This concept defines the requirements for traits classes of -dimensional optimisation algorithms.">PolytopeDistanceDTraits</a></code> </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><code><a class="el" href="classCGAL_1_1Polytope__distance__d.html" title="An object of the class Polytope_distance_d represents the (squared) distance between two convex polyt...">CGAL::Polytope_distance_d</a>&lt;Traits&gt;</code> </dd>
+<dd>
+<code><a class="el" href="classCGAL_1_1Polytope__distance__d__traits__3.html" title="The class Polytope_distance_d_traits_3 is a traits class for the -dimensional optimisation algorithms...">CGAL::Polytope_distance_d_traits_3</a>&lt;K,<a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d" title="second template parameter (default is K::RT).">ET</a>,<a class="el" href="#a4905dda9548ea65e853260021bf66009" title="third template parameter (default is K::RT).">NT</a>&gt;</code> </dd>
+<dd>
+<code><a class="el" href="classCGAL_1_1Polytope__distance__d__traits__d.html" title="The class Polytope_distance_d_traits_d is a traits class for the -dimensional optimisation algorithms...">CGAL::Polytope_distance_d_traits_d</a>&lt;K,<a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d" title="second template parameter (default is K::RT).">ET</a>,<a class="el" href="#a4905dda9548ea65e853260021bf66009" title="third template parameter (default is K::RT).">NT</a>&gt;</code> </dd>
+<dd>
+<code><a class="el" href="classPolytopeDistanceDTraits.html" title="This concept defines the requirements for traits classes of -dimensional optimisation algorithms.">PolytopeDistanceDTraits</a></code> </dd></dl>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Types</h2></td></tr>
+<tr class="memitem:a88a8e544061a1560c488e89e664895e0" id="r_a88a8e544061a1560c488e89e664895e0"><td class="memItemLeft" align="right" valign="top">typedef unspecified_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a88a8e544061a1560c488e89e664895e0">Point_d</a></td></tr>
+<tr class="memdesc:a88a8e544061a1560c488e89e664895e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">typedef to <code>K::Point_2</code>.  <br /></td></tr>
+<tr class="separator:a88a8e544061a1560c488e89e664895e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07dfddbaed5ef7836ff67f39afacd052" id="r_a07dfddbaed5ef7836ff67f39afacd052"><td class="memItemLeft" align="right" valign="top">typedef unspecified_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07dfddbaed5ef7836ff67f39afacd052">Rep_tag</a></td></tr>
+<tr class="memdesc:a07dfddbaed5ef7836ff67f39afacd052"><td class="mdescLeft">&#160;</td><td class="mdescRight">typedef to <code>K::Rep_tag</code>.  <br /></td></tr>
+<tr class="separator:a07dfddbaed5ef7836ff67f39afacd052"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a199bdbe67d111061393b3b13e49c59be" id="r_a199bdbe67d111061393b3b13e49c59be"><td class="memItemLeft" align="right" valign="top">typedef unspecified_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a199bdbe67d111061393b3b13e49c59be">RT</a></td></tr>
+<tr class="memdesc:a199bdbe67d111061393b3b13e49c59be"><td class="mdescLeft">&#160;</td><td class="mdescRight">typedef to <code>K::RT</code>.  <br /></td></tr>
+<tr class="separator:a199bdbe67d111061393b3b13e49c59be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e71adebfd630af6814f99e0e6f9a433" id="r_a1e71adebfd630af6814f99e0e6f9a433"><td class="memItemLeft" align="right" valign="top">typedef unspecified_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e71adebfd630af6814f99e0e6f9a433">FT</a></td></tr>
+<tr class="memdesc:a1e71adebfd630af6814f99e0e6f9a433"><td class="mdescLeft">&#160;</td><td class="mdescRight">typedef to <code>K::FT</code>.  <br /></td></tr>
+<tr class="separator:a1e71adebfd630af6814f99e0e6f9a433"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a325a28c6053a661ac5b1d349010d4919" id="r_a325a28c6053a661ac5b1d349010d4919"><td class="memItemLeft" align="right" valign="top">typedef unspecified_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a325a28c6053a661ac5b1d349010d4919">Access_dimension_d</a></td></tr>
+<tr class="memdesc:a325a28c6053a661ac5b1d349010d4919"><td class="mdescLeft">&#160;</td><td class="mdescRight">typedef to <code>K::Access_dimension_2</code>.  <br /></td></tr>
+<tr class="separator:a325a28c6053a661ac5b1d349010d4919"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b91e1d20a6b5efe2cfc6c7240d735a0" id="r_a4b91e1d20a6b5efe2cfc6c7240d735a0"><td class="memItemLeft" align="right" valign="top">typedef unspecified_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b91e1d20a6b5efe2cfc6c7240d735a0">Access_coordinates_begin_d</a></td></tr>
+<tr class="memdesc:a4b91e1d20a6b5efe2cfc6c7240d735a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">typedef to <code>K::Access_coordinates_begin_2</code>.  <br /></td></tr>
+<tr class="separator:a4b91e1d20a6b5efe2cfc6c7240d735a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0e7e2840d5a03c0f780c83bf5e89085" id="r_af0e7e2840d5a03c0f780c83bf5e89085"><td class="memItemLeft" align="right" valign="top">typedef unspecified_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0e7e2840d5a03c0f780c83bf5e89085">Construct_point_d</a></td></tr>
+<tr class="memdesc:af0e7e2840d5a03c0f780c83bf5e89085"><td class="mdescLeft">&#160;</td><td class="mdescRight">typedef to <code>K::Construct_point_2</code>.  <br /></td></tr>
+<tr class="separator:af0e7e2840d5a03c0f780c83bf5e89085"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a925177a31a6dbda0e8c157b0dadae47d" id="r_a925177a31a6dbda0e8c157b0dadae47d"><td class="memItemLeft" align="right" valign="top">typedef unspecified_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a></td></tr>
+<tr class="memdesc:a925177a31a6dbda0e8c157b0dadae47d"><td class="mdescLeft">&#160;</td><td class="mdescRight">second template parameter (default is <code>K::RT</code>).  <br /></td></tr>
+<tr class="separator:a925177a31a6dbda0e8c157b0dadae47d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4905dda9548ea65e853260021bf66009" id="r_a4905dda9548ea65e853260021bf66009"><td class="memItemLeft" align="right" valign="top">typedef unspecified_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a></td></tr>
+<tr class="memdesc:a4905dda9548ea65e853260021bf66009"><td class="mdescLeft">&#160;</td><td class="mdescRight">third template parameter (default is <code>K::RT</code>).  <br /></td></tr>
+<tr class="separator:a4905dda9548ea65e853260021bf66009"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Creation</h2></td></tr>
+<tr class="memitem:a1f94f7be7a3f811cf231be413e0d75ba" id="r_a1f94f7be7a3f811cf231be413e0d75ba"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f94f7be7a3f811cf231be413e0d75ba">Polytope_distance_d_traits_2</a> ()</td></tr>
+<tr class="memdesc:a1f94f7be7a3f811cf231be413e0d75ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">default constructor.  <br /></td></tr>
+<tr class="separator:a1f94f7be7a3f811cf231be413e0d75ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace8fa29b89370819f19bfe8c4b843eaa" id="r_ace8fa29b89370819f19bfe8c4b843eaa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace8fa29b89370819f19bfe8c4b843eaa">Polytope_distance_d_traits_2</a> (const <a class="el" href="classCGAL_1_1Polytope__distance__d__traits__2.html">Polytope_distance_d_traits_2</a>&lt; K, <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a>, <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt; &amp;)</td></tr>
+<tr class="memdesc:ace8fa29b89370819f19bfe8c4b843eaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">copy constructor.  <br /></td></tr>
+<tr class="separator:ace8fa29b89370819f19bfe8c4b843eaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Operations</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p>The following functions just return the corresponding function class object. </p>
+</td></tr>
+<tr class="memitem:a2ba9ef55bba0c061801474f0b8f65a35" id="r_a2ba9ef55bba0c061801474f0b8f65a35"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a325a28c6053a661ac5b1d349010d4919">Access_dimension_d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ba9ef55bba0c061801474f0b8f65a35">access_dimension_d_object</a> () const</td></tr>
+<tr class="separator:a2ba9ef55bba0c061801474f0b8f65a35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f1aeb758319761441819f79334973e5" id="r_a4f1aeb758319761441819f79334973e5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a4b91e1d20a6b5efe2cfc6c7240d735a0">Access_coordinates_begin_d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f1aeb758319761441819f79334973e5">access_coordinates_begin_d_object</a> () const</td></tr>
+<tr class="separator:a4f1aeb758319761441819f79334973e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52e7416011aa09b0e427bc182d8129a2" id="r_a52e7416011aa09b0e427bc182d8129a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#af0e7e2840d5a03c0f780c83bf5e89085">Construct_point_d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a52e7416011aa09b0e427bc182d8129a2">construct_point_d_object</a> () const</td></tr>
+<tr class="separator:a52e7416011aa09b0e427bc182d8129a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a4b91e1d20a6b5efe2cfc6c7240d735a0" name="a4b91e1d20a6b5efe2cfc6c7240d735a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b91e1d20a6b5efe2cfc6c7240d735a0">&#9670;&#160;</a></span>Access_coordinates_begin_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename K , typename <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a> , typename <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef unspecified_type <a class="el" href="classCGAL_1_1Polytope__distance__d__traits__2.html">CGAL::Polytope_distance_d_traits_2</a>&lt; K, <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a>, <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt;::Access_coordinates_begin_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>typedef to <code>K::Access_coordinates_begin_2</code>. </p>
+
+</div>
+</div>
+<a id="a325a28c6053a661ac5b1d349010d4919" name="a325a28c6053a661ac5b1d349010d4919"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a325a28c6053a661ac5b1d349010d4919">&#9670;&#160;</a></span>Access_dimension_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename K , typename <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a> , typename <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef unspecified_type <a class="el" href="classCGAL_1_1Polytope__distance__d__traits__2.html">CGAL::Polytope_distance_d_traits_2</a>&lt; K, <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a>, <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt;::Access_dimension_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>typedef to <code>K::Access_dimension_2</code>. </p>
+
+</div>
+</div>
+<a id="af0e7e2840d5a03c0f780c83bf5e89085" name="af0e7e2840d5a03c0f780c83bf5e89085"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0e7e2840d5a03c0f780c83bf5e89085">&#9670;&#160;</a></span>Construct_point_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename K , typename <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a> , typename <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef unspecified_type <a class="el" href="classCGAL_1_1Polytope__distance__d__traits__2.html">CGAL::Polytope_distance_d_traits_2</a>&lt; K, <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a>, <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt;::Construct_point_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>typedef to <code>K::Construct_point_2</code>. </p>
+
+</div>
+</div>
+<a id="a925177a31a6dbda0e8c157b0dadae47d" name="a925177a31a6dbda0e8c157b0dadae47d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a925177a31a6dbda0e8c157b0dadae47d">&#9670;&#160;</a></span>ET</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename K , typename <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a> , typename <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef unspecified_type <a class="el" href="classCGAL_1_1Polytope__distance__d__traits__2.html">CGAL::Polytope_distance_d_traits_2</a>&lt; K, <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a>, <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt;::ET</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>second template parameter (default is <code>K::RT</code>). </p>
+
+</div>
+</div>
+<a id="a1e71adebfd630af6814f99e0e6f9a433" name="a1e71adebfd630af6814f99e0e6f9a433"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e71adebfd630af6814f99e0e6f9a433">&#9670;&#160;</a></span>FT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename K , typename <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a> , typename <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef unspecified_type <a class="el" href="classCGAL_1_1Polytope__distance__d__traits__2.html">CGAL::Polytope_distance_d_traits_2</a>&lt; K, <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a>, <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt;::FT</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>typedef to <code>K::FT</code>. </p>
+
+</div>
+</div>
+<a id="a4905dda9548ea65e853260021bf66009" name="a4905dda9548ea65e853260021bf66009"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4905dda9548ea65e853260021bf66009">&#9670;&#160;</a></span>NT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename K , typename <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a> , typename <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef unspecified_type <a class="el" href="classCGAL_1_1Polytope__distance__d__traits__2.html">CGAL::Polytope_distance_d_traits_2</a>&lt; K, <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a>, <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt;::NT</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>third template parameter (default is <code>K::RT</code>). </p>
+
+</div>
+</div>
+<a id="a88a8e544061a1560c488e89e664895e0" name="a88a8e544061a1560c488e89e664895e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88a8e544061a1560c488e89e664895e0">&#9670;&#160;</a></span>Point_d</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename K , typename <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a> , typename <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef unspecified_type <a class="el" href="classCGAL_1_1Polytope__distance__d__traits__2.html">CGAL::Polytope_distance_d_traits_2</a>&lt; K, <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a>, <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt;::Point_d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>typedef to <code>K::Point_2</code>. </p>
+
+</div>
+</div>
+<a id="a07dfddbaed5ef7836ff67f39afacd052" name="a07dfddbaed5ef7836ff67f39afacd052"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07dfddbaed5ef7836ff67f39afacd052">&#9670;&#160;</a></span>Rep_tag</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename K , typename <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a> , typename <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef unspecified_type <a class="el" href="classCGAL_1_1Polytope__distance__d__traits__2.html">CGAL::Polytope_distance_d_traits_2</a>&lt; K, <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a>, <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt;::Rep_tag</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>typedef to <code>K::Rep_tag</code>. </p>
+
+</div>
+</div>
+<a id="a199bdbe67d111061393b3b13e49c59be" name="a199bdbe67d111061393b3b13e49c59be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a199bdbe67d111061393b3b13e49c59be">&#9670;&#160;</a></span>RT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename K , typename <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a> , typename <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef unspecified_type <a class="el" href="classCGAL_1_1Polytope__distance__d__traits__2.html">CGAL::Polytope_distance_d_traits_2</a>&lt; K, <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a>, <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt;::RT</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>typedef to <code>K::RT</code>. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a1f94f7be7a3f811cf231be413e0d75ba" name="a1f94f7be7a3f811cf231be413e0d75ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f94f7be7a3f811cf231be413e0d75ba">&#9670;&#160;</a></span>Polytope_distance_d_traits_2() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename K , typename <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a> , typename <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCGAL_1_1Polytope__distance__d__traits__2.html">CGAL::Polytope_distance_d_traits_2</a>&lt; K, <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a>, <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt;::Polytope_distance_d_traits_2 </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>default constructor. </p>
+
+</div>
+</div>
+<a id="ace8fa29b89370819f19bfe8c4b843eaa" name="ace8fa29b89370819f19bfe8c4b843eaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace8fa29b89370819f19bfe8c4b843eaa">&#9670;&#160;</a></span>Polytope_distance_d_traits_2() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename K , typename <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a> , typename <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCGAL_1_1Polytope__distance__d__traits__2.html">CGAL::Polytope_distance_d_traits_2</a>&lt; K, <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a>, <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt;::Polytope_distance_d_traits_2 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classCGAL_1_1Polytope__distance__d__traits__2.html">Polytope_distance_d_traits_2</a>&lt; K, <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a>, <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>copy constructor. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a4f1aeb758319761441819f79334973e5" name="a4f1aeb758319761441819f79334973e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f1aeb758319761441819f79334973e5">&#9670;&#160;</a></span>access_coordinates_begin_d_object()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename K , typename <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a> , typename <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a4b91e1d20a6b5efe2cfc6c7240d735a0">Access_coordinates_begin_d</a> <a class="el" href="classCGAL_1_1Polytope__distance__d__traits__2.html">CGAL::Polytope_distance_d_traits_2</a>&lt; K, <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a>, <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt;::access_coordinates_begin_d_object </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2ba9ef55bba0c061801474f0b8f65a35" name="a2ba9ef55bba0c061801474f0b8f65a35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ba9ef55bba0c061801474f0b8f65a35">&#9670;&#160;</a></span>access_dimension_d_object()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename K , typename <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a> , typename <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a325a28c6053a661ac5b1d349010d4919">Access_dimension_d</a> <a class="el" href="classCGAL_1_1Polytope__distance__d__traits__2.html">CGAL::Polytope_distance_d_traits_2</a>&lt; K, <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a>, <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt;::access_dimension_d_object </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a52e7416011aa09b0e427bc182d8129a2" name="a52e7416011aa09b0e427bc182d8129a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52e7416011aa09b0e427bc182d8129a2">&#9670;&#160;</a></span>construct_point_d_object()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename K , typename <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a> , typename <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#af0e7e2840d5a03c0f780c83bf5e89085">Construct_point_d</a> <a class="el" href="classCGAL_1_1Polytope__distance__d__traits__2.html">CGAL::Polytope_distance_d_traits_2</a>&lt; K, <a class="el" href="#a925177a31a6dbda0e8c157b0dadae47d">ET</a>, <a class="el" href="#a4905dda9548ea65e853260021bf66009">NT</a> &gt;::construct_point_d_object </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.6-->
+<!-- start footer part -->
+<!-- The footer div is not part of the default but we require it to
+move the footer to the bottom of the page. -->
+<div id="footer">
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceCGAL.html">CGAL</a></li><li class="navelem"><a class="el" href="classCGAL_1_1Polytope__distance__d__traits__2.html">Polytope_distance_d_traits_2</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

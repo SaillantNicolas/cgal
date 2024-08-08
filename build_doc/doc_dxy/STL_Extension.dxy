@@ -1,0 +1,6 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/STL_Extension_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - STL Extensions for CGAL"
+
+INPUT += /home/snicolas/CGAL/cgal/STL_Extension/include//CGAL/value_type_traits.h
+INPUT += /home/snicolas/CGAL/cgal/STL_Extension/include//CGAL/functional.h

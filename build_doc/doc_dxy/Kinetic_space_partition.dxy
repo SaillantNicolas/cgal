@@ -1,0 +1,7 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Kinetic_space_partition_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - Kinetic Space Partition"
+EXTRACT_ALL                =  NO
+HIDE_UNDOC_CLASSES         =  YES
+WARN_IF_UNDOCUMENTED       =  NO
+PREDEFINED                 +=  DOXYGEN_RUNNING

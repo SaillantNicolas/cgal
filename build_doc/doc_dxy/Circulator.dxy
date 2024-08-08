@@ -1,0 +1,3 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Circulator_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - Handles and Circulators"

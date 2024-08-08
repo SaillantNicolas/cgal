@@ -1,0 +1,5 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Surface_mesh_simplification_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - Triangulated Surface Mesh Simplification"
+
+HTML_EXTRA_FILES           =  /home/snicolas/CGAL/cgal/Surface_mesh_simplification/doc/Surface_mesh_simplification/fig/sappho.jpg

@@ -1,0 +1,2 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Segment_Delaunay_graph_Linf_2_defaults.dxy
+PROJECT_NAME = "CGAL 6.0 - L Infinity Segment Delaunay Graphs"

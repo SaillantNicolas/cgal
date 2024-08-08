@@ -1,0 +1,21 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/BaseDoxyfile
+OUTPUT_DIRECTORY = /home/snicolas/CGAL/cgal/build_doc/doc_output/Surface_mesh_topology
+HTML_OUTPUT = .
+EXAMPLE_PATH = /home/snicolas/CGAL/cgal/Surface_mesh_topology/examples
+GENERATE_TAGFILE = /home/snicolas/CGAL/cgal/build_doc/doc_gen_tags/Surface_mesh_topology.tag
+STRIP_FROM_PATH = /home/snicolas/CGAL/cgal/Surface_mesh_topology/doc/Surface_mesh_topology/
+STRIP_FROM_PATH += /home/snicolas/CGAL/cgal/Surface_mesh_topology/include/
+STRIP_FROM_INC_PATH = /home/snicolas/CGAL/cgal/Surface_mesh_topology/doc/Surface_mesh_topology/
+STRIP_FROM_INC_PATH += /home/snicolas/CGAL/cgal/Surface_mesh_topology/include/
+ALIASES += "cgalPkgDescriptionBegin{2}=\details "
+ALIASES += "cgalPkgManuals{2}=<div class=\"PkgManuals\"></div>"
+INPUT = /home/snicolas/CGAL/cgal/Surface_mesh_topology/doc/Surface_mesh_topology
+EXCLUDE += /home/snicolas/CGAL/cgal/Surface_mesh_topology/include/CGAL/Surface_mesh_topology/internal
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Combinatorial_map.tag=../Combinatorial_map
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Generalized_map.tag=../Generalized_map
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Linear_cell_complex.tag=../Linear_cell_complex
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/BGL.tag=../BGL
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Surface_mesh.tag=../Surface_mesh
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Polyhedron.tag=../Polyhedron
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Manual.tag=../Manual
+IMAGE_PATH += /home/snicolas/CGAL/cgal/Surface_mesh_topology/doc/Surface_mesh_topology/fig

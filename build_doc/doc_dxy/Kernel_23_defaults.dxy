@@ -1,0 +1,28 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/BaseDoxyfile
+OUTPUT_DIRECTORY = /home/snicolas/CGAL/cgal/build_doc/doc_output/Kernel_23
+HTML_OUTPUT = .
+EXAMPLE_PATH = /home/snicolas/CGAL/cgal/Kernel_23/examples
+GENERATE_TAGFILE = /home/snicolas/CGAL/cgal/build_doc/doc_gen_tags/Kernel_23.tag
+STRIP_FROM_PATH = /home/snicolas/CGAL/cgal/Kernel_23/doc/Kernel_23/
+STRIP_FROM_PATH += /home/snicolas/CGAL/cgal/Kernel_23/include/
+STRIP_FROM_INC_PATH = /home/snicolas/CGAL/cgal/Kernel_23/doc/Kernel_23/
+STRIP_FROM_INC_PATH += /home/snicolas/CGAL/cgal/Kernel_23/include/
+ALIASES += "cgalPkgDescriptionBegin{2}=\details "
+ALIASES += "cgalPkgManuals{2}=<div class=\"PkgManuals\"></div>"
+INPUT = /home/snicolas/CGAL/cgal/Kernel_23/doc/Kernel_23
+EXCLUDE += /home/snicolas/CGAL/cgal/Kernel_23/include/CGAL/Kernel_23/internal
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Manual.tag=../Manual
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Kernel_d.tag=../Kernel_d
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Polygon.tag=../Polygon
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Convex_hull_2.tag=../Convex_hull_2
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Triangulation_2.tag=../Triangulation_2
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Mesh_2.tag=../Mesh_2
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Number_types.tag=../Number_types
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Barycentric_coordinates_2.tag=../Barycentric_coordinates_2
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Algebraic_foundations.tag=../Algebraic_foundations
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Circular_kernel_2.tag=../Circular_kernel_2
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Circular_kernel_3.tag=../Circular_kernel_3
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/STL_Extension.tag=../STL_Extension
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Polyhedron.tag=../Polyhedron
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Weights.tag=../Weights
+IMAGE_PATH += /home/snicolas/CGAL/cgal/Kernel_23/doc/Kernel_23/fig

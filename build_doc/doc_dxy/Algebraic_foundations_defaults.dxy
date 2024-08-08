@@ -1,0 +1,16 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/BaseDoxyfile
+OUTPUT_DIRECTORY = /home/snicolas/CGAL/cgal/build_doc/doc_output/Algebraic_foundations
+HTML_OUTPUT = .
+EXAMPLE_PATH = /home/snicolas/CGAL/cgal/Algebraic_foundations/examples
+GENERATE_TAGFILE = /home/snicolas/CGAL/cgal/build_doc/doc_gen_tags/Algebraic_foundations.tag
+STRIP_FROM_PATH = /home/snicolas/CGAL/cgal/Algebraic_foundations/doc/Algebraic_foundations/
+STRIP_FROM_PATH += /home/snicolas/CGAL/cgal/Algebraic_foundations/include/
+STRIP_FROM_INC_PATH = /home/snicolas/CGAL/cgal/Algebraic_foundations/doc/Algebraic_foundations/
+STRIP_FROM_INC_PATH += /home/snicolas/CGAL/cgal/Algebraic_foundations/include/
+ALIASES += "cgalPkgDescriptionBegin{2}=\details "
+ALIASES += "cgalPkgManuals{2}=<div class=\"PkgManuals\"></div>"
+INPUT = /home/snicolas/CGAL/cgal/Algebraic_foundations/doc/Algebraic_foundations
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Manual.tag=../Manual
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/STL_Extension.tag=../STL_Extension
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Number_types.tag=../Number_types
+IMAGE_PATH += /home/snicolas/CGAL/cgal/Algebraic_foundations/doc/Algebraic_foundations/fig

@@ -1,0 +1,9 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Minkowski_sum_3_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - 3D Minkowski Sum of Polyhedra"
+HIDE_UNDOC_MEMBERS         =  true
+HIDE_UNDOC_CLASSES         =  true
+EXTRACT_ALL                =  false
+
+
+

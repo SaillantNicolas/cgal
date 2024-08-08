@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec /usr/bin/python3.12 /home/snicolas/CGAL/cgal/build_doc/pkglist_filter.py "$1"

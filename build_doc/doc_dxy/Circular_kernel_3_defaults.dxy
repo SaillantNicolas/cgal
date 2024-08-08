@@ -1,0 +1,17 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/BaseDoxyfile
+OUTPUT_DIRECTORY = /home/snicolas/CGAL/cgal/build_doc/doc_output/Circular_kernel_3
+HTML_OUTPUT = .
+EXAMPLE_PATH = /home/snicolas/CGAL/cgal/Circular_kernel_3/examples
+GENERATE_TAGFILE = /home/snicolas/CGAL/cgal/build_doc/doc_gen_tags/Circular_kernel_3.tag
+STRIP_FROM_PATH = /home/snicolas/CGAL/cgal/Circular_kernel_3/doc/Circular_kernel_3/
+STRIP_FROM_PATH += /home/snicolas/CGAL/cgal/Circular_kernel_3/include/
+STRIP_FROM_INC_PATH = /home/snicolas/CGAL/cgal/Circular_kernel_3/doc/Circular_kernel_3/
+STRIP_FROM_INC_PATH += /home/snicolas/CGAL/cgal/Circular_kernel_3/include/
+ALIASES += "cgalPkgDescriptionBegin{2}=\details "
+ALIASES += "cgalPkgManuals{2}=<div class=\"PkgManuals\"></div>"
+INPUT = /home/snicolas/CGAL/cgal/Circular_kernel_3/doc/Circular_kernel_3
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Circular_kernel_2.tag=../Circular_kernel_2
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Kernel_23.tag=../Kernel_23
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Number_types.tag=../Number_types
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Manual.tag=../Manual
+IMAGE_PATH += /home/snicolas/CGAL/cgal/Circular_kernel_3/doc/Circular_kernel_3/fig

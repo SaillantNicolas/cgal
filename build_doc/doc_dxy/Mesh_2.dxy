@@ -1,0 +1,4 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Mesh_2_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - 2D Conforming Triangulations and Meshes"
+INPUT += /home/snicolas/CGAL/cgal/Mesh_2/include//CGAL/lloyd_optimize_mesh_2.h

@@ -1,0 +1,5 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Basic_viewer_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - CGAL Basic Viewer"
+
+EXAMPLE_PATH += /home/snicolas/CGAL/cgal/Surface_mesh/examples

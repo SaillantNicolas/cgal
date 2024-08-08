@@ -1,0 +1,20 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Alpha_wrap_3_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - 3D Alpha Wrapping"
+
+# custom options for this package
+EXTRACT_ALL                =  false
+HIDE_UNDOC_MEMBERS         =  true
+HIDE_UNDOC_CLASSES         =  true
+
+HTML_EXTRA_FILES       = /home/snicolas/CGAL/cgal/Alpha_wrap_3/doc/Alpha_wrap_3/fig/aw3_bike_lod.jpg \
+                         /home/snicolas/CGAL/cgal/Alpha_wrap_3/doc/Alpha_wrap_3/fig/aw3_triangle_soup.jpg \
+                         /home/snicolas/CGAL/cgal/Alpha_wrap_3/doc/Alpha_wrap_3/fig/aw3_non_manifold_cases.jpg \
+                         /home/snicolas/CGAL/cgal/Alpha_wrap_3/doc/Alpha_wrap_3/fig/aw3_pencil.png \
+                         /home/snicolas/CGAL/cgal/Alpha_wrap_3/doc/Alpha_wrap_3/fig/aw3_steps.jpg \
+                         /home/snicolas/CGAL/cgal/Alpha_wrap_3/doc/Alpha_wrap_3/fig/aw3_church_lod.jpg \
+                         /home/snicolas/CGAL/cgal/Alpha_wrap_3/doc/Alpha_wrap_3/fig/aw3_sharp_feature.jpg \
+                         /home/snicolas/CGAL/cgal/Alpha_wrap_3/doc/Alpha_wrap_3/fig/aw3_steiner.jpg \
+                         /home/snicolas/CGAL/cgal/Alpha_wrap_3/doc/Alpha_wrap_3/fig/aw3_alpha_offset_bike.jpg \
+                         /home/snicolas/CGAL/cgal/Alpha_wrap_3/doc/Alpha_wrap_3/fig/aw3_double_sided.jpg \ 
+                         /home/snicolas/CGAL/cgal/Alpha_wrap_3/doc/Alpha_wrap_3/fig/aw3_thingi10k_benchmark.jpg

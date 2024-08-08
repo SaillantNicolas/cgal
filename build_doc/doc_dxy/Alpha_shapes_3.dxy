@@ -1,0 +1,5 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Alpha_shapes_3_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - 3D Alpha Shapes"
+
+EXAMPLE_PATH +=  /home/snicolas/CGAL/cgal/Alpha_shapes_2/examples

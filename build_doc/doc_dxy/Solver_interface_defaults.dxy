@@ -1,0 +1,26 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/BaseDoxyfile
+OUTPUT_DIRECTORY = /home/snicolas/CGAL/cgal/build_doc/doc_output/Solver_interface
+HTML_OUTPUT = .
+EXAMPLE_PATH = /home/snicolas/CGAL/cgal/Solver_interface/examples
+GENERATE_TAGFILE = /home/snicolas/CGAL/cgal/build_doc/doc_gen_tags/Solver_interface.tag
+STRIP_FROM_PATH = /home/snicolas/CGAL/cgal/Solver_interface/doc/Solver_interface/
+STRIP_FROM_PATH += /home/snicolas/CGAL/cgal/Solver_interface/include/
+STRIP_FROM_INC_PATH = /home/snicolas/CGAL/cgal/Solver_interface/doc/Solver_interface/
+STRIP_FROM_INC_PATH += /home/snicolas/CGAL/cgal/Solver_interface/include/
+ALIASES += "cgalPkgDescriptionBegin{2}=\details "
+ALIASES += "cgalPkgManuals{2}=<div class=\"PkgManuals\"></div>"
+INPUT = /home/snicolas/CGAL/cgal/Solver_interface/doc/Solver_interface
+INPUT += /home/snicolas/CGAL/cgal/Solver_interface/include/
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Manual.tag=../Manual
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Kernel_23.tag=../Kernel_23
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/STL_Extension.tag=../STL_Extension
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Algebraic_foundations.tag=../Algebraic_foundations
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Miscellany.tag=../Miscellany
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Surface_mesh_parameterization.tag=../Surface_mesh_parameterization
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Surface_mesh_skeletonization.tag=../Surface_mesh_skeletonization
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Surface_mesh_deformation.tag=../Surface_mesh_deformation
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Jet_fitting_3.tag=../Jet_fitting_3
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Poisson_surface_reconstruction_3.tag=../Poisson_surface_reconstruction_3
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Polygonal_surface_reconstruction.tag=../Polygonal_surface_reconstruction
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/QP_solver.tag=../QP_solver
+IMAGE_PATH += /home/snicolas/CGAL/cgal/Solver_interface/doc/Solver_interface/fig

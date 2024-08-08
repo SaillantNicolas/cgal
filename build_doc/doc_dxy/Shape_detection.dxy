@@ -1,0 +1,7 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Shape_detection_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - Shape Detection"
+EXTRACT_ALL          =  NO
+HIDE_UNDOC_CLASSES   =  YES
+WARN_IF_UNDOCUMENTED =  NO
+EXCLUDE = /home/snicolas/CGAL/cgal/Shape_detection/include//CGAL/Polygon_mesh_processing

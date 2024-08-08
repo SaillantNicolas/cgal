@@ -1,0 +1,6 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Poisson_surface_reconstruction_3_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - Poisson Surface Reconstruction"
+EXTRACT_ALL                =  false
+HIDE_UNDOC_CLASSES         =  true
+WARN_IF_UNDOCUMENTED       =  false

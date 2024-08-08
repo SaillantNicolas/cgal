@@ -1,0 +1,11 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Polygon_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - 2D Polygons"
+EXAMPLE_PATH += /home/snicolas/CGAL/cgal/Stream_support/examples
+
+EXTRACT_ALL                =  false
+HIDE_UNDOC_MEMBERS         =  true
+HIDE_UNDOC_CLASSES         =  true
+
+
+

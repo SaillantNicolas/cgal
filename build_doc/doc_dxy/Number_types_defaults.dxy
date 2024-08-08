@@ -1,0 +1,19 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/BaseDoxyfile
+OUTPUT_DIRECTORY = /home/snicolas/CGAL/cgal/build_doc/doc_output/Number_types
+HTML_OUTPUT = .
+GENERATE_TAGFILE = /home/snicolas/CGAL/cgal/build_doc/doc_gen_tags/Number_types.tag
+STRIP_FROM_PATH = /home/snicolas/CGAL/cgal/Number_types/doc/Number_types/
+STRIP_FROM_PATH += /home/snicolas/CGAL/cgal/Number_types/include/
+STRIP_FROM_INC_PATH = /home/snicolas/CGAL/cgal/Number_types/doc/Number_types/
+STRIP_FROM_INC_PATH += /home/snicolas/CGAL/cgal/Number_types/include/
+ALIASES += "cgalPkgDescriptionBegin{2}=\details "
+ALIASES += "cgalPkgManuals{2}=<div class=\"PkgManuals\"></div>"
+INPUT = /home/snicolas/CGAL/cgal/Number_types/doc/Number_types
+EXCLUDE += /home/snicolas/CGAL/cgal/Number_types/include/CGAL/Number_types/internal
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Manual.tag=../Manual
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/STL_Extension.tag=../STL_Extension
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Algebraic_foundations.tag=../Algebraic_foundations
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Modular_arithmetic.tag=../Modular_arithmetic
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Circular_kernel_2.tag=../Circular_kernel_2
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Kernel_23.tag=../Kernel_23
+IMAGE_PATH += /home/snicolas/CGAL/cgal/Number_types/doc/Number_types/fig

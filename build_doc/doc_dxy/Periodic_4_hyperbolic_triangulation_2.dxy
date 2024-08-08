@@ -1,0 +1,20 @@
+@INCLUDE 				= /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Periodic_4_hyperbolic_triangulation_2_defaults.dxy
+
+EXTRACT_ALL  			= YES
+EXTRACT_LOCAL_CLASSES  	= YES
+INHERIT_DOCS           	= YES
+
+HTML_EXTRA_FILES = 	/home/snicolas/CGAL/cgal/Periodic_4_hyperbolic_triangulation_2/doc/Periodic_4_hyperbolic_triangulation_2/fig/octagon_identification.svg \
+					/home/snicolas/CGAL/cgal/Periodic_4_hyperbolic_triangulation_2/doc/Periodic_4_hyperbolic_triangulation_2/fig/original_domain.svg \
+					/home/snicolas/CGAL/cgal/Periodic_4_hyperbolic_triangulation_2/doc/Periodic_4_hyperbolic_triangulation_2/fig/periodicity.png \
+					/home/snicolas/CGAL/cgal/Periodic_4_hyperbolic_triangulation_2/doc/Periodic_4_hyperbolic_triangulation_2/fig/dt-construction.svg \
+					/home/snicolas/CGAL/cgal/Periodic_4_hyperbolic_triangulation_2/doc/Periodic_4_hyperbolic_triangulation_2/fig/periodic_face.svg \
+					/home/snicolas/CGAL/cgal/Periodic_4_hyperbolic_triangulation_2/doc/Periodic_4_hyperbolic_triangulation_2/fig/ds_cgal.svg \
+					/home/snicolas/CGAL/cgal/Periodic_4_hyperbolic_triangulation_2/doc/Periodic_4_hyperbolic_triangulation_2/fig/dummy-points.png \
+					/home/snicolas/CGAL/cgal/Periodic_4_hyperbolic_triangulation_2/doc/Periodic_4_hyperbolic_triangulation_2/fig/non-triangulation.svg \
+					/home/snicolas/CGAL/cgal/Periodic_4_hyperbolic_triangulation_2/doc/Periodic_4_hyperbolic_triangulation_2/fig/histogram-dummy-points.png \
+					/home/snicolas/CGAL/cgal/Periodic_4_hyperbolic_triangulation_2/doc/Periodic_4_hyperbolic_triangulation_2/fig/new-triangulation-350px.png
+
+HTML_EXTRA_STYLESHEET = /home/snicolas/CGAL/cgal/Periodic_4_hyperbolic_triangulation_2/doc/Periodic_4_hyperbolic_triangulation_2/css/customstyle.css
+
+PROJECT_NAME 			= "CGAL 6.0 - 2D Periodic Hyperbolic Triangulations"

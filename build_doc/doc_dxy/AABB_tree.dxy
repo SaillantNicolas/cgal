@@ -1,0 +1,7 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/AABB_tree_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - Fast Intersection and Distance Computation (AABB Tree)"
+
+EXTRACT_ALL                =  false
+HIDE_UNDOC_MEMBERS         =  true
+HIDE_UNDOC_CLASSES         =  true

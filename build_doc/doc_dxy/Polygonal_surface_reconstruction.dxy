@@ -1,0 +1,2 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Polygonal_surface_reconstruction_defaults.dxy
+PROJECT_NAME = "CGAL 6.0 - Polygonal Surface Reconstruction"

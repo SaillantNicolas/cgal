@@ -1,0 +1,13 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Optimal_bounding_box_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - Optimal Bounding Box"
+EXTRACT_ALL                =  false
+HIDE_UNDOC_CLASSES         =  true
+WARN_IF_UNDOCUMENTED       =  true
+
+EXCLUDE_SYMBOLS += experimental
+
+HTML_EXTRA_FILES           =  /home/snicolas/CGAL/cgal/Optimal_bounding_box/doc/Optimal_bounding_box/fig/aabb_vs_obb.jpg \
+                              /home/snicolas/CGAL/cgal/Optimal_bounding_box/doc/Optimal_bounding_box/fig/obb_chess.png \
+                              /home/snicolas/CGAL/cgal/Optimal_bounding_box/doc/Optimal_bounding_box/fig/obb_time.png \
+                              /home/snicolas/CGAL/cgal/Optimal_bounding_box/doc/Optimal_bounding_box/fig/ch_speedup.png

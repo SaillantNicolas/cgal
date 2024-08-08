@@ -1,0 +1,33 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/BaseDoxyfile
+OUTPUT_DIRECTORY = /home/snicolas/CGAL/cgal/build_doc/doc_output/Stream_support
+HTML_OUTPUT = .
+EXAMPLE_PATH = /home/snicolas/CGAL/cgal/Stream_support/examples
+GENERATE_TAGFILE = /home/snicolas/CGAL/cgal/build_doc/doc_gen_tags/Stream_support.tag
+STRIP_FROM_PATH = /home/snicolas/CGAL/cgal/Stream_support/doc/Stream_support/
+STRIP_FROM_PATH += /home/snicolas/CGAL/cgal/Stream_support/include/
+STRIP_FROM_INC_PATH = /home/snicolas/CGAL/cgal/Stream_support/doc/Stream_support/
+STRIP_FROM_INC_PATH += /home/snicolas/CGAL/cgal/Stream_support/include/
+ALIASES += "cgalPkgDescriptionBegin{2}=\details "
+ALIASES += "cgalPkgManuals{2}=<div class=\"PkgManuals\"></div>"
+INPUT = /home/snicolas/CGAL/cgal/Stream_support/doc/Stream_support
+INPUT += /home/snicolas/CGAL/cgal/Stream_support/include/
+EXCLUDE += /home/snicolas/CGAL/cgal/Stream_support/include/CGAL/Stream_support/internal
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Alpha_shapes_3.tag=../Alpha_shapes_3
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Arrangement_on_surface_2.tag=../Arrangement_on_surface_2
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/BGL.tag=../BGL
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Kernel_23.tag=../Kernel_23
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Manual.tag=../Manual
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Mesh_2.tag=../Mesh_2
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Mesh_3.tag=../Mesh_3
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Nef_3.tag=../Nef_3
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Polyhedron.tag=../Polyhedron
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Polygon.tag=../Polygon
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Polygon_mesh_processing.tag=../Polygon_mesh_processing
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Point_set_3.tag=../Point_set_3
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Point_set_processing_3.tag=../Point_set_processing_3
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/STL_Extension.tag=../STL_Extension
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Surface_mesh.tag=../Surface_mesh
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/SMDS_3.tag=../SMDS_3
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Triangulation.tag=../Triangulation
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Triangulation_2.tag=../Triangulation_2
+IMAGE_PATH += /home/snicolas/CGAL/cgal/Stream_support/doc/Stream_support/fig
