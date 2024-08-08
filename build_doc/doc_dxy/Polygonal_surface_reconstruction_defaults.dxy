@@ -1,0 +1,24 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/BaseDoxyfile
+OUTPUT_DIRECTORY = /home/snicolas/CGAL/cgal/build_doc/doc_output/Polygonal_surface_reconstruction
+HTML_OUTPUT = .
+EXAMPLE_PATH = /home/snicolas/CGAL/cgal/Polygonal_surface_reconstruction/examples
+GENERATE_TAGFILE = /home/snicolas/CGAL/cgal/build_doc/doc_gen_tags/Polygonal_surface_reconstruction.tag
+STRIP_FROM_PATH = /home/snicolas/CGAL/cgal/Polygonal_surface_reconstruction/doc/Polygonal_surface_reconstruction/
+STRIP_FROM_PATH += /home/snicolas/CGAL/cgal/Polygonal_surface_reconstruction/include/
+STRIP_FROM_INC_PATH = /home/snicolas/CGAL/cgal/Polygonal_surface_reconstruction/doc/Polygonal_surface_reconstruction/
+STRIP_FROM_INC_PATH += /home/snicolas/CGAL/cgal/Polygonal_surface_reconstruction/include/
+ALIASES += "cgalPkgDescriptionBegin{2}=\details "
+ALIASES += "cgalPkgManuals{2}=<div class=\"PkgManuals\"></div>"
+INPUT = /home/snicolas/CGAL/cgal/Polygonal_surface_reconstruction/doc/Polygonal_surface_reconstruction
+INPUT += /home/snicolas/CGAL/cgal/Polygonal_surface_reconstruction/include/
+EXCLUDE += /home/snicolas/CGAL/cgal/Polygonal_surface_reconstruction/include/CGAL/Polygonal_surface_reconstruction/internal
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Manual.tag=../Manual
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Kernel_23.tag=../Kernel_23
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/STL_Extension.tag=../STL_Extension
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Circulator.tag=../Circulator
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Alpha_shapes_2.tag=../Alpha_shapes_2
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Surface_mesh.tag=../Surface_mesh
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Point_set_processing_3.tag=../Point_set_processing_3
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Solver_interface.tag=../Solver_interface
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Shape_detection.tag=../Shape_detection
+IMAGE_PATH += /home/snicolas/CGAL/cgal/Polygonal_surface_reconstruction/doc/Polygonal_surface_reconstruction/fig

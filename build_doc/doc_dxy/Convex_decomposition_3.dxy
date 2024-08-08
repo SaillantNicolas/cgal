@@ -1,0 +1,5 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Convex_decomposition_3_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - Convex Decomposition of Polyhedra"
+EXTRACT_ALL                =  false
+HIDE_UNDOC_CLASSES         =  true

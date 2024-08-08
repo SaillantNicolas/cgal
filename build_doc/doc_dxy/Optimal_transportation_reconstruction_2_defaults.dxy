@@ -1,0 +1,18 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/BaseDoxyfile
+OUTPUT_DIRECTORY = /home/snicolas/CGAL/cgal/build_doc/doc_output/Optimal_transportation_reconstruction_2
+HTML_OUTPUT = .
+EXAMPLE_PATH = /home/snicolas/CGAL/cgal/Optimal_transportation_reconstruction_2/examples
+GENERATE_TAGFILE = /home/snicolas/CGAL/cgal/build_doc/doc_gen_tags/Optimal_transportation_reconstruction_2.tag
+STRIP_FROM_PATH = /home/snicolas/CGAL/cgal/Optimal_transportation_reconstruction_2/doc/Optimal_transportation_reconstruction_2/
+STRIP_FROM_PATH += /home/snicolas/CGAL/cgal/Optimal_transportation_reconstruction_2/include/
+STRIP_FROM_INC_PATH = /home/snicolas/CGAL/cgal/Optimal_transportation_reconstruction_2/doc/Optimal_transportation_reconstruction_2/
+STRIP_FROM_INC_PATH += /home/snicolas/CGAL/cgal/Optimal_transportation_reconstruction_2/include/
+ALIASES += "cgalPkgDescriptionBegin{2}=\details "
+ALIASES += "cgalPkgManuals{2}=<div class=\"PkgManuals\"></div>"
+INPUT = /home/snicolas/CGAL/cgal/Optimal_transportation_reconstruction_2/doc/Optimal_transportation_reconstruction_2
+INPUT += /home/snicolas/CGAL/cgal/Optimal_transportation_reconstruction_2/include/
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Manual.tag=../Manual
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Kernel_23.tag=../Kernel_23
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/STL_Extension.tag=../STL_Extension
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Triangulation_2.tag=../Triangulation_2
+IMAGE_PATH += /home/snicolas/CGAL/cgal/Optimal_transportation_reconstruction_2/doc/Optimal_transportation_reconstruction_2/fig

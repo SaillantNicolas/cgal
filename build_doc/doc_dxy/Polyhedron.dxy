@@ -1,0 +1,2 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Polyhedron_defaults.dxy
+PROJECT_NAME = "CGAL 6.0 - 3D Polyhedral Surface"

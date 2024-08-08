@@ -1,0 +1,7 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Tetrahedral_remeshing_defaults.dxy
+PROJECT_NAME = "CGAL 6.0 - Tetrahedral Remeshing"
+
+#custom options for this package
+EXTRACT_ALL          = false
+HIDE_UNDOC_CLASSES   = true
+WARN_IF_UNDOCUMENTED = false

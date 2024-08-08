@@ -1,0 +1,3 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Bounding_volumes_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - Bounding Volumes"

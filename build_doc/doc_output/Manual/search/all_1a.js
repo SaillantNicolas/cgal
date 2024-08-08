@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['values_20of_20variables_0',['Examining the values of variables',['../devman_debugging.html#secdebugging_handles_and_it',1,'']]],
+  ['variables_1',['Variables',['../devman_debugging.html#secdebugging_handles_and_it',1,'Examining the values of variables'],['../configurationvariables.html#installation_misc',1,'Miscellaneous Variables'],['../installation.html#installation_miscvariables',1,'Other CMake Variables'],['../configurationvariables.html',1,'Summary of CGAL&apos;s Configuration Variables'],['../configurationvariables.html#installation_summary',1,'Summary of CGAL&apos;s Configuration Variables']]],
+  ['variables_20providing_20information_20about_203rd_20party_20libraries_2',['Variables Providing Information About 3rd-Party Libraries',['../configurationvariables.html#installation_variables_third_party',1,'']]],
+  ['variables_20used_20only_20when_20building_20programs_20such_20as_20demos_20or_20examples_3',['Variables Used Only When Building Programs (Such as Demos or Examples)',['../configurationvariables.html#installation_variables_building',1,'']]],
+  ['various_20other_20problems_20and_20solutions_4',['Various other problems and solutions',['../devman_portability.html#secvarious_problems',1,'']]],
+  ['vcpkg_5',['Vcpkg',['../windows.html#ssec-vcpk-install-cgal',1,'Installing CGAL with Vcpkg'],['../windows.html#ssec-vcpk-install-vcpk',1,'Installing Vcpkg']]],
+  ['vcpkg_20library_20manager_6',['Installing CGAL with the Vcpkg Library Manager',['../windows.html#sec-installing-with-vcpkg',1,'']]],
+  ['vector_7',['The Convex Hull of Points in a Vector',['../tutorial_hello_world.html#intro_vector',1,'']]],
+  ['version_8',['Version',['../devman_code_format.html#Developer_manualGPLversion',1,'GPL version'],['../devman_code_format.html#Developer_manualLGPLversion',1,'LGPL version']]],
+  ['version_201_2069_20and_20earlier_9',['Version 1.69 and Earlier',['../configurationvariables.html#inst_boost_up_2_1_69',1,'']]],
+  ['version_201_2072_20and_20later_10',['Version 1.72 and Later',['../configurationvariables.html#inst_boost_1_72_plus',1,'']]],
+  ['version_20number_20and_20configuration_20macros_20and_20flags_11',['Using the version-number and configuration macros and flags',['../devman_portability.html#secusing_version_macros',1,'']]],
+  ['version_20of_20cgal_12',['Identifying the Version of CGAL',['../preliminaries.html#seccgal_version',1,'']]],
+  ['versus_20homogeneous_20computation_13',['Cartesian versus homogeneous   computation',['../devman_kernels.html#secCartesianHomogeneousComputation',1,'']]],
+  ['vertexandedgelistgraph_14',['VertexAndEdgeListGraph',['../classVertexAndEdgeListGraph.html',1,'']]],
+  ['view_20framework_15',['CGAL and the Qt Graphics View Framework',['../packages.html#PkgGraphicsView',1,'']]],
+  ['viewer_16',['Basic Viewer',['../packages.html#PkgBasicViewer',1,'']]],
+  ['visibility_20computation_17',['2D Visibility Computation',['../packages.html#PkgVisibility2',1,'']]],
+  ['visual_20c_18',['Using CGAL on Windows (with Visual C++)',['../windows.html',1,'general_intro']]],
+  ['visualization_19',['Visualization',['../packages.html#PartVisualization',1,'']]],
+  ['volumes_20',['Bounding Volumes',['../packages.html#PkgBoundingVolumes',1,'']]],
+  ['voronoi_20diagram_20adaptor_21',['2D Voronoi Diagram Adaptor',['../packages.html#PkgVoronoiDiagram2',1,'']]],
+  ['voronoi_20diagrams_22',['Voronoi Diagrams',['../packages.html#PartVoronoiDiagrams',1,'']]],
+  ['vs_20release_23',['Debug vs. Release',['../installation.html#installation_debugrelease',1,'']]]
+];

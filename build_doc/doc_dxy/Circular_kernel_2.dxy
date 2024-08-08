@@ -1,0 +1,7 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Circular_kernel_2_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - 2D Circular Geometry Kernel"
+SORT_GROUP_NAMES           =  true
+
+
+

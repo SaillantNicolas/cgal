@@ -1,0 +1,11 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Orthtree_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - Quadtrees, Octrees, and Orthtrees"
+
+EXTRACT_ALL                =  false
+HIDE_UNDOC_MEMBERS         =  true
+HIDE_UNDOC_CLASSES         =  true
+WARN_IF_UNDOCUMENTED       =  false
+
+HTML_EXTRA_FILES           =  /home/snicolas/CGAL/cgal/Orthtree/doc/Orthtree/fig/orthtree.png \
+                              /home/snicolas/CGAL/cgal/Orthtree/doc/Orthtree/fig/orthtree_mesh.png

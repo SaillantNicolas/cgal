@@ -1,0 +1,2 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Heat_method_3_defaults.dxy
+PROJECT_NAME = "CGAL 6.0 - The Heat Method"

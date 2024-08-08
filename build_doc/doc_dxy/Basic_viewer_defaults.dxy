@@ -1,0 +1,29 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/BaseDoxyfile
+OUTPUT_DIRECTORY = /home/snicolas/CGAL/cgal/build_doc/doc_output/Basic_viewer
+HTML_OUTPUT = .
+EXAMPLE_PATH = /home/snicolas/CGAL/cgal/Basic_viewer/examples
+GENERATE_TAGFILE = /home/snicolas/CGAL/cgal/build_doc/doc_gen_tags/Basic_viewer.tag
+STRIP_FROM_PATH = /home/snicolas/CGAL/cgal/Basic_viewer/doc/Basic_viewer/
+STRIP_FROM_PATH += /home/snicolas/CGAL/cgal/Basic_viewer/include/
+STRIP_FROM_INC_PATH = /home/snicolas/CGAL/cgal/Basic_viewer/doc/Basic_viewer/
+STRIP_FROM_INC_PATH += /home/snicolas/CGAL/cgal/Basic_viewer/include/
+ALIASES += "cgalPkgDescriptionBegin{2}=\details "
+ALIASES += "cgalPkgManuals{2}=<div class=\"PkgManuals\"></div>"
+INPUT = /home/snicolas/CGAL/cgal/Basic_viewer/doc/Basic_viewer
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Manual.tag=../Manual
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Boolean_set_operations_2.tag=../Boolean_set_operations_2
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Linear_cell_complex.tag=../Linear_cell_complex
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Nef_3.tag=../Nef_3
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Periodic_2_triangulation_2.tag=../Periodic_2_triangulation_2
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Point_set_3.tag=../Point_set_3
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Polygon.tag=../Polygon
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Polyhedron.tag=../Polyhedron
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Straight_skeleton_2.tag=../Straight_skeleton_2
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Surface_mesh.tag=../Surface_mesh
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Surface_mesh_topology.tag=../Surface_mesh_topology
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Triangulation_2.tag=../Triangulation_2
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Triangulation_3.tag=../Triangulation_3
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Voronoi_diagram_2.tag=../Voronoi_diagram_2
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Kernel_23.tag=../Kernel_23
+TAGFILES += /home/snicolas/CGAL/cgal/build_doc/doc_tags/Arrangement_on_surface_2.tag=../Arrangement_on_surface_2
+IMAGE_PATH += /home/snicolas/CGAL/cgal/Basic_viewer/doc/Basic_viewer/fig

@@ -1,0 +1,4 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Generalized_map_defaults.dxy
+
+PROJECT_NAME                       =  "CGAL  - Generalized Maps"
+

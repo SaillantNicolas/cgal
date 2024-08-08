@@ -1,0 +1,9 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Apollonius_graph_2_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - 2D Apollonius Graphs (Delaunay Graphs of Disks)"
+EXCLUDE_SYMBOLS +=  Agvb
+
+            
+
+
+

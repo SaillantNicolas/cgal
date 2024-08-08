@@ -1,0 +1,7 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Surface_mesh_skeletonization_defaults.dxy
+ 
+PROJECT_NAME = "CGAL 6.0 - Triangulated Surface Mesh Skeletonization"
+EXTRACT_ALL                =  false
+HIDE_UNDOC_MEMBERS         =  true
+HIDE_UNDOC_CLASSES         =  true
+MULTILINE_CPP_IS_BRIEF = YES

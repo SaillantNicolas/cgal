@@ -1,0 +1,4 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/CGAL_ipelets_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - CGAL Ipelets"
+EXAMPLE_PATH = /home/snicolas/CGAL/cgal/CGAL_ipelets/demo

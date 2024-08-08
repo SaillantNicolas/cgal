@@ -1,0 +1,7 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Triangulation_on_sphere_2_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - 2D Triangulations on the Sphere"
+
+HTML_EXTRA_FILES           =  /home/snicolas/CGAL/cgal/Triangulation_on_sphere_2/doc/Triangulation_on_sphere_2/fig/geometric_embedding.png \
+                              /home/snicolas/CGAL/cgal/Triangulation_on_sphere_2/doc/Triangulation_on_sphere_2/fig/ghost_faces.png \
+                              /home/snicolas/CGAL/cgal/Triangulation_on_sphere_2/doc/Triangulation_on_sphere_2/fig/header.png

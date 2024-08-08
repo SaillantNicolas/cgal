@@ -1,0 +1,9 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Kinetic_surface_reconstruction_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - Kinetic Surface Reconstruction"
+EXTRACT_ALL                =  YES
+WARN_IF_UNDOCUMENTED       =  NO
+PREDEFINED                 +=  DOXYGEN_RUNNING
+
+INPUT += \
+      /home/snicolas/CGAL/cgal/Kinetic_surface_reconstruction/include//CGAL/Kinetic_surface_reconstruction_3.h \

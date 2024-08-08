@@ -1,0 +1,472 @@
+<!-- HTML header for doxygen 1.9.6-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<link rel="icon" type="image/png" href="../Manual/g-196x196-doc.png"/>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CGAL 6.0 - Linear Cell Complex: LinearCellComplexTraits Class Reference</title>
+<!-- <link href="../Manual/tabs.css" rel="stylesheet" type="text/css"/> -->
+<script type="text/javascript" src="../Manual/jquery.js"></script>
+<script type="text/javascript" src="../Manual/dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script src="../Manual/hacks.js" type="text/javascript"></script>
+<!-- Manually include treeview and search to avoid bloat and to fix
+     paths to the directory Manual . -->
+<!-- $.treeview -->
+<!-- $.search -->
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script src="../Manual/cookie.js" type="text/javascript"></script>
+<script type="text/javascript" src="../Manual/resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="../Manual/search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../Manual/search/searchdata.js"></script>
+<script type="text/javascript" src="../Manual/search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="../Manual/search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../Manual/search/search.js"></script>
+<!-- Manually done below. -->
+<link href="../Manual/doxygen.css" rel="stylesheet" type="text/css" />
+<!-- This should probably be an extrastylesheet instead of hardcoded. -->
+<link href="../Manual/cgal_stylesheet.css" rel="stylesheet" type="text/css" />
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+//<![CDATA[
+MathJax.Hub.Config(
+{
+  TeX: {
+      Macros: {
+          qprel: [ "{\\gtreqless}", 0],
+          qpx: [ "{\\mathbf{x}}", 0],
+          qpl: [ "{\\mathbf{l}}", 0],
+          qpu: [ "{\\mathbf{u}}", 0],
+          qpc: [ "{\\mathbf{c}}", 0],
+          qpb: [ "{\\mathbf{b}}", 0],
+          qpy: [ "{\\mathbf{y}}", 0],
+          qpw: [ "{\\mathbf{w}}", 0],
+          qplambda: [ "{\\mathbf{\\lambda}}", 0],
+          ssWpoint: [ "{\\bf #1}", 1],
+          ssWeight: [ "{w_{#1}}", 1],
+          dabs: [ "{\\parallel\\! #1 \\!\\parallel}", 1],
+          E: [ "{\\mathrm{E}}", 0],
+          A: [ "{\\mathrm{A}}", 0],
+          R: [ "{\\mathrm{R}}", 0],
+          N: [ "{\\mathrm{N}}", 0],
+          Q: [ "{\\mathrm{Q}}", 0],
+          Z: [ "{\\mathrm{Z}}", 0],
+          ccSum: [ "{\\sum_{#1}^{#2}{#3}}", 3],
+          ccProd: [ "{\\prod_{#1}^{#2}{#3}}", 3],
+          pyr: [ "{\\operatorname{Pyr}}", 0],
+          aff: [ "{\\operatorname{aff}}", 0],
+          Ac: [ "{\\cal A}", 0],
+          Sc: [ "{\\cal S}", 0],
+      },
+      equationNumbers: { autoNumber: "AMS" }
+  }
+}
+);
+//]]>
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<script src="topics.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="back-nav">
+  <ul>
+    <li><a href="https://www.cgal.org/">cgal.org</a></li>
+    <li><a href="../Manual/index.html">Top</a></li>
+    <li><a href="../Manual/general_intro.html">Getting Started</a></li>
+    <li><a href="../Manual/tutorials.html">Tutorials</a></li>
+    <li><a href="../Manual/packages.html">Package Overview</a></li>
+    <li><a href="../Manual/how_to_cite_cgal.html">Acknowledging CGAL</a></li>
+  </ul>
+  <!-- In a package SEARCHENGINE = false, so we cannot use 
+       insertion. That's why we have to do it manually here. Notice
+       that we also take pngs from the Manual. -->
+  <div id="MSearchBox" class="MSearchBoxInactive">
+      <span class="left">
+         <span id="MSearchSelect"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()">&#160;
+        </span>
+        <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)"
+               onblur="searchBox.OnSearchFieldFocus(false)"
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+      </span>
+      <span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../Manual/search/close.svg" alt=""/></a>
+      </span>
+  </div>
+</div>
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">CGAL 6.0 - Linear Cell Complex
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- Code below is usually inserted by doxygen when SEARCHENGINE =
+     true. Notice that the path to the search directory is adjusted to
+     the top-level.-->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../Manual/search/",'.html');
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.10.0 -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classLinearCellComplexTraits.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="classLinearCellComplexTraits-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">LinearCellComplexTraits Class Reference<div class="ingroups"><a class="el" href="group__PkgLinearCellComplexRef.html">Linear Cell Complex Reference</a> &raquo; <a class="el" href="group__PkgLinearCellComplexConcepts.html">Concepts</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;Concepts/LinearCellComplexTraits.h&gt;</code></p>
+<a name="details" id="details"></a><h2 class="groupheader">Definition</h2>
+<div class="textblock"><p>Required types and functors for the <code><a class="el" href="classLinearCellComplexTraits.html" title="Required types and functors for the LinearCellComplexTraits concept. This geometric traits concept is...">LinearCellComplexTraits</a></code> concept. This geometric traits concept is used in the <a class="el" href="classCGAL_1_1Linear__cell__complex__for__combinatorial__map.html"><code>Linear_cell_complex_for_combinatorial_map</code></a> and <a class="el" href="classCGAL_1_1Linear__cell__complex__for__generalized__map.html"><code>Linear_cell_complex_for_generalized_map</code></a> classes. </p>
+<div id="CGALConcept"></div><dl>
+<dt>Has models</dt>
+<dd></dd>
+<dt></dt>
+<dd><a class="el" href="structCGAL_1_1Linear__cell__complex__traits.html"><code>CGAL::Linear_cell_complex_traits&lt;d,K&gt;</code></a> </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><code><a class="el" href="classCGAL_1_1Linear__cell__complex__for__combinatorial__map.html" title="The class Linear_cell_complex_for_combinatorial_map represents a linear cell complex in dimension d,...">CGAL::Linear_cell_complex_for_combinatorial_map</a>&lt;d,d2,LCCTraits,Items,Alloc&gt;</code> </dd>
+<dd>
+<code><a class="el" href="classCGAL_1_1Linear__cell__complex__for__generalized__map.html" title="The class Linear_cell_complex_for_generalized_map represents a linear cell complex in dimension d,...">CGAL::Linear_cell_complex_for_generalized_map</a>&lt;d,d2,LCCTraits,Items,Alloc&gt;</code> </dd></dl>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Types</h2></td></tr>
+<tr class="memitem:ac0c278ae72a5bcedec0e25dca2e24fa4" id="r_ac0c278ae72a5bcedec0e25dca2e24fa4"><td class="memItemLeft" align="right" valign="top">typedef unspecified_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac0c278ae72a5bcedec0e25dca2e24fa4">FT</a></td></tr>
+<tr class="memdesc:ac0c278ae72a5bcedec0e25dca2e24fa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">a number type that is a model of FieldNumberType.  <br /></td></tr>
+<tr class="separator:ac0c278ae72a5bcedec0e25dca2e24fa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08aa2768df7731ea33a55103dad927b9" id="r_a08aa2768df7731ea33a55103dad927b9"><td class="memItemLeft" align="right" valign="top">typedef unspecified_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08aa2768df7731ea33a55103dad927b9">Point</a></td></tr>
+<tr class="memdesc:a08aa2768df7731ea33a55103dad927b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">point type.  <br /></td></tr>
+<tr class="separator:a08aa2768df7731ea33a55103dad927b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a533e357e4050159a6fda9fedfd5d88a1" id="r_a533e357e4050159a6fda9fedfd5d88a1"><td class="memItemLeft" align="right" valign="top">typedef unspecified_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a533e357e4050159a6fda9fedfd5d88a1">Vector</a></td></tr>
+<tr class="memdesc:a533e357e4050159a6fda9fedfd5d88a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">vector type.  <br /></td></tr>
+<tr class="separator:a533e357e4050159a6fda9fedfd5d88a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Constructions</h2></td></tr>
+<tr class="memitem:aeede6f32b68ccc7919bd331ec07aa459" id="r_aeede6f32b68ccc7919bd331ec07aa459"><td class="memItemLeft" align="right" valign="top">typedef unspecified_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeede6f32b68ccc7919bd331ec07aa459">Construct_translated_point</a></td></tr>
+<tr class="memdesc:aeede6f32b68ccc7919bd331ec07aa459"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functor that provides <a class="el" href="#a08aa2768df7731ea33a55103dad927b9"><code>Point</code></a> <code>operator() (const</code> <a class="el" href="#a08aa2768df7731ea33a55103dad927b9"><code>Point</code></a><code>&amp; p, const</code> <a class="el" href="#a533e357e4050159a6fda9fedfd5d88a1"><code>Vector</code></a><code>&amp; v)</code>, which constructs the translation of point <code>p</code> by vector <code>v</code>, and <a class="el" href="#a08aa2768df7731ea33a55103dad927b9"><code>Point</code></a> <code>operator() (const CGAL::Origin&amp;, const</code> <a class="el" href="#a533e357e4050159a6fda9fedfd5d88a1"><code>Vector</code></a><code>&amp; v)</code>, which constructs the translation of a point at the origin by vector <code>v</code> (used in <a class="el" href="classLinearCellComplex.html#a58b803d190ae9c6d4621818990805df6"><code>barycenter()</code></a>).  <br /></td></tr>
+<tr class="separator:aeede6f32b68ccc7919bd331ec07aa459"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae95b2e96888c7b4b9edec7883fb12895" id="r_ae95b2e96888c7b4b9edec7883fb12895"><td class="memItemLeft" align="right" valign="top">typedef unspecified_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae95b2e96888c7b4b9edec7883fb12895">Construct_vector</a></td></tr>
+<tr class="memdesc:ae95b2e96888c7b4b9edec7883fb12895"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functor that provides <a class="el" href="#a533e357e4050159a6fda9fedfd5d88a1"><code>Vector</code></a> <code>operator() (const</code> <a class="el" href="#a08aa2768df7731ea33a55103dad927b9"><code>Point</code></a><code>&amp; p1, const</code> <a class="el" href="#a08aa2768df7731ea33a55103dad927b9"><code>Point</code></a><code>&amp; p2)</code> which constructs a vector as the difference of points <code>p2-p1</code>, and <a class="el" href="#a533e357e4050159a6fda9fedfd5d88a1"><code>Vector</code></a> <code>operator() (const CGAL::Origin&amp;, const</code> <a class="el" href="#a08aa2768df7731ea33a55103dad927b9"><code>Point</code></a><code>&amp; p)</code> which constructs a vector as the difference of point <code>p</code> and a point at the origin (used in <a class="el" href=""><code>barycenter</code></a> and <code><a class="el" href="group__PkgLinearCellComplexConstructions.html#ga2e694849af5a899bb8545ff7ea8ab2a8" title="Imports an embedded plane graph read from ais into lcc, a model of the LinearCellComplex concept.">CGAL::import_from_plane_graph</a></code>).  <br /></td></tr>
+<tr class="separator:ae95b2e96888c7b4b9edec7883fb12895"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fa01a5556247923aae1ef71efff844a" id="r_a3fa01a5556247923aae1ef71efff844a"><td class="memItemLeft" align="right" valign="top">typedef unspecified_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3fa01a5556247923aae1ef71efff844a">Construct_sum_of_vectors</a></td></tr>
+<tr class="memdesc:a3fa01a5556247923aae1ef71efff844a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functor that provides <a class="el" href="#a533e357e4050159a6fda9fedfd5d88a1"><code>Vector</code></a> <code>operator() (const</code> <a class="el" href="#a533e357e4050159a6fda9fedfd5d88a1"><code>Vector</code></a><code>&amp; v1, const</code> <a class="el" href="#a533e357e4050159a6fda9fedfd5d88a1"><code>Vector</code></a><code>&amp; v2)</code> which constructs a vector as the sum of vectors <code>v1+v2</code> (used in <a class="el" href=""><code>barycenter</code></a>, <code><a class="el" href="group__PkgLinearCellComplexOperations.html#gae7e4a92836175268e7b31a99d3a73cef" title="Returns the normal vector of the 0-cell containing d, i.e. the average of all the normal vectors of t...">CGAL::compute_normal_of_cell_0</a></code> and <code><a class="el" href="group__PkgLinearCellComplexOperations.html#gae78fd3d505c8ea4c80980c13b7391cb5" title="Returns the normal vector of the 2-cell containing d.">CGAL::compute_normal_of_cell_2</a></code>).  <br /></td></tr>
+<tr class="separator:a3fa01a5556247923aae1ef71efff844a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34e79ad7b4b3c6a0a8db962a0a4564d4" id="r_a34e79ad7b4b3c6a0a8db962a0a4564d4"><td class="memItemLeft" align="right" valign="top">typedef unspecified_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a34e79ad7b4b3c6a0a8db962a0a4564d4">Construct_scaled_vector</a></td></tr>
+<tr class="memdesc:a34e79ad7b4b3c6a0a8db962a0a4564d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functor that provides <a class="el" href="#a533e357e4050159a6fda9fedfd5d88a1"><code>Vector</code></a> <code>operator() (const</code> <a class="el" href="#a533e357e4050159a6fda9fedfd5d88a1"><code>Vector</code></a><code>&amp; v,</code> <a class="el" href="#ac0c278ae72a5bcedec0e25dca2e24fa4"><code>FT</code></a> <code>scale)</code> which constructs a vector equal to vector <code>v</code> scaled by <code>scale</code> factor (used in <a class="el" href=""><code>barycenter</code></a>, <code><a class="el" href="group__PkgLinearCellComplexOperations.html#gae7e4a92836175268e7b31a99d3a73cef" title="Returns the normal vector of the 0-cell containing d, i.e. the average of all the normal vectors of t...">CGAL::compute_normal_of_cell_0</a></code> and <code><a class="el" href="group__PkgLinearCellComplexOperations.html#gae78fd3d505c8ea4c80980c13b7391cb5" title="Returns the normal vector of the 2-cell containing d.">CGAL::compute_normal_of_cell_2</a></code>).  <br /></td></tr>
+<tr class="separator:a34e79ad7b4b3c6a0a8db962a0a4564d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93b7c4909776c503e4a134cda04377fc" id="r_a93b7c4909776c503e4a134cda04377fc"><td class="memItemLeft" align="right" valign="top">typedef unspecified_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93b7c4909776c503e4a134cda04377fc">Construct_midpoint</a></td></tr>
+<tr class="memdesc:a93b7c4909776c503e4a134cda04377fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functor that provides <a class="el" href="#a08aa2768df7731ea33a55103dad927b9"><code>Point</code></a> <code>operator() (const</code> <a class="el" href="#a08aa2768df7731ea33a55103dad927b9"><code>Point</code></a><code>&amp; p1, const</code> <a class="el" href="#a08aa2768df7731ea33a55103dad927b9"><code>Point</code></a><code>&amp; p2)</code> which constructs the midpoint of points <code>p1</code> and <code>p2</code> (used in <a class="el" href=""><code>barycenter</code></a>).  <br /></td></tr>
+<tr class="separator:a93b7c4909776c503e4a134cda04377fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p>If <code>ambient_dimension==2</code> </p>
+</td></tr>
+<tr class="memitem:ac741cb9f559a92a1bbcde079fa805893" id="r_ac741cb9f559a92a1bbcde079fa805893"><td class="memItemLeft" align="right" valign="top">typedef unspecified_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac741cb9f559a92a1bbcde079fa805893">Direction_2</a></td></tr>
+<tr class="memdesc:ac741cb9f559a92a1bbcde079fa805893"><td class="mdescLeft">&#160;</td><td class="mdescRight">a model of <a class="el" href=""><code>Direction_2</code></a>.  <br /></td></tr>
+<tr class="separator:ac741cb9f559a92a1bbcde079fa805893"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67efd2c69ee049817bbf1dcc9e934727" id="r_a67efd2c69ee049817bbf1dcc9e934727"><td class="memItemLeft" align="right" valign="top">typedef unspecified_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67efd2c69ee049817bbf1dcc9e934727">Construct_direction_2</a></td></tr>
+<tr class="memdesc:a67efd2c69ee049817bbf1dcc9e934727"><td class="mdescLeft">&#160;</td><td class="mdescRight">a model of <a class="el" href=""><code>ConstructDirection_2</code></a> (used in <code><a class="el" href="group__PkgLinearCellComplexConstructions.html#ga2e694849af5a899bb8545ff7ea8ab2a8" title="Imports an embedded plane graph read from ais into lcc, a model of the LinearCellComplex concept.">CGAL::import_from_plane_graph</a></code>).  <br /></td></tr>
+<tr class="separator:a67efd2c69ee049817bbf1dcc9e934727"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p>If <code>ambient_dimension==3</code> </p>
+</td></tr>
+<tr class="memitem:ae305ceacad317555d2bf237e57b80f51" id="r_ae305ceacad317555d2bf237e57b80f51"><td class="memItemLeft" align="right" valign="top">typedef unspecified_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae305ceacad317555d2bf237e57b80f51">Construct_normal_3</a></td></tr>
+<tr class="memdesc:ae305ceacad317555d2bf237e57b80f51"><td class="mdescLeft">&#160;</td><td class="mdescRight">a model of <a class="el" href=""><code>ConstructNormal_3</code></a> (used in <code><a class="el" href="group__PkgLinearCellComplexOperations.html#gae78fd3d505c8ea4c80980c13b7391cb5" title="Returns the normal vector of the 2-cell containing d.">CGAL::compute_normal_of_cell_2</a></code>).  <br /></td></tr>
+<tr class="separator:ae305ceacad317555d2bf237e57b80f51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10beb7f063d4959de8ca57793608f455" id="r_a10beb7f063d4959de8ca57793608f455"><td class="memItemLeft" align="right" valign="top">typedef unspecified_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a10beb7f063d4959de8ca57793608f455">Collinear_3</a></td></tr>
+<tr class="memdesc:a10beb7f063d4959de8ca57793608f455"><td class="mdescLeft">&#160;</td><td class="mdescRight">a model of <a class="el" href=""><code>Collinear_3</code></a> (used in <code><a class="el" href="group__PkgLinearCellComplexOperations.html#gae78fd3d505c8ea4c80980c13b7391cb5" title="Returns the normal vector of the 2-cell containing d.">CGAL::compute_normal_of_cell_2</a></code>).  <br /></td></tr>
+<tr class="separator:a10beb7f063d4959de8ca57793608f455"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader">Constants</h2></td></tr>
+<tr class="memitem:a5de38506413959878ad44a8b99a71725" id="r_a5de38506413959878ad44a8b99a71725"><td class="memItemLeft" align="right" valign="top">static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5de38506413959878ad44a8b99a71725">ambient_dimension</a></td></tr>
+<tr class="memdesc:a5de38506413959878ad44a8b99a71725"><td class="mdescLeft">&#160;</td><td class="mdescRight">The ambient dimension (must be &gt; 1).  <br /></td></tr>
+<tr class="separator:a5de38506413959878ad44a8b99a71725"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a10beb7f063d4959de8ca57793608f455" name="a10beb7f063d4959de8ca57793608f455"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10beb7f063d4959de8ca57793608f455">&#9670;&#160;</a></span>Collinear_3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef unspecified_type <a class="el" href="#a10beb7f063d4959de8ca57793608f455">LinearCellComplexTraits::Collinear_3</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>a model of <a class="el" href=""><code>Collinear_3</code></a> (used in <code><a class="el" href="group__PkgLinearCellComplexOperations.html#gae78fd3d505c8ea4c80980c13b7391cb5" title="Returns the normal vector of the 2-cell containing d.">CGAL::compute_normal_of_cell_2</a></code>). </p>
+
+</div>
+</div>
+<a id="a67efd2c69ee049817bbf1dcc9e934727" name="a67efd2c69ee049817bbf1dcc9e934727"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67efd2c69ee049817bbf1dcc9e934727">&#9670;&#160;</a></span>Construct_direction_2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef unspecified_type <a class="el" href="#a67efd2c69ee049817bbf1dcc9e934727">LinearCellComplexTraits::Construct_direction_2</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>a model of <a class="el" href=""><code>ConstructDirection_2</code></a> (used in <code><a class="el" href="group__PkgLinearCellComplexConstructions.html#ga2e694849af5a899bb8545ff7ea8ab2a8" title="Imports an embedded plane graph read from ais into lcc, a model of the LinearCellComplex concept.">CGAL::import_from_plane_graph</a></code>). </p>
+
+</div>
+</div>
+<a id="a93b7c4909776c503e4a134cda04377fc" name="a93b7c4909776c503e4a134cda04377fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93b7c4909776c503e4a134cda04377fc">&#9670;&#160;</a></span>Construct_midpoint</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef unspecified_type <a class="el" href="#a93b7c4909776c503e4a134cda04377fc">LinearCellComplexTraits::Construct_midpoint</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Functor that provides <a class="el" href="#a08aa2768df7731ea33a55103dad927b9"><code>Point</code></a> <code>operator() (const</code> <a class="el" href="#a08aa2768df7731ea33a55103dad927b9"><code>Point</code></a><code>&amp; p1, const</code> <a class="el" href="#a08aa2768df7731ea33a55103dad927b9"><code>Point</code></a><code>&amp; p2)</code> which constructs the midpoint of points <code>p1</code> and <code>p2</code> (used in <a class="el" href=""><code>barycenter</code></a>). </p>
+
+</div>
+</div>
+<a id="ae305ceacad317555d2bf237e57b80f51" name="ae305ceacad317555d2bf237e57b80f51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae305ceacad317555d2bf237e57b80f51">&#9670;&#160;</a></span>Construct_normal_3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef unspecified_type <a class="el" href="#ae305ceacad317555d2bf237e57b80f51">LinearCellComplexTraits::Construct_normal_3</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>a model of <a class="el" href=""><code>ConstructNormal_3</code></a> (used in <code><a class="el" href="group__PkgLinearCellComplexOperations.html#gae78fd3d505c8ea4c80980c13b7391cb5" title="Returns the normal vector of the 2-cell containing d.">CGAL::compute_normal_of_cell_2</a></code>). </p>
+
+</div>
+</div>
+<a id="a34e79ad7b4b3c6a0a8db962a0a4564d4" name="a34e79ad7b4b3c6a0a8db962a0a4564d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34e79ad7b4b3c6a0a8db962a0a4564d4">&#9670;&#160;</a></span>Construct_scaled_vector</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef unspecified_type <a class="el" href="#a34e79ad7b4b3c6a0a8db962a0a4564d4">LinearCellComplexTraits::Construct_scaled_vector</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Functor that provides <a class="el" href="#a533e357e4050159a6fda9fedfd5d88a1"><code>Vector</code></a> <code>operator() (const</code> <a class="el" href="#a533e357e4050159a6fda9fedfd5d88a1"><code>Vector</code></a><code>&amp; v,</code> <a class="el" href="#ac0c278ae72a5bcedec0e25dca2e24fa4"><code>FT</code></a> <code>scale)</code> which constructs a vector equal to vector <code>v</code> scaled by <code>scale</code> factor (used in <a class="el" href=""><code>barycenter</code></a>, <code><a class="el" href="group__PkgLinearCellComplexOperations.html#gae7e4a92836175268e7b31a99d3a73cef" title="Returns the normal vector of the 0-cell containing d, i.e. the average of all the normal vectors of t...">CGAL::compute_normal_of_cell_0</a></code> and <code><a class="el" href="group__PkgLinearCellComplexOperations.html#gae78fd3d505c8ea4c80980c13b7391cb5" title="Returns the normal vector of the 2-cell containing d.">CGAL::compute_normal_of_cell_2</a></code>). </p>
+
+</div>
+</div>
+<a id="a3fa01a5556247923aae1ef71efff844a" name="a3fa01a5556247923aae1ef71efff844a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fa01a5556247923aae1ef71efff844a">&#9670;&#160;</a></span>Construct_sum_of_vectors</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef unspecified_type <a class="el" href="#a3fa01a5556247923aae1ef71efff844a">LinearCellComplexTraits::Construct_sum_of_vectors</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Functor that provides <a class="el" href="#a533e357e4050159a6fda9fedfd5d88a1"><code>Vector</code></a> <code>operator() (const</code> <a class="el" href="#a533e357e4050159a6fda9fedfd5d88a1"><code>Vector</code></a><code>&amp; v1, const</code> <a class="el" href="#a533e357e4050159a6fda9fedfd5d88a1"><code>Vector</code></a><code>&amp; v2)</code> which constructs a vector as the sum of vectors <code>v1+v2</code> (used in <a class="el" href=""><code>barycenter</code></a>, <code><a class="el" href="group__PkgLinearCellComplexOperations.html#gae7e4a92836175268e7b31a99d3a73cef" title="Returns the normal vector of the 0-cell containing d, i.e. the average of all the normal vectors of t...">CGAL::compute_normal_of_cell_0</a></code> and <code><a class="el" href="group__PkgLinearCellComplexOperations.html#gae78fd3d505c8ea4c80980c13b7391cb5" title="Returns the normal vector of the 2-cell containing d.">CGAL::compute_normal_of_cell_2</a></code>). </p>
+
+</div>
+</div>
+<a id="aeede6f32b68ccc7919bd331ec07aa459" name="aeede6f32b68ccc7919bd331ec07aa459"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeede6f32b68ccc7919bd331ec07aa459">&#9670;&#160;</a></span>Construct_translated_point</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef unspecified_type <a class="el" href="#aeede6f32b68ccc7919bd331ec07aa459">LinearCellComplexTraits::Construct_translated_point</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Functor that provides <a class="el" href="#a08aa2768df7731ea33a55103dad927b9"><code>Point</code></a> <code>operator() (const</code> <a class="el" href="#a08aa2768df7731ea33a55103dad927b9"><code>Point</code></a><code>&amp; p, const</code> <a class="el" href="#a533e357e4050159a6fda9fedfd5d88a1"><code>Vector</code></a><code>&amp; v)</code>, which constructs the translation of point <code>p</code> by vector <code>v</code>, and <a class="el" href="#a08aa2768df7731ea33a55103dad927b9"><code>Point</code></a> <code>operator() (const CGAL::Origin&amp;, const</code> <a class="el" href="#a533e357e4050159a6fda9fedfd5d88a1"><code>Vector</code></a><code>&amp; v)</code>, which constructs the translation of a point at the origin by vector <code>v</code> (used in <a class="el" href="classLinearCellComplex.html#a58b803d190ae9c6d4621818990805df6"><code>barycenter()</code></a>). </p>
+
+</div>
+</div>
+<a id="ae95b2e96888c7b4b9edec7883fb12895" name="ae95b2e96888c7b4b9edec7883fb12895"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae95b2e96888c7b4b9edec7883fb12895">&#9670;&#160;</a></span>Construct_vector</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef unspecified_type <a class="el" href="#ae95b2e96888c7b4b9edec7883fb12895">LinearCellComplexTraits::Construct_vector</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Functor that provides <a class="el" href="#a533e357e4050159a6fda9fedfd5d88a1"><code>Vector</code></a> <code>operator() (const</code> <a class="el" href="#a08aa2768df7731ea33a55103dad927b9"><code>Point</code></a><code>&amp; p1, const</code> <a class="el" href="#a08aa2768df7731ea33a55103dad927b9"><code>Point</code></a><code>&amp; p2)</code> which constructs a vector as the difference of points <code>p2-p1</code>, and <a class="el" href="#a533e357e4050159a6fda9fedfd5d88a1"><code>Vector</code></a> <code>operator() (const CGAL::Origin&amp;, const</code> <a class="el" href="#a08aa2768df7731ea33a55103dad927b9"><code>Point</code></a><code>&amp; p)</code> which constructs a vector as the difference of point <code>p</code> and a point at the origin (used in <a class="el" href=""><code>barycenter</code></a> and <code><a class="el" href="group__PkgLinearCellComplexConstructions.html#ga2e694849af5a899bb8545ff7ea8ab2a8" title="Imports an embedded plane graph read from ais into lcc, a model of the LinearCellComplex concept.">CGAL::import_from_plane_graph</a></code>). </p>
+
+</div>
+</div>
+<a id="ac741cb9f559a92a1bbcde079fa805893" name="ac741cb9f559a92a1bbcde079fa805893"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac741cb9f559a92a1bbcde079fa805893">&#9670;&#160;</a></span>Direction_2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef unspecified_type <a class="el" href="#ac741cb9f559a92a1bbcde079fa805893">LinearCellComplexTraits::Direction_2</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>a model of <a class="el" href=""><code>Direction_2</code></a>. </p>
+
+</div>
+</div>
+<a id="ac0c278ae72a5bcedec0e25dca2e24fa4" name="ac0c278ae72a5bcedec0e25dca2e24fa4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0c278ae72a5bcedec0e25dca2e24fa4">&#9670;&#160;</a></span>FT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef unspecified_type <a class="el" href="#ac0c278ae72a5bcedec0e25dca2e24fa4">LinearCellComplexTraits::FT</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>a number type that is a model of FieldNumberType. </p>
+
+</div>
+</div>
+<a id="a08aa2768df7731ea33a55103dad927b9" name="a08aa2768df7731ea33a55103dad927b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08aa2768df7731ea33a55103dad927b9">&#9670;&#160;</a></span>Point</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef unspecified_type <a class="el" href="#a08aa2768df7731ea33a55103dad927b9">LinearCellComplexTraits::Point</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>point type. </p>
+
+</div>
+</div>
+<a id="a533e357e4050159a6fda9fedfd5d88a1" name="a533e357e4050159a6fda9fedfd5d88a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a533e357e4050159a6fda9fedfd5d88a1">&#9670;&#160;</a></span>Vector</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef unspecified_type <a class="el" href="#a533e357e4050159a6fda9fedfd5d88a1">LinearCellComplexTraits::Vector</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>vector type. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a5de38506413959878ad44a8b99a71725" name="a5de38506413959878ad44a8b99a71725"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5de38506413959878ad44a8b99a71725">&#9670;&#160;</a></span>ambient_dimension</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int LinearCellComplexTraits::ambient_dimension</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The ambient dimension (must be &gt; 1). </p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.6-->
+<!-- start footer part -->
+<!-- The footer div is not part of the default but we require it to
+move the footer to the bottom of the page. -->
+<div id="footer">
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classLinearCellComplexTraits.html">LinearCellComplexTraits</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</div>
+</body>
+</html>

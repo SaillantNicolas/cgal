@@ -1,0 +1,9 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/SMDS_3_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - 3D Simplicial Mesh Data Structures"
+
+#custom options
+EXTRACT_ALL                     =  false
+HIDE_UNDOC_CLASSES      =  true
+HIDE_UNDOC_MEMBERS     =  true
+WARN_IF_UNDOCUMENTED =  false

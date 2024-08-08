@@ -1,0 +1,20 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Periodic_3_mesh_3_defaults.dxy
+
+INPUT += \
+      /home/snicolas/CGAL/cgal/Periodic_3_mesh_3/include//CGAL/make_periodic_3_mesh_3.h \
+      /home/snicolas/CGAL/cgal/Periodic_3_mesh_3/include//CGAL/refine_periodic_3_mesh_3.h \
+      /home/snicolas/CGAL/cgal/Periodic_3_mesh_3/include//CGAL/optimize_periodic_3_mesh_3.h
+PROJECT_NAME = "CGAL 6.0 - 3D Periodic Mesh Generation"
+EXTRACT_ALL                =  false
+HIDE_UNDOC_CLASSES         =  true
+WARN_IF_UNDOCUMENTED       =  false
+HTML_EXTRA_FILES           =  /home/snicolas/CGAL/cgal/Periodic_3_mesh_3/doc/Periodic_3_mesh_3/fig/periodic_banner.png \
+                              /home/snicolas/CGAL/cgal/Periodic_3_mesh_3/doc/Periodic_3_mesh_3/fig/periodic_copies.jpg \
+                              /home/snicolas/CGAL/cgal/Periodic_3_mesh_3/doc/Periodic_3_mesh_3/fig/periodic_implicit_domain.png \
+                              /home/snicolas/CGAL/cgal/Periodic_3_mesh_3/doc/Periodic_3_mesh_3/fig/periodic_implicit_spheres.png \
+                              /home/snicolas/CGAL/cgal/Periodic_3_mesh_3/doc/Periodic_3_mesh_3/fig/periodic_implicit_interior_and_exterior.jpg \
+                              /home/snicolas/CGAL/cgal/Periodic_3_mesh_3/doc/Periodic_3_mesh_3/fig/periodic_implicit_multi_domain.jpg \
+                              /home/snicolas/CGAL/cgal/Periodic_3_mesh_3/doc/Periodic_3_mesh_3/fig/periodic_implicit_optimizers.png \
+                              /home/snicolas/CGAL/cgal/Periodic_3_mesh_3/doc/Periodic_3_mesh_3/fig/periodic_implicit_protection.jpg \
+                              /home/snicolas/CGAL/cgal/Periodic_3_mesh_3/doc/Periodic_3_mesh_3/fig/periodic_implicit_protection_bis.jpg \
+

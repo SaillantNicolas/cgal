@@ -1,0 +1,11 @@
+@INCLUDE = /home/snicolas/CGAL/cgal/build_doc/doc_dxy/Straight_skeleton_2_defaults.dxy
+
+PROJECT_NAME = "CGAL 6.0 - 2D Straight Skeleton and Polygon Offsetting"
+
+HTML_EXTRA_FILES           =  /home/snicolas/CGAL/cgal/Straight_skeleton_2/doc/Straight_skeleton_2/fig/complex_skeleton.png \
+                              /home/snicolas/CGAL/cgal/Straight_skeleton_2/doc/Straight_skeleton_2/fig/sls_progress.png \
+                              /home/snicolas/CGAL/cgal/Straight_skeleton_2/doc/Straight_skeleton_2/fig/sls_weights.png \
+                              /home/snicolas/CGAL/cgal/Straight_skeleton_2/doc/Straight_skeleton_2/fig/artificial_bisectors.png \
+                              /home/snicolas/CGAL/cgal/Straight_skeleton_2/doc/Straight_skeleton_2/fig/exterior_skeleton.png \
+                              /home/snicolas/CGAL/cgal/Straight_skeleton_2/doc/Straight_skeleton_2/fig/sls_extrusion.png \
+                              /home/snicolas/CGAL/cgal/Straight_skeleton_2/doc/Straight_skeleton_2/fig/sls_cropped_extrusion.png \
