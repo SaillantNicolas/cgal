@@ -1,0 +1,23 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches:
+      - GF-tmp-build
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to GitHub Pages
+        run: |
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
+          mv build_doc/* .
+          git add .
+          git commit -m "Deploy to GitHub Pages"
+          git push origin gh-pages
