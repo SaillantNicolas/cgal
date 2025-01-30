@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benchmarks</title>
+    <link rel="stylesheet" href="testresult.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.32.0/js/jquery.tablesorter.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <h1>Benchmarks</h1>
+    <label for="result-select">Date :</label>
+    <select id="result-select">
+    </select>
+
+    <div class="container">
+        <table class="result" id="results-table">
+            <thead>
+                <tr>
+                    <th>File</th>
+                    <th>Time (s)</th>
+                    <th>Memory Peak</th>
+                    <th>Quality - Min Angle</th>
+                    <th>Quality - Max Angle</th>
+                    <th>Robustness</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <canvas id="timeChart" width="400px" height="200px"></canvas>
+        <canvas id="memoryChart" width="400" height="200"></canvas>
+        <canvas id="minAngleChart" width="400" height="200"></canvas>
+        <canvas id="maxAngleChart" width="400" height="200"></canvas>
+    </div>
+    <script src="testsuitebenchmark.js"></script>
+</body>
+
+</html>
