@@ -1,201 +1,111 @@
-$(document).ready(function () {
-    const selectElement = $('#result-select');
-    let timeChart, memoryChart, minAngleChart, maxAngleChart;
+document.addEventListener("DOMContentLoaded", () => {
+    const selectElement = document.getElementById("result-select");
+    let charts = {};
 
-    function populateSelect() {
-        $.ajax({
-            url: 'benchmark/',
-            type: 'GET',
-            success: function (data) {
-                let parser = new DOMParser();
-                let doc = parser.parseFromString(data, 'text/html');
-                let jsonFiles = $(doc).find('a')
-                    .map(function () {
-                        let href = $(this).attr('href');
-                        return href.endsWith('.json') ? href : null;
-                    }).get();
+    async function fetchBenchmarkFiles() {
+        try {
+            const response = await fetch("benchmark/");
+            const text = await response.text();
+            return parseFileLinks(text);
+        } catch (error) {
+            console.error("Error fetching JSON files:", error);
+            return [];
+        }
+    }
 
-                if (jsonFiles.length === 0) {
-                    console.warn('No JSON files found in the benchmark directory.');
-                    return;
-                }
-
-                selectElement.empty();
-                $.each(jsonFiles, function (index, file) {
-                    let fileName = file.split('/').pop();
-                    selectElement.append(new Option(formatDateFromFilename(fileName), file));
-                });
-
-                loadJSON(selectElement.val());
-            },
-            error: function () {
-                console.error('Error fetching JSON files.');
-            }
-        });
+    function parseFileLinks(htmlText) {
+        const doc = new DOMParser().parseFromString(htmlText, "text/html");
+        return Array.from(doc.querySelectorAll("a"))
+            .map(link => link.getAttribute("href"))
+            .filter(href => href.endsWith(".json"));
     }
 
     function formatDateFromFilename(filename) {
         const match = filename.match(/results_(\d{4}-\d{2}-\d{2})\.json/);
-        if (match) {
-            let dateParts = match[1].split('-');
-            return `${dateParts[0]}/${dateParts[1]}/${dateParts[2]}`;
-        }
-        return filename;
+        return match ? match[1].replace(/-/g, "/") : filename;
     }
 
-    selectElement.on('change', function () {
-        loadJSON($(this).val());
-    });
+    async function populateSelect() {
+        const jsonFiles = await fetchBenchmarkFiles();
+        if (!jsonFiles.length) return;
 
-    function loadJSON(file) {
-        $.getJSON(file, function (data) {
-            let tableBody = $('#results-table tbody');
-            tableBody.empty();
+        selectElement.innerHTML = jsonFiles.map(file => {
+            const fileName = file.split("/").pop();
+            return `<option value="${file}">${formatDateFromFilename(fileName)}</option>`;
+        }).join("");
 
-            let labels = [];
-            let timeData = [];
-            let memoryData = [];
-            let minAngleData = [];
-            let maxAngleData = [];
+        loadJSON(selectElement.value);
+    }
 
-            $.each(data, function (filename, resultData) {
-                let result = resultData["Alpha_wrap_3"];
-                let robustnessIssues = Object.keys(result.robustness).filter(key => result.robustness[key] === 1);
-                let robustnessText = robustnessIssues.length > 0 ? robustnessIssues.join(', ') : "✅";
+    async function loadJSON(file) {
+        try {
+            const response = await fetch(file);
+            const data = await response.json();
+            renderTable(data);
+            renderCharts(data);
+        } catch (error) {
+            console.error("Error loading JSON file:", file, error);
+        }
+    }
 
-                labels.push(filename);
-                timeData.push(result.performance.seconds);
-                memoryData.push(result.performance.memory_peaks);
-                minAngleData.push(result.quality["Mean_Min_Angle_(degree)"]);
-                maxAngleData.push(result.quality["Mean_Max_Angle_(degree)"]);
-
-                let row = `
-                    <tr>
-                        <td>${filename}</td>
-                        <td>${result.performance.seconds}</td>
-                        <td>${result.performance.memory_peaks}</td>
-                        <td>${result.quality["Mean_Min_Angle_(degree)"]}</td>
-                        <td>${result.quality["Mean_Max_Angle_(degree)"]}</td>
-                        <td class="${robustnessIssues.length > 0 ? 'robustness' : 'error'}">
-                            ${robustnessText}
-                        </td>
-                    </tr>`;
-                tableBody.append(row);
-            });
-
-            if (timeChart) timeChart.destroy();
-            if (memoryChart) memoryChart.destroy();
-            if (minAngleChart) minAngleChart.destroy();
-            if (maxAngleChart) maxAngleChart.destroy();
-
-            let ctxTime = document.getElementById('timeChart').getContext('2d');
-            timeChart = new Chart(ctxTime, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Time (s)',
-                        data: timeData,
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: false,
-                    maintainAspectRatio: false,
-                    indexAxis: 'y',
-                    scales: {
-                        x: {
-                            beginAtZero: true
-                        }
-                    }
+    function extractData(jsonObj, path = []) {
+        let results = [];
+        Object.entries(jsonObj).forEach(([key, value]) => {
+            const currentPath = [...path, key];
+            if (typeof value === "object" && !Array.isArray(value)) {
+                if ("Performance" in value && "Quality" in value && "Robustness" in value) {
+                    results.push({ path: currentPath.join("/"), ...value });
+                } else {
+                    results.push(...extractData(value, currentPath));
                 }
-            });
+            }
+        });
+        return results;
+    }
 
-            let ctxMemory = document.getElementById('memoryChart').getContext('2d');
-            memoryChart = new Chart(ctxMemory, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Memory Peak',
-                        data: memoryData,
-                        backgroundColor: 'rgba(153, 102, 255, 0.2)',
-                        borderColor: 'rgba(153, 102, 255, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: false,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
+    function renderTable(data) {
+        const tableBody = document.querySelector("#results-table tbody");
+        tableBody.innerHTML = "";
 
-            let ctxMinAngle = document.getElementById('minAngleChart').getContext('2d');
-            minAngleChart = new Chart(ctxMinAngle, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Quality - Min Angle',
-                        data: minAngleData,
-                        backgroundColor: 'rgba(255, 159, 64, 0.2)',
-                        borderColor: 'rgba(255, 159, 64, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: false,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
+        const extractedData = extractData(data["Alpha_wrap_3"] || {});
+        extractedData.forEach(({ path, Performance, Quality, Robustness }) => {
+            const robustnessIssues = Object.keys(Robustness).filter(k => Robustness[k] === 1);
+            const robustnessText = robustnessIssues.length ? robustnessIssues.join(", ") : "✅";
 
-            let ctxMaxAngle = document.getElementById('maxAngleChart').getContext('2d');
-            maxAngleChart = new Chart(ctxMaxAngle, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Quality - Max Angle',
-                        data: maxAngleData,
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: false,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-
-            $("#results-table").tablesorter({
-                theme: 'default',
-                headers: {
-                    5: { sorter: false }
-                },
-                widgets: ['zebra']
-            });
-        }).fail(function () {
-            console.error('Error loading JSON file:', file);
+            tableBody.innerHTML += `
+                <tr>
+                    <td>${path}</td>
+                    <td>${Performance.seconds}</td>
+                    <td>${Performance.memory_peaks}</td>
+                    <td>${Quality["Mean_Min_Angle_(degree)"]}</td>
+                    <td>${Quality["Mean_Max_Angle_(degree)"]}</td>
+                    <td class="${robustnessIssues.length ? 'robustness' : 'error'}">${robustnessText}</td>
+                </tr>`;
         });
     }
 
+    function renderCharts(data) {
+        const extractedData = extractData(data["Alpha_wrap_3"] || {});
+        const labels = extractedData.map(d => d.path);
+        const datasets = {
+            "Time (s)": extractedData.map(d => parseFloat(d.Performance.seconds)),
+            "Memory Peak": extractedData.map(d => parseInt(d.Performance.memory_peaks)),
+            "Quality - Min Angle": extractedData.map(d => parseFloat(d.Quality["Mean_Min_Angle_(degree)"])),
+            "Quality - Max Angle": extractedData.map(d => parseFloat(d.Quality["Mean_Max_Angle_(degree)"]))
+        };
+
+        Object.keys(charts).forEach(key => charts[key]?.destroy());
+
+        Object.entries(datasets).forEach(([label, data], index) => {
+            const ctx = document.getElementById(["timeChart", "memoryChart", "minAngleChart", "maxAngleChart"][index]).getContext("2d");
+            charts[label] = new Chart(ctx, {
+                type: "bar",
+                data: { labels, datasets: [{ label, data, backgroundColor: "rgba(75, 192, 192, 0.2)", borderColor: "rgba(75, 192, 192, 1)", borderWidth: 1 }] },
+                options: { responsive: false, maintainAspectRatio: false, indexAxis: "y", scales: { x: { beginAtZero: true } } }
+            });
+        });
+    }
+
+    selectElement.addEventListener("change", () => loadJSON(selectElement.value));
     populateSelect();
 });
