@@ -6,37 +6,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Benchmarks</title>
     <link rel="stylesheet" href="testresult.css">
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.32.0/js/jquery.tablesorter.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 20px;
+            width: 70%;
+            display: flex;
+        }
+
+        .left-panel {
+            width: 30%;
+            border-right: 1px solid #ccc;
+            padding-right: 10px;
+        }
+
+        .right-panel {
+            width: 70%;
+            padding-left: 10px;
+        }
+
+        .close {
+            float: right;
+            cursor: pointer;
+        }
+
+        .expandable {
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .nested {
+            display: none;
+            margin-left: 20px;
+        }
+
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .summary-table th, .summary-table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .summary-table th {
+            background-color: #f4f4f4;
+        }
+    </style>
 </head>
 
 <body>
     <h1>Benchmarks</h1>
+    <!--
     <label for="component-select">Component :</label>
     <select id="component-select"></select>
+    -->
     <label for="result-select">Date :</label>
     <select id="result-select"></select>
 
-    <div class="container">
-        <table class="result" id="results-table">
-            <thead>
-                <tr>
-                    <th>File</th>
-                    <th>Time (s)</th>
-                    <th>Memory Peak</th>
-                    <th>Quality - Min Angle</th>
-                    <th>Quality - Max Angle</th>
-                    <th>Robustness</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-        <canvas id="timeChart" width="400px" height="200px"></canvas>
-        <canvas id="memoryChart" width="400" height="200"></canvas>
-        <canvas id="minAngleChart" width="400" height="200"></canvas>
-        <canvas id="maxAngleChart" width="400" height="200"></canvas>
+    <h2>Summary Table</h2>
+    <table class="summary-table" id="summary-table">
+        <thead>
+            <tr>
+                <th>Component</th>
+                <th>Valid</th>
+                <th>Error</th>
+                <th>Timeout</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <div id="dataset-modal" class="modal">
+        <div class="modal-content">
+            <div class="left-panel">
+                <h2 id="modal-title">Datasets</h2>
+                <ul id="dataset-list"></ul>
+            </div>
+            <div class="right-panel">
+                <h2>Details</h2>
+                <ul id="details-list"></ul>
+            </div>
+            <span class="close">&times;</span>
+        </div>
+    </div>
+
+    <div id="file-details">
+        <h2>File Details</h2>
+        <div class="file-info-grid">
+            <div class="performance-section">
+                <h3>Performance</h3>
+                <div id="performance-data"></div>
+            </div>
+            <div class="quality-section">
+                <h3>Quality</h3>
+                <div id="quality-data"></div>
+            </div>
+            <div class="robustness-section">
+                <h3>Robustness</h3>
+                <div id="robustness-data"></div>
+            </div>
+        </div>
     </div>
     <script src="testsuitebenchmark.js"></script>
 </body>

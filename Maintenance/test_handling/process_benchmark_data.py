@@ -23,16 +23,20 @@ def update_json_output(output_file, parent_dirs, file_name, performance_data, qu
             json_output = json.load(json_file)
     else:
         json_output = {"Alpha_wrap_3": {}}
-    current_level = json_output["Alpha_wrap_3"]
-    for directory in parent_dirs:
-        if directory not in current_level:
-            current_level[directory] = {}
-        current_level = current_level[directory]
-    current_level[file_name] = {
+    top_level_dir = parent_dirs[0] if parent_dirs else ""
+    relative_path = os.path.join(*parent_dirs[1:]) if len(parent_dirs) > 1 else ""
+    if relative_path:
+        relative_path += "/"
+    if top_level_dir not in json_output["Alpha_wrap_3"]:
+        json_output["Alpha_wrap_3"][top_level_dir] = {}
+
+    json_output["Alpha_wrap_3"][top_level_dir][file_name] = {
+        "path": relative_path,
         "Performance": performance_data,
         "Quality": quality_data,
         "Robustness": robustness_data
     }
+
     with open(output_file, 'w', encoding='utf-8') as json_file:
         json.dump(json_output, json_file, indent=4)
 
