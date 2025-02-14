@@ -8,16 +8,20 @@ def parse_file(filepath, num_lines):
     with open(filepath, 'r', encoding='utf-8') as file:
         return [file.readline().strip() for _ in range(num_lines)]
 
-def create_json_output(output_dir):
-    benchmark_dir = os.path.join(output_dir, "benchmark")
-    os.makedirs(benchmark_dir, exist_ok=True)
-    output_file = os.path.join(benchmark_dir, f"results_{datetime.now().strftime('%Y-%m-%d')}.json")
+def create_json_output(json_output):
+    os.makedirs(json_output, exist_ok=True)
+    output_file = os.path.join(json_output, f"results_{datetime.now().strftime('%Y-%m-%d')}.json")
     json_output = {"Alpha_wrap_3": {}}
     with open(output_file, 'w', encoding='utf-8') as json_file:
         json.dump(json_output, json_file, indent=4)
     return output_file
 
-def update_json_output(output_file, parent_dirs, file_name, performance_data, quality_data, robustness_data):
+def update_json_output(output_file,
+                       parent_dirs,
+                       file_name,
+                       performance_data,
+                       quality_data,
+                       robustness_data):
     if os.path.exists(output_file):
         with open(output_file, 'r', encoding='utf-8') as json_file:
             json_output = json.load(json_file)
@@ -106,10 +110,14 @@ def process_benchmark_files(off_files, output_dir, latest_commit, output_file):
         performance_data = get_performance(file_name, output_dir, latest_commit)
         quality_data = get_quality(file_name, output_dir, latest_commit)
         robustness_data = get_robustness(file_name, output_dir, latest_commit)
-        update_json_output(output_file, parent_dirs, file_name, performance_data, quality_data, robustness_data)
+        update_json_output(output_file,
+                           parent_dirs,
+                           file_name,
+                           performance_data,
+                           quality_data,
+                           robustness_data)
 
-def main(output_dir, data_folder, latest_commit):
-    current_dir = os.getcwd()
+def main(json_output, output_dir, data_folder, latest_commit):
     off_files = []
     for root, _, files in os.walk(data_folder):
         for file in files:
@@ -117,14 +125,16 @@ def main(output_dir, data_folder, latest_commit):
                 relative_path = os.path.relpath(os.path.join(root, file), data_folder)
                 off_files.append(relative_path)
 
-    output_file = create_json_output(current_dir)
+    output_file = create_json_output(json_output)
     process_benchmark_files(off_files, output_dir, latest_commit, output_file)
 
 if __name__ == "__main__":
-    if len(sys.argv) != 4:
-        print("Usage: process_benchmark_data.py <Output_results> <Input_data_folder> <Hash_latest_commit>")
+    if len(sys.argv) != 5:
+        print("Usage: process_benchmark_data.py \
+<Json_Output> <Output_results> <Input_data_folder> <Hash_latest_commit>")
         sys.exit(1)
-    Output_results = sys.argv[1]
-    Input_data_folder = sys.argv[2]
-    Hash_latest_commit = sys.argv[3]
-    main(Output_results, Input_data_folder, Hash_latest_commit)
+    Json_output = sys.argv[1]
+    Output_results = sys.argv[2]
+    Input_data_folder = sys.argv[3]
+    Hash_latest_commit = sys.argv[4]
+    main(Json_output, Output_results, Input_data_folder, Hash_latest_commit)

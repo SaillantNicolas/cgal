@@ -1,0 +1,336 @@
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    overflow-y: auto;
+    max-height: 100vh;
+}
+
+.modal-content {
+    display: flex;
+    position: relative;
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 2rem;
+    width: 80%;
+    max-width: 1200px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: modalFadeIn 0.3s ease;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.left-panel, .right-panel {
+    flex: 1;
+    padding: 1rem;
+}
+
+.left-panel {
+    border-right: 1px solid #eee;
+}
+
+.right-panel {
+    padding: 2rem;
+    background-color: #fff;
+}
+
+.right-panel h2 {
+    margin-bottom: 1.5rem;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+#details-list {
+    display: grid;
+    gap: 1rem;
+}
+
+#details-list li {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#dataset-list, #details-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#dataset-list li, #details-list li {
+    padding: 0.8rem 1rem;
+    margin: 0.5rem 0;
+    border-radius: 6px;
+    background-color: #f8f9fa;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+#details-list li:hover {
+    background-color: #e9ecef;
+    transform: translateY(-2px);
+    transition: all 0.2s ease;
+}
+
+#details-list li .label {
+    font-weight: 500;
+    color: #495057;
+}
+
+#details-list li .value {
+    color: #228be6;
+    font-weight: 600;
+}
+
+.close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close:hover {
+    color: #333;
+}
+
+/* Expandable sections */
+.expandable {
+    cursor: pointer;
+    font-weight: 600;
+    padding: 0.5rem 0;
+    transition: color 0.2s;
+}
+
+.expandable:hover {
+    color: #2962ff;
+}
+
+.nested {
+    display: none;
+    margin-left: 1.5rem;
+    padding-left: 1rem;
+    border-left: 2px solid #eaeaea;
+}
+
+/* Summary table */
+.summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.summary-table th,
+.summary-table td {
+    padding: 1rem;
+    text-align: left;
+    border: 1px solid #eee;
+    transition: background-color 0.2s ease;
+}
+
+.summary-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+.summary-table td:hover {
+    background-color: rgba(41, 98, 255, 0.1);
+    cursor: pointer;
+}
+
+.summary-table tr:hover {
+    background-color: transparent;
+}
+
+/* File details section */
+.file-info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);  /* 4 colonnes de taille égale */
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.performance-section,
+.quality-section,
+.robustness-section {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+/* Form elements */
+select {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+}
+
+select:focus {
+    outline: none;
+    border-color: #2962ff;
+    box-shadow: 0 0 0 2px rgba(41, 98, 255, 0.1);
+}
+
+/* General styles */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #C0C0D0;
+    padding: 2rem;
+    margin: 0;
+}
+
+/* File list styling */
+.files-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.file-item:hover {
+    background-color: #e9ecef;
+    transform: translateX(5px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.file-item .file-name {
+    font-weight: 500;
+    color: #495057;
+}
+
+.file-item .file-status {
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.file-item .status-valid {
+    background-color: #d3f9d8;
+    color: #2b8a3e;
+}
+
+.file-item .status-error {
+    background-color: #ffe3e3;
+    color: #c92a2a;
+}
+
+.file-item .status-timeout {
+    background-color: #fff3bf;
+    color: #e67700;
+}
+
+/* File details styling */
+#file-details {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-top: 2rem;
+}
+
+.file-info {
+    grid-column: span 4;  /* La section info prend toute la largeur */
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 0;  /* Enlever la marge du bas */
+    border-left: 4px solid #2962ff;
+}
+
+#file-name {
+    padding: 1rem;
+}
+
+#file-name p {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+    color: #495057;
+}
+
+#file-name p strong {
+    color: #2962ff;
+    margin-right: 0.5rem;
+}
+
+.file-info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);  /* 4 colonnes de taille égale */
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.performance-section,
+.quality-section,
+.robustness-section {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-top: 4px solid;
+}
+
+.performance-section {
+    border-top-color: #40c057;
+}
+
+.quality-section {
+    border-top-color: #228be6;
+}
+
+.robustness-section {
+    border-top-color: #f76707;
+}
+
+.performance-section h3,
+.quality-section h3,
+.robustness-section h3 {
+    color: #495057;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+

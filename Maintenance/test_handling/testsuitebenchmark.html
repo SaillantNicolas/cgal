@@ -5,81 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Benchmarks</title>
-    <link rel="stylesheet" href="testresult.css">
-    <style>
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-content {
-            background-color: white;
-            margin: 5% auto;
-            padding: 20px;
-            width: 70%;
-            display: flex;
-        }
-
-        .left-panel {
-            width: 30%;
-            border-right: 1px solid #ccc;
-            padding-right: 10px;
-        }
-
-        .right-panel {
-            width: 70%;
-            padding-left: 10px;
-        }
-
-        .close {
-            float: right;
-            cursor: pointer;
-        }
-
-        .expandable {
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .nested {
-            display: none;
-            margin-left: 20px;
-        }
-
-        .summary-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        .summary-table th, .summary-table td {
-            border: 1px solid #ccc;
-            padding: 8px;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .summary-table th {
-            background-color: #f4f4f4;
-        }
-    </style>
+    <link rel="stylesheet" href="testsuitebenchmark.css">
 </head>
 
 <body>
     <h1>Benchmarks</h1>
-    <!--
-    <label for="component-select">Component :</label>
-    <select id="component-select"></select>
-    -->
-    <label for="result-select">Date :</label>
-    <select id="result-select"></select>
-
+    <label for="date-select">Date :</label>
+    <select id="date-select"></select>
+    <div id="summary-info"></div>
     <h2>Summary Table</h2>
     <table class="summary-table" id="summary-table">
         <thead>
@@ -97,11 +30,11 @@
     <div id="dataset-modal" class="modal">
         <div class="modal-content">
             <div class="left-panel">
-                <h2 id="modal-title">Datasets</h2>
+                <h2 id="modal-title"></h2>
                 <ul id="dataset-list"></ul>
             </div>
             <div class="right-panel">
-                <h2>Details</h2>
+                <h2></h2>
                 <ul id="details-list"></ul>
             </div>
             <span class="close">&times;</span>
@@ -111,6 +44,9 @@
     <div id="file-details">
         <h2>File Details</h2>
         <div class="file-info-grid">
+            <div class="file-info">
+                <div id="file-name"></div>
+            </div>
             <div class="performance-section">
                 <h3>Performance</h3>
                 <div id="performance-data"></div>

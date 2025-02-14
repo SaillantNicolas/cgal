@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const resultSelect = document.getElementById("result-select");
+    const dateSelect = document.getElementById("date-select");
 
     async function fetchBenchmarkFiles() {
         try {
@@ -30,21 +30,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function calculateTotalStats(jsonData) {
-        let totalDatasets = 0;
-        let totalFiles = 0;
+        const uniqueDatasets = new Set();
+        const uniqueFiles = new Set();
         Object.keys(jsonData).forEach(component => {
-            const datasets = Object.keys(jsonData[component]);
-            totalDatasets += datasets.length;
-            datasets.forEach(dataset => {
-                totalFiles += Object.keys(jsonData[component][dataset]).length;
+            Object.keys(jsonData[component]).forEach(dataset => {
+                uniqueDatasets.add(dataset);
+                Object.keys(jsonData[component][dataset]).forEach(file => {
+                    uniqueFiles.add(jsonData[component][dataset][file].path + file);
+                });
             });
         });
-        return { datasets: totalDatasets, files: totalFiles };
+        return {
+            datasets: uniqueDatasets.size,
+            files: uniqueFiles.size
+        };
     }
 
     function updateSummaryTable(jsonData) {
         const totalStats = calculateTotalStats(jsonData);
-        const summaryInfo = document.createElement("div");
+        const summaryInfo = document.getElementById("summary-info");
         summaryInfo.innerHTML = `
             <div class="summary-info">
                 <p>Total Datasets: ${totalStats.datasets}</p>
@@ -139,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     btn.classList.remove("selected");
                 });
                 datasetButton.classList.add("selected");
-                showFilesForDataset(componentData[dataset], type, rightPanel);
+                showFilesForDataset(componentData[dataset], type, rightPanel, dataset);
             });
             datasetList.appendChild(datasetButton);
         });
@@ -162,7 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, {});
     }
 
-    function showFilesForDataset(datasetData, type, rightPanel) {
+    function showFilesForDataset(datasetData, type, rightPanel, datasetName) {
         const filesList = document.createElement("ul");
         filesList.id = "files-list";
         let files;
@@ -185,7 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
                 fileElement.classList.add("selected");
                 document.getElementById("dataset-modal").style.display = "none";
-                displayFileDetails(fileData);
+                displayFileDetails(fileData,fileName, datasetName);
             });
             filesList.appendChild(fileElement);
         });
@@ -216,14 +220,23 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    function displayFileDetails(fileData) {
+    function displayFileDetails(fileData, filename, datasetName) {
         const fileDetailsSection = document.getElementById("file-details");
+        const fileNameDiv = document.getElementById("file-name");
         const performanceData = document.getElementById("performance-data");
         const qualityData = document.getElementById("quality-data");
         const robustnessData = document.getElementById("robustness-data");
         performanceData.innerHTML = "";
         qualityData.innerHTML = "";
         robustnessData.innerHTML = "";
+        let displayPath = "";
+        if (fileData.path) {
+            displayPath = fileData.path + "/";
+        }
+        fileNameDiv.innerHTML = `
+            <p><strong>Dataset:</strong> ${datasetName}</p>
+            <p><strong>File:</strong> ${displayPath}${filename}</p>
+        `
         if (fileData.Performance) {
             Object.entries(fileData.Performance).forEach(([key, value]) => {
                 performanceData.appendChild(createDataItem(key, value));
@@ -263,11 +276,12 @@ document.addEventListener("DOMContentLoaded", () => {
             .join(" ");
     }
 
-    resultSelect.addEventListener("change", () => loadJSON(resultSelect.value));
+    dateSelect.addEventListener("change", () => loadJSON(dateSelect.value));
     fetchBenchmarkFiles().then(files => {
+        const sortedFiles = files.sort().reverse();
         if (files.length) {
-            resultSelect.innerHTML = files.map(file => `<option value="${file}">${file}</option>`).join("");
-            loadJSON(resultSelect.value);
+            dateSelect.innerHTML = sortedFiles.map(file => `<option value="${file}">${file}</option>`).join("");
+            loadJSON(dateSelect.value);
         }
     });
 });
