@@ -189,6 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
                 fileElement.classList.add("selected");
                 document.getElementById("dataset-modal").style.display = "none";
+                console.log(fileData,fileName, datasetName);
                 displayFileDetails(fileData,fileName, datasetName);
             });
             filesList.appendChild(fileElement);

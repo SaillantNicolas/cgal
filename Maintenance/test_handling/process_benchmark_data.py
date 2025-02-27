@@ -98,7 +98,7 @@ def get_robustness(file, output_dir, latest_commit):
     }
     if robustness_flag in robustness_flags_template:
         robustness_flags_template[robustness_flag] = 1
-    robustness_data = robustness_flags_template
+    robustness_data = {key: value for key, value in robustness_flags_template.items() if value == 1}
     return robustness_data
 
 def process_benchmark_files(off_files, output_dir, latest_commit, output_file):
@@ -118,15 +118,21 @@ def process_benchmark_files(off_files, output_dir, latest_commit, output_file):
                            robustness_data)
 
 def main(json_output, output_dir, data_folder, latest_commit):
-    off_files = []
+    valid_extensions = {
+        '.off', '.obj', '.ply', '.stl', '.STL', '.wrl', '.vtk', '.poly', '.nas',
+        '.dcm', '.nrrd', '.step', '.vda', '.dat', '.xy', '.bin'
+    }
+
+    all_files = []
     for root, _, files in os.walk(data_folder):
         for file in files:
-            if file.endswith(".off"):
+            _, ext = os.path.splitext(file)
+            if ext.lower() in [ext.lower() for ext in valid_extensions]:
                 relative_path = os.path.relpath(os.path.join(root, file), data_folder)
-                off_files.append(relative_path)
+                all_files.append(relative_path)
 
     output_file = create_json_output(json_output)
-    process_benchmark_files(off_files, output_dir, latest_commit, output_file)
+    process_benchmark_files(all_files, output_dir, latest_commit, output_file)
 
 if __name__ == "__main__":
     if len(sys.argv) != 5:
