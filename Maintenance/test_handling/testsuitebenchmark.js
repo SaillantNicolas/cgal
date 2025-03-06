@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const compareSelect = document.getElementById("compare-select");
     let jsonData = null;
     let compareData = null;
+    let allDatasets = [];
+    let allFiles = [];
 
     async function fetchBenchmarkFiles() {
         try {
@@ -173,18 +175,30 @@ document.addEventListener("DOMContentLoaded", () => {
         const modal = document.getElementById("dataset-modal");
         const leftPanel = modal.querySelector(".left-panel");
         const rightPanel = modal.querySelector(".right-panel");
-        leftPanel.innerHTML = '<h2>Datasets</h2>';
-        rightPanel.innerHTML = '<h2>Files</h2>';
-        const datasetList = document.createElement("ul");
-        datasetList.id = "dataset-list";
-        leftPanel.appendChild(datasetList);
+        leftPanel.innerHTML = `
+            <h2>Datasets</h2>
+            <div class="search-container">
+                <input type="text" id="dataset-search" placeholder="Search datasets..." class="search-input">
+            </div>
+            <ul id="dataset-list"></ul>
+        `;
+        rightPanel.innerHTML = `
+            <h2>Files</h2>
+            <div class="search-container">
+                <input type="text" id="file-search" placeholder="Search files..." class="search-input">
+            </div>
+            <ul id="files-list"></ul>
+        `;
+        const datasetList = document.getElementById("dataset-list");
         const componentData = jsonData[component];
+        allDatasets = [];
         Object.keys(componentData).forEach(dataset => {
             const filteredFiles = getFilteredFiles(componentData[dataset], type);
             const fileCount = Object.keys(filteredFiles).length;
             if (fileCount > 0) {
                 const datasetButton = document.createElement("li");
                 datasetButton.textContent = `${dataset} (${fileCount})`;
+                datasetButton.dataset.name = dataset;
                 datasetButton.classList.add("dataset-button");
                 datasetButton.addEventListener("click", () => {
                     document.querySelectorAll(".dataset-button").forEach(btn => {
@@ -194,6 +208,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     showFilesForDataset(componentData[dataset], type, rightPanel, dataset);
                 });
                 datasetList.appendChild(datasetButton);
+                allDatasets.push({
+                    element: datasetButton,
+                    name: dataset.toLowerCase(),
+                    fileCount: fileCount
+                });
             }
         });
         if (datasetList.children.length === 0) {
@@ -203,7 +222,72 @@ document.addEventListener("DOMContentLoaded", () => {
             noDataMessage.style.color = "#666";
             leftPanel.appendChild(noDataMessage);
         }
+        const datasetSearchInput = document.getElementById("dataset-search");
+        if (datasetSearchInput) {
+            datasetSearchInput.addEventListener("input", () => {
+                const searchTerm = datasetSearchInput.value.toLowerCase().trim();
+                filterDatasets(searchTerm);
+            });
+        }
         modal.style.display = "block";
+    }
+
+    function filterDatasets(searchTerm) {
+        let matchFound = false;
+        allDatasets.forEach(item => {
+            const shouldShow = item.name.includes(searchTerm);
+            item.element.classList.toggle("hidden", !shouldShow);
+            item.element.classList.remove("highlight");
+            if (shouldShow) {
+                matchFound = true;
+                if (searchTerm.length > 0) {
+                    item.element.classList.add("highlight");
+                }
+            }
+        });
+        const datasetList = document.getElementById("dataset-list");
+        let noResultsMsg = document.querySelector(".no-results-datasets");
+        if (!matchFound && searchTerm.length > 0) {
+            if (!noResultsMsg) {
+                noResultsMsg = document.createElement("p");
+                noResultsMsg.className = "no-results-datasets";
+                noResultsMsg.textContent = "No matching datasets found.";
+                noResultsMsg.style.padding = "1rem";
+                noResultsMsg.style.color = "#666";
+                datasetList.parentNode.insertBefore(noResultsMsg, datasetList.nextSibling);
+            }
+        } else if (noResultsMsg) {
+            noResultsMsg.remove();
+        }
+    }
+
+    function filterFiles(searchTerm) {
+        let matchFound = false;
+        allFiles.forEach(item => {
+            const shouldShow = item.name.toLowerCase().includes(searchTerm);
+            item.element.classList.toggle("hidden", !shouldShow);
+            item.element.classList.remove("highlight");
+            if (shouldShow) {
+                matchFound = true;
+                if (searchTerm.length > 0) {
+                    item.element.classList.add("highlight");
+                }
+            }
+        });
+        const filesList = document.getElementById("files-list");
+        let noResultsMsg = document.querySelector(".no-results-files");
+        if (!matchFound && searchTerm.length > 0 && filesList) {
+            if (!noResultsMsg) {
+                noResultsMsg = document.createElement("p");
+                noResultsMsg.className = "no-results-files";
+                noResultsMsg.textContent = "No matching files found.";
+                noResultsMsg.style.padding = "1rem";
+                noResultsMsg.style.color = "#666";
+                filesList.parentNode.insertBefore(noResultsMsg, filesList.nextSibling);
+            }
+        } else if (noResultsMsg) {
+            noResultsMsg.remove();
+        }
     }
 
     function getFilteredFiles(datasetData, type) {
@@ -223,8 +307,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function showFilesForDataset(datasetData, type, rightPanel, datasetName) {
+        const searchContainer = rightPanel.querySelector(".search-container");
+        rightPanel.innerHTML = '';
+        rightPanel.appendChild(document.createElement("h2")).textContent = "Files";
+        rightPanel.appendChild(searchContainer);
         const filesList = document.createElement("ul");
         filesList.id = "files-list";
+        rightPanel.appendChild(filesList);
+        allFiles = [];
         let files;
         if (type === "all") {
             files = Object.entries(datasetData);
@@ -245,13 +335,23 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
                 fileElement.classList.add("selected");
                 document.getElementById("dataset-modal").style.display = "none";
-                console.log(fileData,fileName, datasetName);
                 displayFileDetails(fileData, fileName, datasetName);
             });
             filesList.appendChild(fileElement);
+            allFiles.push({
+                element: fileElement,
+                name: displayName.toLowerCase(),
+                data: fileData
+            });
         });
-        rightPanel.innerHTML = '<h2>Files</h2>';
-        rightPanel.appendChild(filesList);
+        const fileSearchInput = document.getElementById("file-search");
+        if (fileSearchInput) {
+            fileSearchInput.value = "";
+            fileSearchInput.addEventListener("input", () => {
+                const searchTerm = fileSearchInput.value.toLowerCase().trim();
+                filterFiles(searchTerm);
+            });
+        }
     }
 
     function matchesType(robustness, type) {

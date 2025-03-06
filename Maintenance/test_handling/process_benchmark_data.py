@@ -5,8 +5,6 @@ from datetime import datetime
 
 def parse_file(filepath, num_lines):
     """Reads specific number of lines from a file and returns them as a list."""
-    if not os.path.exists(filepath):
-        return [""] * num_lines
     with open(filepath, 'r', encoding='utf-8') as file:
         return [file.readline().strip() for _ in range(num_lines)]
 
