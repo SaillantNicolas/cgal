@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     const dateSelect = document.getElementById("date-select");
+    const compareSelect = document.getElementById("compare-select");
+    let jsonData = null;
+    let compareData = null;
 
     async function fetchBenchmarkFiles() {
         try {
@@ -19,11 +22,19 @@ document.addEventListener("DOMContentLoaded", () => {
             .filter(href => href.endsWith(".json"));
     }
 
-    async function loadJSON(file) {
+    async function loadJSON(file, isCompare = false) {
         try {
             const response = await fetch(file);
-            jsonData = await response.json();
-            updateSummaryTable(jsonData);
+            const data = await response.json();
+            if (isCompare) {
+                compareData = data;
+                if (jsonData) {
+                    updateSummaryTable(jsonData, compareData);
+                }
+            } else {
+                jsonData = data;
+                updateSummaryTable(jsonData, compareData);
+            }
         } catch (error) {
             console.error("Error loading JSON file:", file, error);
         }
@@ -46,13 +57,25 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     }
 
-    function updateSummaryTable(jsonData) {
+    function updateSummaryTable(jsonData, compareData = null) {
         const totalStats = calculateTotalStats(jsonData);
         const summaryInfo = document.getElementById("summary-info");
+        let compareStatsHtml = '';
+        if (compareData) {
+            const compareStats = calculateTotalStats(compareData);
+            compareStatsHtml = `
+                <div class="comparison-info">
+                    <p>Comparison Dataset: ${compareSelect.options[compareSelect.selectedIndex].text}</p>
+                    <p>Files: ${compareStats.files} (Diff: ${compareStats.files - totalStats.files})</p>
+                </div>
+            `;
+        }
         summaryInfo.innerHTML = `
             <div class="summary-info">
+                <p>Current Dataset: ${dateSelect.options[dateSelect.selectedIndex].text}</p>
                 <p>Total Datasets: ${totalStats.datasets}</p>
                 <p>Total Files: ${totalStats.files}</p>
+                ${compareStatsHtml}
             </div>
         `;
         const table = document.querySelector("#summary-table");
@@ -63,28 +86,52 @@ document.addEventListener("DOMContentLoaded", () => {
             const validFiles = [];
             const errorFiles = [];
             const timeoutFiles = [];
-            Object.keys(jsonData[component]).forEach(dataset => {
+            Object.keys(jsonData[component] || {}).forEach(dataset => {
                 Object.entries(jsonData[component][dataset]).forEach(([filename, data]) => {
                     if (data.Robustness) {
                         if (data.Robustness.VALID_SOLID_OUTPUT === 1) {
-                            validFiles.push(filename);
+                            validFiles.push({filename, dataset});
                         }
                         if (data.Robustness.INPUT_IS_INVALID === 1 ||
                             data.Robustness.OUTPUT_DISTANCE_IS_TOO_LARGE === 1) {
-                            errorFiles.push(filename);
+                            errorFiles.push({filename, dataset});
                         }
                         if (data.Robustness.TIMEOUT === 1) {
-                            timeoutFiles.push(filename);
+                            timeoutFiles.push({filename, dataset});
                         }
                     }
                 });
             });
+            let compareValidCount = 0;
+            let compareErrorCount = 0;
+            let compareTimeoutCount = 0;
+            if (compareData && compareData[component]) {
+                Object.keys(compareData[component]).forEach(dataset => {
+                    Object.entries(compareData[component][dataset]).forEach(([filename, data]) => {
+                        if (data.Robustness) {
+                            if (data.Robustness.VALID_SOLID_OUTPUT === 1) {
+                                compareValidCount++;
+                            }
+                            if (data.Robustness.INPUT_IS_INVALID === 1 ||
+                                data.Robustness.OUTPUT_DISTANCE_IS_TOO_LARGE === 1) {
+                                compareErrorCount++;
+                            }
+                            if (data.Robustness.TIMEOUT === 1) {
+                                compareTimeoutCount++;
+                            }
+                        }
+                    });
+                });
+            }
+            const validDiff = compareData ? validFiles.length - compareValidCount : null;
+            const errorDiff = compareData ? errorFiles.length - compareErrorCount : null;
+            const timeoutDiff = compareData ? timeoutFiles.length - compareTimeoutCount : null;
             const row = document.createElement("tr");
             row.innerHTML = `
                 <td class="component-cell">${component}</td>
-                <td>${validFiles.length}</td>
-                <td>${errorFiles.length}</td>
-                <td>${timeoutFiles.length}</td>
+                <td>${validFiles.length} ${compareData ? `<span class="diff ${validDiff > 0 ? 'better' : validDiff < 0 ? 'worse' : 'same'}">(${validDiff > 0 ? '+' : ''}${validDiff})</span>` : ''}</td>
+                <td>${errorFiles.length} ${compareData ? `<span class="diff ${errorDiff < 0 ? 'better' : errorDiff > 0 ? 'worse' : 'same'}">(${errorDiff > 0 ? '+' : ''}${errorDiff})</span>` : ''}</td>
+                <td>${timeoutFiles.length} ${compareData ? `<span class="diff ${timeoutDiff < 0 ? 'better' : timeoutDiff > 0 ? 'worse' : 'same'}">(${timeoutDiff > 0 ? '+' : ''}${timeoutDiff})</span>` : ''}</td>
             `;
             summaryTableBody.appendChild(row);
         });
@@ -134,19 +181,28 @@ document.addEventListener("DOMContentLoaded", () => {
         const componentData = jsonData[component];
         Object.keys(componentData).forEach(dataset => {
             const filteredFiles = getFilteredFiles(componentData[dataset], type);
-            const datasetButton = document.createElement("li");
             const fileCount = Object.keys(filteredFiles).length;
-            datasetButton.textContent = `${dataset} (${fileCount})`;
-            datasetButton.classList.add("dataset-button");
-            datasetButton.addEventListener("click", () => {
-                document.querySelectorAll(".dataset-button").forEach(btn => {
-                    btn.classList.remove("selected");
+            if (fileCount > 0) {
+                const datasetButton = document.createElement("li");
+                datasetButton.textContent = `${dataset} (${fileCount})`;
+                datasetButton.classList.add("dataset-button");
+                datasetButton.addEventListener("click", () => {
+                    document.querySelectorAll(".dataset-button").forEach(btn => {
+                        btn.classList.remove("selected");
+                    });
+                    datasetButton.classList.add("selected");
+                    showFilesForDataset(componentData[dataset], type, rightPanel, dataset);
                 });
-                datasetButton.classList.add("selected");
-                showFilesForDataset(componentData[dataset], type, rightPanel, dataset);
-            });
-            datasetList.appendChild(datasetButton);
+                datasetList.appendChild(datasetButton);
+            }
         });
+        if (datasetList.children.length === 0) {
+            const noDataMessage = document.createElement("p");
+            noDataMessage.textContent = "No datasets contain files of this type.";
+            noDataMessage.style.padding = "1rem";
+            noDataMessage.style.color = "#666";
+            leftPanel.appendChild(noDataMessage);
+        }
         modal.style.display = "block";
     }
 
@@ -190,7 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 fileElement.classList.add("selected");
                 document.getElementById("dataset-modal").style.display = "none";
                 console.log(fileData,fileName, datasetName);
-                displayFileDetails(fileData,fileName, datasetName);
+                displayFileDetails(fileData, fileName, datasetName);
             });
             filesList.appendChild(fileElement);
         });
@@ -232,31 +288,50 @@ document.addEventListener("DOMContentLoaded", () => {
         robustnessData.innerHTML = "";
         let displayPath = "";
         if (fileData.path) {
-            displayPath = fileData.path + "/";
+            displayPath = fileData.path;
         }
         fileNameDiv.innerHTML = `
             <p><strong>Dataset:</strong> ${datasetName}</p>
             <p><strong>File:</strong> ${displayPath}${filename}</p>
-        `
+        `;
+        let compareFileData = null;
+        if (compareData && compareData[Object.keys(jsonData)[0]] &&
+            compareData[Object.keys(jsonData)[0]][datasetName] &&
+            compareData[Object.keys(jsonData)[0]][datasetName][filename]) {
+            compareFileData = compareData[Object.keys(jsonData)[0]][datasetName][filename];
+        }
+
         if (fileData.Performance) {
             Object.entries(fileData.Performance).forEach(([key, value]) => {
-                performanceData.appendChild(createDataItem(key, value));
+                let compareValue = null;
+                if (compareFileData && compareFileData.Performance && compareFileData.Performance[key] !== undefined) {
+                    compareValue = compareFileData.Performance[key];
+                }
+                performanceData.appendChild(createDataItem(key, value, compareValue));
             });
         }
         if (fileData.Quality) {
             Object.entries(fileData.Quality).forEach(([key, value]) => {
-                qualityData.appendChild(createDataItem(key, value));
+                let compareValue = null;
+                if (compareFileData && compareFileData.Quality && compareFileData.Quality[key] !== undefined) {
+                    compareValue = compareFileData.Quality[key];
+                }
+                qualityData.appendChild(createDataItem(key, value, compareValue));
             });
         }
         if (fileData.Robustness) {
             Object.entries(fileData.Robustness).forEach(([key, value]) => {
-                robustnessData.appendChild(createDataItem(key, value));
+                let compareValue = null;
+                if (compareFileData && compareFileData.Robustness && compareFileData.Robustness[key] !== undefined) {
+                    compareValue = compareFileData.Robustness[key];
+                }
+                robustnessData.appendChild(createDataItem(key, value, compareValue));
             });
         }
         fileDetailsSection.style.display = "block";
     }
 
-    function createDataItem(label, value) {
+    function createDataItem(label, value, compareValue = null) {
         const item = document.createElement("div");
         item.classList.add("data-item");
         const labelElement = document.createElement("div");
@@ -265,9 +340,39 @@ document.addEventListener("DOMContentLoaded", () => {
         const valueElement = document.createElement("div");
         valueElement.classList.add("data-value");
         valueElement.textContent = value;
+        if (compareValue !== null) {
+            const diff = calculateDifference(value, compareValue);
+            if (diff !== null) {
+                const comparisonElement = document.createElement("span");
+                comparisonElement.classList.add("comparison");
+                let isImprovement = false;
+                if (label.includes("seconds") || label.includes("memory_peaks")) {
+                    isImprovement = parseFloat(value) < parseFloat(compareValue);
+                }
+                else if (label.includes("Mean_Min_Angle") || label.includes("Mean_Radius_Ratio")) {
+                    isImprovement = parseFloat(value) > parseFloat(compareValue);
+                }
+                else if (label.includes("Complexity") || label.includes("degenerate_triangle") || label.includes("Hausdorff_distance")) {
+                    isImprovement = parseFloat(value) < parseFloat(compareValue);
+                }
+                comparisonElement.classList.add(isImprovement ? "better" : "worse");
+                comparisonElement.textContent = ` (${diff > 0 ? '+' : ''}${diff}%)`;
+                valueElement.appendChild(comparisonElement);
+            }
+        }
         item.appendChild(labelElement);
         item.appendChild(valueElement);
         return item;
+    }
+
+    function calculateDifference(currentVal, compareVal) {
+        const current = parseFloat(currentVal);
+        const compare = parseFloat(compareVal);
+        if (!isNaN(current) && !isNaN(compare) && compare !== 0) {
+            const percentChange = ((current - compare) / Math.abs(compare)) * 100;
+            return percentChange.toFixed(2);
+        }
+        return null;
     }
 
     function formatLabel(label) {
@@ -277,11 +382,31 @@ document.addEventListener("DOMContentLoaded", () => {
             .join(" ");
     }
 
-    dateSelect.addEventListener("change", () => loadJSON(dateSelect.value));
+    dateSelect.addEventListener("change", () => {
+        loadJSON(dateSelect.value);
+        if (compareSelect.value && compareSelect.value !== dateSelect.value) {
+            loadJSON(compareSelect.value, true);
+        } else {
+            compareData = null;
+            updateSummaryTable(jsonData);
+        }
+    });
+
+    compareSelect.addEventListener("change", () => {
+        if (compareSelect.value && compareSelect.value !== dateSelect.value) {
+            loadJSON(compareSelect.value, true);
+        } else {
+            compareData = null;
+            updateSummaryTable(jsonData);
+        }
+    });
+
     fetchBenchmarkFiles().then(files => {
         const sortedFiles = files.sort().reverse();
         if (files.length) {
-            dateSelect.innerHTML = sortedFiles.map(file => `<option value="${file}">${file}</option>`).join("");
+            const selectOptions = sortedFiles.map(file => `<option value="${file}">${file}</option>`).join("");
+            dateSelect.innerHTML = selectOptions;
+            compareSelect.innerHTML = `<option value="">None</option>${selectOptions}`;
             loadJSON(dateSelect.value);
         }
     });

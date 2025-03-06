@@ -24,4 +24,4 @@ python3 $CGAL_directory/Maintenance/test_handling/process_benchmark_data.py $Jso
 
 #rm -r $Benchmark_Output
 
-scp -r $Json_Output $SSH_USER@$SSH_HOST:$REMOTE_PATH
+#scp -r $Json_Output $SSH_USER@$SSH_HOST:$REMOTE_PATH

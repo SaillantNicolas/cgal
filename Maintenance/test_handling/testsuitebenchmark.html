@@ -10,8 +10,18 @@
 
 <body>
     <h1>Benchmarks</h1>
-    <label for="date-select">Date :</label>
-    <select id="date-select"></select>
+    <div class="comparison-container">
+        <div>
+            <label for="date-select">Current Dataset:</label>
+            <select id="date-select"></select>
+        </div>
+        <div>
+            <label for="compare-select">Compare With:</label>
+            <select id="compare-select">
+                <option value="">None</option>
+            </select>
+        </div>
+    </div>
     <div id="summary-info"></div>
     <h2>Summary Table</h2>
     <table class="summary-table" id="summary-table">

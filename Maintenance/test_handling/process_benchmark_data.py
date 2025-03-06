@@ -5,6 +5,8 @@ from datetime import datetime
 
 def parse_file(filepath, num_lines):
     """Reads specific number of lines from a file and returns them as a list."""
+    if not os.path.exists(filepath):
+        return [""] * num_lines
     with open(filepath, 'r', encoding='utf-8') as file:
         return [file.readline().strip() for _ in range(num_lines)]
 
@@ -119,8 +121,7 @@ def process_benchmark_files(off_files, output_dir, latest_commit, output_file):
 
 def main(json_output, output_dir, data_folder, latest_commit):
     valid_extensions = {
-        '.off', '.obj', '.ply', '.stl', '.STL', '.wrl', '.vtk', '.poly', '.nas',
-        '.dcm', '.nrrd', '.step', '.vda', '.dat', '.xy', '.bin'
+        '.off', '.obj', '.ply', '.stl', '.STL', '.ts', '.vtp'
     }
 
     all_files = []
