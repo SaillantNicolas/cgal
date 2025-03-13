@@ -14,14 +14,8 @@ Hash_latest_commit=$6
 Alpha_wrap_3_alpha_value=30
 Alpha_wrap_3_timeout_value=130
 
-SSH_HOST=""
-SSH_USER=""
-REMOTE_PATH=""
-
-sh $CGAL_directory/Alpha_wrap_3/benchmark/Alpha_wrap_3/benchmarking.sh $CGAL_directory $Input_data_folder $Benchmark_Output $Alpha_wrap_3_alpha_value $Alpha_wrap_3_timeout_value $Virtual_thread $Hash_latest_commit > /dev/null 2>&1
+$CGAL_directory/Alpha_wrap_3/benchmark/Alpha_wrap_3/benchmarking.sh $CGAL_directory $Input_data_folder $Benchmark_Output $Alpha_wrap_3_alpha_value $Alpha_wrap_3_timeout_value $Virtual_thread $Hash_latest_commit
 
 python3 $CGAL_directory/Maintenance/test_handling/process_benchmark_data.py $Json_Output $Benchmark_Output $Input_data_folder $Hash_latest_commit
 
 #rm -r $Benchmark_Output
-
-#scp -r $Json_Output $SSH_USER@$SSH_HOST:$REMOTE_PATH

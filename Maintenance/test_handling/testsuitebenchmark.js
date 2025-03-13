@@ -859,7 +859,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     isImprovement = parseFloat(value) < parseFloat(compareValue);
                 }
                 comparisonElement.classList.add(isImprovement ? "better" : "worse");
-                comparisonElement.innerHTML = ` (${diff > 0 ? '+' : ''}${diff}% - ${compareValue})`;
+                comparisonElement.innerHTML = ` (${diff > 0 ? '+' : ''}${diff}% | ${compareValue})`;
                 valueElement.appendChild(comparisonElement);
             }
         }
