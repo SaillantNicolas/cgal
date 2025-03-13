@@ -16,6 +16,6 @@ Alpha_wrap_3_timeout_value=130
 
 $CGAL_directory/Alpha_wrap_3/benchmark/Alpha_wrap_3/benchmarking.sh $CGAL_directory $Input_data_folder $Benchmark_Output $Alpha_wrap_3_alpha_value $Alpha_wrap_3_timeout_value $Virtual_thread $Hash_latest_commit
 
-python3 $CGAL_directory/Maintenance/test_handling/process_benchmark_data.py $Json_Output $Benchmark_Output $Input_data_folder $Hash_latest_commit
+python3 $CGAL_directory/Maintenance/test_handling/testsuite_benchmarking/process_benchmark_data.py $Json_Output $Benchmark_Output $Input_data_folder $Hash_latest_commit
 
 #rm -r $Benchmark_Output
