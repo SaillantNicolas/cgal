@@ -104,36 +104,106 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 });
             });
-            let compareValidCount = 0;
-            let compareErrorCount = 0;
-            let compareTimeoutCount = 0;
+            let validAdded = 0;
+            let validRemoved = 0;
+            let errorAdded = 0;
+            let errorRemoved = 0;
+            let timeoutAdded = 0;
+            let timeoutRemoved = 0;
             if (compareData && compareData[component]) {
                 Object.keys(compareData[component]).forEach(dataset => {
-                    Object.entries(compareData[component][dataset]).forEach(([filename, data]) => {
+                    Object.entries(compareData[component][dataset] || {}).forEach(([filename, data]) => {
+                        const fileExists = jsonData[component][dataset] && jsonData[component][dataset][filename];
                         if (data.Robustness) {
                             if (data.Robustness.VALID_SOLID_OUTPUT === 1) {
-                                compareValidCount++;
+                                if (!fileExists) {
+                                    validRemoved++;
+                                } else if (jsonData[component][dataset][filename].Robustness && jsonData[component][dataset][filename].Robustness.VALID_SOLID_OUTPUT !== 1) {
+                                    validRemoved++;
+                                }
                             }
                             if (data.Robustness.INPUT_IS_INVALID === 1 ||
                                 data.Robustness.OUTPUT_DISTANCE_IS_TOO_LARGE === 1) {
-                                compareErrorCount++;
+                                if (!fileExists) {
+                                    errorRemoved++;
+                                } else if (jsonData[component][dataset][filename].Robustness &&
+                                         !(jsonData[component][dataset][filename].Robustness.INPUT_IS_INVALID === 1 ||
+                                           jsonData[component][dataset][filename].Robustness.OUTPUT_DISTANCE_IS_TOO_LARGE === 1)) {
+                                    errorRemoved++;
+                                }
                             }
                             if (data.Robustness.TIMEOUT === 1) {
-                                compareTimeoutCount++;
+                                if (!fileExists) {
+                                    timeoutRemoved++;
+                                } else if (jsonData[component][dataset][filename].Robustness && jsonData[component][dataset][filename].Robustness.TIMEOUT !== 1) {
+                                    timeoutRemoved++;
+                                }
+                            }
+                        }
+                    });
+                });
+                Object.keys(jsonData[component]).forEach(dataset => {
+                    Object.entries(jsonData[component][dataset] || {}).forEach(([filename, data]) => {
+                        const fileExists = compareData[component][dataset] && compareData[component][dataset][filename];
+                        if (data.Robustness) {
+                            if (data.Robustness.VALID_SOLID_OUTPUT === 1) {
+                                if (!fileExists) {
+                                    validAdded++;
+                                } else if (compareData[component][dataset][filename].Robustness && compareData[component][dataset][filename].Robustness.VALID_SOLID_OUTPUT !== 1) {
+                                    validAdded++;
+                                }
+                            }
+                            if (data.Robustness.INPUT_IS_INVALID === 1 ||
+                                data.Robustness.OUTPUT_DISTANCE_IS_TOO_LARGE === 1) {
+                                if (!fileExists) {
+                                    errorAdded++;
+                                } else if (compareData[component][dataset][filename].Robustness &&
+                                         !(compareData[component][dataset][filename].Robustness.INPUT_IS_INVALID === 1 ||
+                                           compareData[component][dataset][filename].Robustness.OUTPUT_DISTANCE_IS_TOO_LARGE === 1)) {
+                                    errorAdded++;
+                                }
+                            }
+                            if (data.Robustness.TIMEOUT === 1) {
+                                if (!fileExists) {
+                                    timeoutAdded++;
+                                } else if (compareData[component][dataset][filename].Robustness && compareData[component][dataset][filename].Robustness.TIMEOUT !== 1) {
+                                    timeoutAdded++;
+                                }
                             }
                         }
                     });
                 });
             }
-            const validDiff = compareData ? validFiles.length - compareValidCount : null;
-            const errorDiff = compareData ? errorFiles.length - compareErrorCount : null;
-            const timeoutDiff = compareData ? timeoutFiles.length - compareTimeoutCount : null;
+            const validDiff = validAdded - validRemoved;
+            const errorDiff = errorAdded - errorRemoved;
+            const timeoutDiff = timeoutAdded - timeoutRemoved;
             const row = document.createElement("tr");
             row.innerHTML = `
                 <td class="component-cell">${component}</td>
-                <td>${validFiles.length} ${compareData ? `<span class="diff ${validDiff > 0 ? 'better' : validDiff < 0 ? 'worse' : 'same'}">(${validDiff > 0 ? '+' : ''}${validDiff})</span>` : ''}</td>
-                <td>${errorFiles.length} ${compareData ? `<span class="diff ${errorDiff < 0 ? 'better' : errorDiff > 0 ? 'worse' : 'same'}">(${errorDiff > 0 ? '+' : ''}${errorDiff})</span>` : ''}</td>
-                <td>${timeoutFiles.length} ${compareData ? `<span class="diff ${timeoutDiff < 0 ? 'better' : timeoutDiff > 0 ? 'worse' : 'same'}">(${timeoutDiff > 0 ? '+' : ''}${timeoutDiff})</span>` : ''}</td>
+                <td data-type="valid" data-added="${validAdded}" data-removed="${validRemoved}" data-diff="${validDiff}">
+                    ${validFiles.length}
+                    ${compareData ?
+                        `<span class="diff ${validDiff > 0 ? 'better' : validDiff < 0 ? 'worse' : 'same'}">
+                            ${validAdded > 0 ? `(+${validAdded})` : ''} ${validRemoved > 0 ? `(-${validRemoved})` : ''}
+                        </span>`
+                        : ''}
+                </td>
+                <td data-type="error" data-added="${errorAdded}" data-removed="${errorRemoved}" data-diff="${errorDiff}">
+                    ${errorFiles.length}
+                    ${compareData ?
+                        `<span class="diff ${errorDiff < 0 ? 'better' : errorDiff > 0 ? 'worse' : 'same'}">
+                            ${errorAdded > 0 ? `(+${errorAdded})` : ''} ${errorRemoved > 0 ? `(-${errorRemoved})` : ''}
+                        </span>`
+                        : ''}
+                </td>
+                <td data-type="timeout" data-added="${timeoutAdded}" data-removed="${timeoutRemoved}" data-diff="${timeoutDiff}">
+                    ${timeoutFiles.length}
+                    ${compareData ?
+                        `<span class="diff ${timeoutDiff < 0 ? 'better' : timeoutDiff > 0 ? 'worse' : 'same'}">
+                            ${timeoutAdded > 0 ? `(+${timeoutAdded})` : ''} ${timeoutRemoved > 0 ? `(-${timeoutRemoved})` : ''}
+                        </span>`
+                        : ''}
+                </td>
             `;
             summaryTableBody.appendChild(row);
         });
@@ -159,7 +229,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const cell = event.target;
         const component = cell.parentElement.firstElementChild.textContent;
         const type = getTypeFromCellIndex(cell.cellIndex);
-        showModal(component, type);
+        const diffValue = parseInt(cell.getAttribute('data-diff')) || 0;
+        console.log(`Clicked on cell: component=${component}, type=${type}, diffValue=${diffValue}`);
+        window.lastDifferences = identifyDifferences(component, type);
+        showModal(component, type, diffValue);
     }
 
     function getTypeFromCellIndex(index) {
@@ -171,123 +244,337 @@ document.addEventListener("DOMContentLoaded", () => {
         return types[index];
     }
 
-    function showModal(component, type) {
+    function showModal(component, type, diffValue = 0) {
         const modal = document.getElementById("dataset-modal");
-        const leftPanel = modal.querySelector(".left-panel");
-        const rightPanel = modal.querySelector(".right-panel");
-        leftPanel.innerHTML = `
-            <h2>Datasets</h2>
-            <div class="search-container">
-                <input type="text" id="dataset-search" placeholder="Search datasets..." class="search-input">
-            </div>
-            <ul id="dataset-list"></ul>
-        `;
-        rightPanel.innerHTML = `
-            <h2>Files</h2>
-            <div class="search-container">
-                <input type="text" id="file-search" placeholder="Search files..." class="search-input">
-            </div>
-            <ul id="files-list"></ul>
-        `;
+        const modalTitle = document.getElementById("modal-title");
         const datasetList = document.getElementById("dataset-list");
-        const componentData = jsonData[component];
+        const searchResults = document.getElementById("search-results");
+        const resultsList = document.getElementById("results-list");
+        const resultCount = document.getElementById("result-count");
+        const filesContainer = document.getElementById("files-container");
+        const filesList = document.getElementById("files-list");
+        const globalSearch = document.getElementById("global-search");
+        const clearSearch = document.getElementById("clear-search");
+        console.log(`Showing modal for: component=${component}, type=${type}, diffValue=${diffValue}`);
+        modalTitle.textContent = `${component} - ${type.charAt(0).toUpperCase() + type.slice(1)} Files`;
+        datasetList.innerHTML = '';
+        filesList.innerHTML = '';
+        resultsList.innerHTML = '';
+        searchResults.classList.add("hidden");
+        globalSearch.value = '';
+        clearSearch.classList.remove("visible");
         allDatasets = [];
-        Object.keys(componentData).forEach(dataset => {
-            const filteredFiles = getFilteredFiles(componentData[dataset], type);
-            const fileCount = Object.keys(filteredFiles).length;
-            if (fileCount > 0) {
-                const datasetButton = document.createElement("li");
-                datasetButton.textContent = `${dataset} (${fileCount})`;
-                datasetButton.dataset.name = dataset;
-                datasetButton.classList.add("dataset-button");
-                datasetButton.addEventListener("click", () => {
-                    document.querySelectorAll(".dataset-button").forEach(btn => {
-                        btn.classList.remove("selected");
+        allFiles = [];
+        const datasetDiffs = {};
+        if (compareData && compareData[component]) {
+            Object.keys(jsonData[component] || {}).forEach(dataset => {
+                datasetDiffs[dataset] = {
+                    valid: 0,
+                    error: 0,
+                    timeout: 0,
+                    total: 0
+                };
+                Object.entries(jsonData[component][dataset] || {}).forEach(([filename, data]) => {
+                    if (data.Robustness) {
+                        if (data.Robustness.VALID_SOLID_OUTPUT === 1) {
+                            datasetDiffs[dataset].valid++;
+                            datasetDiffs[dataset].total++;
+                        }
+                        if (data.Robustness.INPUT_IS_INVALID === 1 ||
+                            data.Robustness.OUTPUT_DISTANCE_IS_TOO_LARGE === 1) {
+                            datasetDiffs[dataset].error++;
+                            datasetDiffs[dataset].total++;
+                        }
+                        if (data.Robustness.TIMEOUT === 1) {
+                            datasetDiffs[dataset].timeout++;
+                            datasetDiffs[dataset].total++;
+                        }
+                    }
+                });
+                if (compareData[component][dataset]) {
+                    Object.entries(compareData[component][dataset] || {}).forEach(([filename, data]) => {
+                        if (data.Robustness) {
+                            if (data.Robustness.VALID_SOLID_OUTPUT === 1) {
+                                datasetDiffs[dataset].valid--;
+                                datasetDiffs[dataset].total--;
+                            }
+                            if (data.Robustness.INPUT_IS_INVALID === 1 ||
+                                data.Robustness.OUTPUT_DISTANCE_IS_TOO_LARGE === 1) {
+                                datasetDiffs[dataset].error--;
+                                datasetDiffs[dataset].total--;
+                            }
+                            if (data.Robustness.TIMEOUT === 1) {
+                                datasetDiffs[dataset].timeout--;
+                                datasetDiffs[dataset].total--;
+                            }
+                        }
                     });
-                    datasetButton.classList.add("selected");
-                    showFilesForDataset(componentData[dataset], type, rightPanel, dataset);
-                });
-                datasetList.appendChild(datasetButton);
-                allDatasets.push({
-                    element: datasetButton,
-                    name: dataset.toLowerCase(),
-                    fileCount: fileCount
-                });
-            }
-        });
-        if (datasetList.children.length === 0) {
-            const noDataMessage = document.createElement("p");
-            noDataMessage.textContent = "No datasets contain files of this type.";
-            noDataMessage.style.padding = "1rem";
-            noDataMessage.style.color = "#666";
-            leftPanel.appendChild(noDataMessage);
-        }
-        const datasetSearchInput = document.getElementById("dataset-search");
-        if (datasetSearchInput) {
-            datasetSearchInput.addEventListener("input", () => {
-                const searchTerm = datasetSearchInput.value.toLowerCase().trim();
-                filterDatasets(searchTerm);
+                }
             });
         }
+        const datasetsArray = Object.keys(jsonData[component] || {}).map(dataset => {
+            const filteredFiles = getFilteredFiles(jsonData[component][dataset], type);
+            const fileCount = Object.keys(filteredFiles).length;
+            let typeDiff = 0;
+            if (compareData && datasetDiffs[dataset]) {
+                typeDiff = datasetDiffs[dataset][type] || 0;
+            }
+            return {
+                name: dataset,
+                fileCount: fileCount,
+                diff: typeDiff
+            };
+        }).filter(dataset => dataset.fileCount > 0);
+        datasetsArray.sort((a, b) => {
+            if (compareData) {
+                const diffA = Math.abs(a.diff);
+                const diffB = Math.abs(b.diff);
+                if (diffA !== diffB) return diffB - diffA;
+            }
+            return a.name.localeCompare(b.name);
+        });
+        datasetsArray.forEach(dataset => {
+            const datasetButton = document.createElement("li");
+            let diffText = '';
+            if (compareData && dataset.diff !== 0) {
+                diffText = ` <span class="diff-label ${dataset.diff > 0 ? 'better' : 'worse'}">(${dataset.diff > 0 ? '+' : ''}${dataset.diff})</span>`;
+            }
+            datasetButton.innerHTML = `${dataset.name} (${dataset.fileCount})${diffText}`;
+            datasetButton.dataset.name = dataset.name;
+            datasetButton.classList.add("dataset-button");
+            if (compareData && dataset.diff !== 0) {
+                datasetButton.classList.add(dataset.diff > 0 ? "dataset-added" : "dataset-removed");
+            }
+            datasetButton.addEventListener("click", () => {
+                document.querySelectorAll(".dataset-button").forEach(btn => {
+                    btn.classList.remove("selected");
+                });
+                datasetButton.classList.add("selected");
+                searchResults.classList.add("hidden");
+                filesContainer.style.display = "block";
+                showFilesForDataset(jsonData[component][dataset.name], type, filesList, dataset.name, compareData ? true : false);
+            });
+            datasetList.appendChild(datasetButton);
+            allDatasets.push({
+                element: datasetButton,
+                name: dataset.name.toLowerCase(),
+                fileCount: dataset.fileCount,
+                diff: dataset.diff
+            });
+            if (jsonData[component][dataset.name]) {
+                Object.entries(jsonData[component][dataset.name]).forEach(([fileName, fileData]) => {
+                    if (type === "all" || (fileData.Robustness && matchesType(fileData.Robustness, type))) {
+                        const displayName = fileData.path ? `${fileData.path}${fileName}` : fileName;
+                        let isDifferent = false;
+                        let diffType = null;
+                        if (compareData && compareData[component] && compareData[component][dataset.name]) {
+                            const compareFileData = compareData[component][dataset.name][fileName];
+                            const existsInCompare = compareFileData !== undefined;
+                            if (type !== "all") {
+                                if (existsInCompare) {
+                                    const currentMatchesType = matchesType(fileData.Robustness, type);
+                                    const compareMatchesType = compareFileData.Robustness && matchesType(compareFileData.Robustness, type);
+                                    if (currentMatchesType && !compareMatchesType) {
+                                        isDifferent = true;
+                                        diffType = "added";
+                                    }
+                                } else {
+                                    isDifferent = true;
+                                    diffType = "added";
+                                }
+                            } else {
+                                if (!existsInCompare) {
+                                    isDifferent = true;
+                                    diffType = "added";
+                                }
+                            }
+                        }
+                        allFiles.push({
+                            fileName: fileName,
+                            displayName: displayName,
+                            datasetName: dataset.name,
+                            data: fileData,
+                            isDifferent: isDifferent,
+                            diffType: diffType
+                        });
+                    }
+                });
+                if (compareData && compareData[component] && compareData[component][dataset.name]) {
+                    Object.entries(compareData[component][dataset.name]).forEach(([fileName, compareFileData]) => {
+                        const existsInCurrent = jsonData[component][dataset.name][fileName] !== undefined;
+                        if (!existsInCurrent && compareFileData.Robustness) {
+                            if (type === "all" || matchesType(compareFileData.Robustness, type)) {
+                                const displayName = compareFileData.path ? `${compareFileData.path}${fileName}` : fileName;
+                                allFiles.push({
+                                    fileName: fileName,
+                                    displayName: displayName,
+                                    datasetName: dataset.name,
+                                    data: compareFileData,
+                                    isDifferent: true,
+                                    diffType: "removed"
+                                });
+                            }
+                        }
+                    });
+                }
+            }
+        });
+        if (datasetsArray.length > 0) {
+            const firstDataset = datasetList.querySelector(".dataset-button");
+            if (firstDataset) {
+                firstDataset.classList.add("selected");
+                showFilesForDataset(jsonData[component][datasetsArray[0].name], type, filesList, datasetsArray[0].name, compareData ? true : false);
+            }
+        }
+        globalSearch.addEventListener("input", function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            console.log("Search term:", searchTerm);
+            clearSearch.classList.toggle("visible", searchTerm.length > 0);
+            if (searchTerm.length > 0) {
+                const filteredFiles = allFiles.filter(file => {
+                    const displayText = (file.displayName || file.fileName || "").toLowerCase();
+                    const datasetText = (file.datasetName || "").toLowerCase();
+                    return displayText.includes(searchTerm) || datasetText.includes(searchTerm);
+                });
+                console.log("Found files:", filteredFiles.length);
+                resultsList.innerHTML = '';
+                resultCount.textContent = filteredFiles.length;
+                filteredFiles.forEach(file => {
+                    const resultItem = document.createElement("li");
+                    resultItem.classList.add("search-result-item");
+                    const displayText = file.displayName || file.fileName || "";
+                    const highlightedName = highlightText(displayText, searchTerm);
+                    let diffIndicator = '';
+                    if (file.isDifferent) {
+                        diffIndicator = `<span class="diff-indicator ${file.diffType === 'added' ? 'added' : 'removed'}">${file.diffType === 'added' ? '+' : '-'}</span>`;
+                    }
+                    resultItem.innerHTML = `
+                        ${diffIndicator}
+                        <span>${highlightedName}</span>
+                        <span class="dataset-name">${file.datasetName}</span>
+                    `;
+                    if (file.isDifferent) {
+                        resultItem.classList.add(`file-${file.diffType}`);
+                    }
+                    resultItem.addEventListener("click", () => {
+                        document.getElementById("dataset-modal").style.display = "none";
+                        displayFileDetails(file.data, file.fileName, file.datasetName);
+                    });
+                    resultsList.appendChild(resultItem);
+                });
+                searchResults.classList.remove("hidden");
+                filesContainer.style.display = "none";
+            } else {
+                searchResults.classList.add("hidden");
+                filesContainer.style.display = "block";
+            }
+        });
+        clearSearch.addEventListener("click", function() {
+            globalSearch.value = "";
+            this.classList.remove("visible");
+            searchResults.classList.add("hidden");
+            filesContainer.style.display = "block";
+            const event = new Event("input", { bubbles: true });
+            globalSearch.dispatchEvent(event);
+        });
         modal.style.display = "block";
     }
 
-    function filterDatasets(searchTerm) {
-        let matchFound = false;
-        allDatasets.forEach(item => {
-            const shouldShow = item.name.includes(searchTerm);
-            item.element.classList.toggle("hidden", !shouldShow);
-            item.element.classList.remove("highlight");
-            if (shouldShow) {
-                matchFound = true;
-                if (searchTerm.length > 0) {
-                    item.element.classList.add("highlight");
-                }
-            }
-        });
-        const datasetList = document.getElementById("dataset-list");
-        let noResultsMsg = document.querySelector(".no-results-datasets");
-        if (!matchFound && searchTerm.length > 0) {
-            if (!noResultsMsg) {
-                noResultsMsg = document.createElement("p");
-                noResultsMsg.className = "no-results-datasets";
-                noResultsMsg.textContent = "No matching datasets found.";
-                noResultsMsg.style.padding = "1rem";
-                noResultsMsg.style.color = "#666";
-                datasetList.parentNode.insertBefore(noResultsMsg, datasetList.nextSibling);
-            }
-        } else if (noResultsMsg) {
-            noResultsMsg.remove();
-        }
+    function highlightText(text, searchTerm) {
+        if (!searchTerm) return text;
+        const regex = new RegExp(`(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+        return text.replace(regex, '<span class="highlight-text">$1</span>');
     }
 
-    function filterFiles(searchTerm) {
-        let matchFound = false;
-        allFiles.forEach(item => {
-            const shouldShow = item.name.toLowerCase().includes(searchTerm);
-            item.element.classList.toggle("hidden", !shouldShow);
-            item.element.classList.remove("highlight");
-            if (shouldShow) {
-                matchFound = true;
-                if (searchTerm.length > 0) {
-                    item.element.classList.add("highlight");
+    function identifyDifferences(component, type) {
+        if (!compareData || !jsonData) {
+            return null;
+        }
+        const differences = {
+            added: [],
+            removed: [],
+            changedType: []
+        };
+        if (!jsonData[component] || !compareData[component]) {
+            return differences;
+        }
+        Object.keys(jsonData[component]).forEach(dataset => {
+            if (!compareData[component][dataset]) {
+                Object.entries(jsonData[component][dataset]).forEach(([fileName, fileData]) => {
+                    if (type === "all" || (fileData.Robustness && matchesType(fileData.Robustness, type))) {
+                        differences.added.push({
+                            component,
+                            dataset,
+                            fileName,
+                            fileData
+                        });
+                    }
+                });
+                return;
+            }
+            Object.entries(jsonData[component][dataset]).forEach(([fileName, fileData]) => {
+                const compareFileData = compareData[component][dataset][fileName];
+                if (!compareFileData) {
+                    if (type === "all" || (fileData.Robustness && matchesType(fileData.Robustness, type))) {
+                        differences.added.push({
+                            component,
+                            dataset,
+                            fileName,
+                            fileData
+                        });
+                    }
+                    return;
                 }
+                if (type !== "all" && fileData.Robustness && compareFileData.Robustness) {
+                    const currentIsType = matchesType(fileData.Robustness, type);
+                    const compareIsType = matchesType(compareFileData.Robustness, type);
+                    if (currentIsType && !compareIsType) {
+                        differences.changedType.push({
+                            component,
+                            dataset,
+                            fileName,
+                            fileData,
+                            changeType: "added_to_type"
+                        });
+                    } else if (!currentIsType && compareIsType) {
+                        differences.changedType.push({
+                            component,
+                            dataset,
+                            fileName,
+                            fileData: compareFileData,
+                            changeType: "removed_from_type"
+                        });
+                    }
+                }
+            });
+            Object.entries(compareData[component][dataset]).forEach(([fileName, compareFileData]) => {
+                if (!jsonData[component][dataset][fileName]) {
+                    if (type === "all" || (compareFileData.Robustness && matchesType(compareFileData.Robustness, type))) {
+                        differences.removed.push({
+                            component,
+                            dataset,
+                            fileName,
+                            fileData: compareFileData
+                        });
+                    }
+                }
+            });
+        });
+        Object.keys(compareData[component] || {}).forEach(dataset => {
+            if (!jsonData[component][dataset]) {
+                Object.entries(compareData[component][dataset]).forEach(([fileName, fileData]) => {
+                    if (type === "all" || (fileData.Robustness && matchesType(fileData.Robustness, type))) {
+                        differences.removed.push({
+                            component,
+                            dataset,
+                            fileName,
+                            fileData
+                        });
+                    }
+                });
             }
         });
-        const filesList = document.getElementById("files-list");
-        let noResultsMsg = document.querySelector(".no-results-files");
-        if (!matchFound && searchTerm.length > 0 && filesList) {
-            if (!noResultsMsg) {
-                noResultsMsg = document.createElement("p");
-                noResultsMsg.className = "no-results-files";
-                noResultsMsg.textContent = "No matching files found.";
-                noResultsMsg.style.padding = "1rem";
-                noResultsMsg.style.color = "#666";
-                filesList.parentNode.insertBefore(noResultsMsg, filesList.nextSibling);
-            }
-        } else if (noResultsMsg) {
-            noResultsMsg.remove();
-        }
+        return differences;
     }
 
     function getFilteredFiles(datasetData, type) {
@@ -306,15 +593,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }, {});
     }
 
-    function showFilesForDataset(datasetData, type, rightPanel, datasetName) {
-        const searchContainer = rightPanel.querySelector(".search-container");
-        rightPanel.innerHTML = '';
-        rightPanel.appendChild(document.createElement("h2")).textContent = "Files";
-        rightPanel.appendChild(searchContainer);
-        const filesList = document.createElement("ul");
-        filesList.id = "files-list";
-        rightPanel.appendChild(filesList);
-        allFiles = [];
+    function showFilesForDataset(datasetData, type, filesList, datasetName, isComparing = false) {
+        filesList.innerHTML = '';
         let files;
         if (type === "all") {
             files = Object.entries(datasetData);
@@ -324,11 +604,134 @@ document.addEventListener("DOMContentLoaded", () => {
                 return matchesType(fileData.Robustness, type);
             });
         }
+
+        const fileDiffs = [];
+        const differences = window.lastDifferences;
+
         files.forEach(([fileName, fileData]) => {
+            let isDifferent = false;
+            let diffType = null;
+
+            if (differences) {
+                const isAdded = differences.added.some(item =>
+                    item.component === Object.keys(jsonData)[0] &&
+                    item.dataset === datasetName &&
+                    item.fileName === fileName);
+
+                if (isAdded) {
+                    isDifferent = true;
+                    diffType = "added";
+                }
+
+                const hasChangedType = differences.changedType.some(item =>
+                    item.component === Object.keys(jsonData)[0] &&
+                    item.dataset === datasetName &&
+                    item.fileName === fileName &&
+                    item.changeType === "added_to_type");
+
+                if (hasChangedType) {
+                    isDifferent = true;
+                    diffType = "added";
+                }
+            }
+
+            fileDiffs.push({
+                fileName,
+                fileData,
+                isDifferent,
+                diffType
+            });
+        });
+
+        if (differences) {
+            differences.removed.forEach(item => {
+                if (item.dataset === datasetName) {
+                    fileDiffs.push({
+                        fileName: item.fileName,
+                        fileData: item.fileData,
+                        isDifferent: true,
+                        diffType: "removed"
+                    });
+                }
+            });
+
+            differences.changedType.forEach(item => {
+                if (item.dataset === datasetName && item.changeType === "removed_from_type") {
+                    fileDiffs.push({
+                        fileName: item.fileName,
+                        fileData: item.fileData,
+                        isDifferent: true,
+                        diffType: "removed"
+                    });
+                }
+            });
+        }
+
+        fileDiffs.sort((a, b) => {
+            if (a.isDifferent !== b.isDifferent) {
+                return a.isDifferent ? -1 : 1;
+            }
+            if (a.isDifferent && b.isDifferent && a.diffType !== b.diffType) {
+                return a.diffType === "added" ? -1 : 1;
+            }
+            return a.fileName.localeCompare(b.fileName);
+        });
+
+        if (isComparing && differences) {
+            const parentNode = filesList.parentNode;
+            const existingSummary = parentNode.querySelector(".file-diff-summary");
+            if (existingSummary) {
+                existingSummary.remove();
+            }
+
+            const addedCount = fileDiffs.filter(file => file.isDifferent && file.diffType === "added").length;
+            const removedCount = fileDiffs.filter(file => file.isDifferent && file.diffType === "removed").length;
+
+            if (addedCount > 0 || removedCount > 0) {
+                const diffSummary = document.createElement("div");
+                diffSummary.className = "file-diff-summary";
+
+                let summaryText = "";
+                if (addedCount > 0) {
+                    summaryText += `<span class="file-count added">+${addedCount} new</span>`;
+                }
+                if (removedCount > 0) {
+                    if (addedCount > 0) summaryText += " ";
+                    summaryText += `<span class="file-count removed">-${removedCount} removed</span>`;
+                }
+
+                diffSummary.innerHTML = summaryText;
+                parentNode.insertBefore(diffSummary, filesList);
+            }
+        }
+
+        fileDiffs.forEach(({ fileName, fileData, isDifferent, diffType }) => {
             const fileElement = document.createElement("li");
             const displayName = fileData.path ? `${fileData.path}${fileName}` : fileName;
-            fileElement.textContent = displayName;
-            fileElement.classList.add("file-item");
+
+            fileElement.className = "file-item";
+
+            if (isDifferent) {
+                const indicator = document.createElement("span");
+                indicator.className = `diff-indicator ${diffType === 'added' ? 'added' : 'removed'}`;
+                indicator.textContent = diffType === 'added' ? '+' : '-';
+                fileElement.appendChild(indicator);
+
+                const nameSpan = document.createElement("span");
+                nameSpan.className = "file-name-text";
+                nameSpan.textContent = displayName;
+                nameSpan.style.paddingLeft = "10px";
+                fileElement.appendChild(nameSpan);
+
+                if (diffType === "added") {
+                    fileElement.classList.add("file-added");
+                } else {
+                    fileElement.classList.add("file-removed");
+                }
+            } else {
+                fileElement.textContent = displayName;
+            }
+
             fileElement.addEventListener("click", () => {
                 document.querySelectorAll(".file-item").forEach(item => {
                     item.classList.remove("selected");
@@ -337,20 +740,27 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById("dataset-modal").style.display = "none";
                 displayFileDetails(fileData, fileName, datasetName);
             });
+
             filesList.appendChild(fileElement);
+
             allFiles.push({
                 element: fileElement,
                 name: displayName.toLowerCase(),
-                data: fileData
+                displayName: displayName,
+                fileName: fileName,
+                datasetName: datasetName,
+                data: fileData,
+                isDifferent: isDifferent,
+                diffType: diffType
             });
         });
-        const fileSearchInput = document.getElementById("file-search");
-        if (fileSearchInput) {
-            fileSearchInput.value = "";
-            fileSearchInput.addEventListener("input", () => {
-                const searchTerm = fileSearchInput.value.toLowerCase().trim();
-                filterFiles(searchTerm);
-            });
+
+        if (fileDiffs.length === 0) {
+            const noFilesMsg = document.createElement("p");
+            noFilesMsg.textContent = "No files of this type found in this dataset.";
+            noFilesMsg.style.padding = "1rem";
+            noFilesMsg.style.color = "#666";
+            filesList.appendChild(noFilesMsg);
         }
     }
 
@@ -407,31 +817,23 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (compareFileData && compareFileData.Performance && compareFileData.Performance[key] !== undefined) {
                     compareValue = compareFileData.Performance[key];
                 }
-                performanceData.appendChild(createDataItem(key, value, compareValue));
+                performanceData.appendChild(createDataItem(key, value, compareValue, true));
             });
         }
         if (fileData.Quality) {
             Object.entries(fileData.Quality).forEach(([key, value]) => {
-                let compareValue = null;
-                if (compareFileData && compareFileData.Quality && compareFileData.Quality[key] !== undefined) {
-                    compareValue = compareFileData.Quality[key];
-                }
-                qualityData.appendChild(createDataItem(key, value, compareValue));
+                qualityData.appendChild(createDataItem(key, value, null, false));
             });
         }
         if (fileData.Robustness) {
             Object.entries(fileData.Robustness).forEach(([key, value]) => {
-                let compareValue = null;
-                if (compareFileData && compareFileData.Robustness && compareFileData.Robustness[key] !== undefined) {
-                    compareValue = compareFileData.Robustness[key];
-                }
-                robustnessData.appendChild(createDataItem(key, value, compareValue));
+                robustnessData.appendChild(createDataItem(key, value, null, false));
             });
         }
         fileDetailsSection.style.display = "block";
     }
 
-    function createDataItem(label, value, compareValue = null) {
+    function createDataItem(label, value, compareValue = null, showComparison = true) {
         const item = document.createElement("div");
         item.classList.add("data-item");
         const labelElement = document.createElement("div");
@@ -440,7 +842,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const valueElement = document.createElement("div");
         valueElement.classList.add("data-value");
         valueElement.textContent = value;
-        if (compareValue !== null) {
+
+        if (compareValue !== null && showComparison) {
             const diff = calculateDifference(value, compareValue);
             if (diff !== null) {
                 const comparisonElement = document.createElement("span");
@@ -456,7 +859,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     isImprovement = parseFloat(value) < parseFloat(compareValue);
                 }
                 comparisonElement.classList.add(isImprovement ? "better" : "worse");
-                comparisonElement.textContent = ` (${diff > 0 ? '+' : ''}${diff}%)`;
+                comparisonElement.innerHTML = ` (${diff > 0 ? '+' : ''}${diff}% - ${compareValue})`;
                 valueElement.appendChild(comparisonElement);
             }
         }

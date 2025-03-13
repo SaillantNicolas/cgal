@@ -39,21 +39,30 @@
 
     <div id="dataset-modal" class="modal">
         <div class="modal-content">
-            <div class="left-panel">
-                <h2 id="modal-title"></h2>
+            <div class="modal-header">
+                <h2 id="modal-title">Files Explorer</h2>
                 <div class="search-container">
-                    <input type="text" id="dataset-search" placeholder="Search datasets..." class="search-input">
+                    <input type="text" id="global-search" placeholder="Search files..." class="search-input">
+                    <button id="clear-search" class="clear-search" title="Clear search">×</button>
                 </div>
-                <ul id="dataset-list"></ul>
+                <span class="close">&times;</span>
             </div>
-            <div class="right-panel">
-                <h2></h2>
-                <div class="search-container">
-                    <input type="text" id="file-search" placeholder="Search files..." class="search-input">
+            <div class="modal-body">
+                <div class="left-panel">
+                    <h3>Datasets</h3>
+                    <ul id="dataset-list"></ul>
                 </div>
-                <ul id="details-list"></ul>
+                <div class="right-panel">
+                    <div id="files-container">
+                        <h3>Files</h3>
+                        <ul id="files-list"></ul>
+                    </div>
+                    <div id="search-results" class="search-results hidden">
+                        <h3>Search Results <span id="result-count">0</span></h3>
+                        <ul id="results-list"></ul>
+                    </div>
+                </div>
             </div>
-            <span class="close">&times;</span>
         </div>
     </div>
 
