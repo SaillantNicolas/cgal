@@ -73,7 +73,7 @@ mkdir -p "$BUILD_DIR"
 cd "$BUILD_DIR"
 cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-O3
 make -j $NUM_THREADS
-cd -
+cd $PROJECT_DIR
 
 # Prepare log directories
 mkdir -p "$OUTPUT_DIR/Logs/$COMPONENT_NAME/Performance"
