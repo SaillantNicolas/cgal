@@ -94,7 +94,7 @@ for INPUT_FILE in "$INPUT_DIR"/*; do
 
     echo "[INFO] Processing file: $INPUT_FILE"
 
-    process_file "$INPUT_FILE" "$COMPONENT_NAME" "$PROJECT_DIR" "$TIMEOUT" "$OUTPUT_DIR" "$TMP_RESULT_FILE" "$GRID_SIZE" "$ERASE_ALL_DUPLICATE"
+    process_file "$INPUT_FILE" "$COMPONENT_NAME" "$PROJECT_DIR" "$TIMEOUT" "$OUTPUT_DIR" "$TMP_RESULT_FILE" "$GRID_SIZE" "$ERASE_ALL_DUPLICATE" &
 
     ((JOBS+=1))
     if [ "$JOBS" -ge "$NUM_THREADS" ]; then
