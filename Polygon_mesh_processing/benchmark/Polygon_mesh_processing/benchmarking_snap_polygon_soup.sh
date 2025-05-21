@@ -3,6 +3,9 @@
 # Temp directory for individual result JSONs
 TMP_RESULT_DIR=$(mktemp -d)
 
+# Get dataset name from input directory
+DATASET_NAME=$(basename "$INPUT_DIR")
+
 # Job control
 JOBS=0
 MAX_JOBS=$NUM_THREADS
@@ -64,8 +67,12 @@ RESULT_JSON="$OUTPUT_DIR/${COMPONENT_NAME}_results_${DATE_TAG}.json"
 
 # Compile
 # Do not forget to define CGAL_DIR
-cmake "$PROJECT_DIR" "-DCMAKE_BUILD_TYPE=Release" "-DCMAKE_CXX_FLAGS=-O3"
+BUILD_DIR="$PROJECT_DIR/build-release"
+mkdir -p "$BUILD_DIR"
+cd "$BUILD_DIR"
+cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-O3
 make -j $NUM_THREADS
+cd -
 
 # Prepare log directories
 mkdir -p "$OUTPUT_DIR/Logs/$COMPONENT_NAME/Performance"
@@ -75,13 +82,16 @@ mkdir -p "$OUTPUT_DIR/Logs/$COMPONENT_NAME/Robustness"
 # Initialize JSON
 echo "{" > "$RESULT_JSON"
 echo "  \"$COMPONENT_NAME\": {" >> "$RESULT_JSON"
-echo "    \"Thingi10K\": {" >> "$RESULT_JSON"
+echo "    \"$DATASET_NAME\": {" >> "$RESULT_JSON"
 
+echo "=== Benchmark started on dataset '$DATASET_NAME' with $NUM_THREADS threads ==="
 #process_file "$INPUT_DIR/100036.stl" "$COMPONENT_NAME" "$PROJECT_DIR" "$TIMEOUT" "$OUTPUT_DIR" "$TMP_RESULT_FILE" "$GRID_SIZE" "$ERASE_ALL_DUPLICATE"
 # Loop input files and spawn parallel jobs
 for INPUT_FILE in "$INPUT_DIR"/*; do
     INPUT_ID=$(basename "$INPUT_FILE" | cut -d. -f1)
     TMP_RESULT_FILE="$TMP_RESULT_DIR/$INPUT_ID.json"
+
+    echo "[INFO] Processing file: $INPUT_FILE"
 
     process_file "$INPUT_FILE" "$COMPONENT_NAME" "$PROJECT_DIR" "$TIMEOUT" "$OUTPUT_DIR" "$TMP_RESULT_FILE" "$GRID_SIZE" "$ERASE_ALL_DUPLICATE"
 
@@ -92,12 +102,14 @@ for INPUT_FILE in "$INPUT_DIR"/*; do
     fi
 done
 
+echo "=== Merging all partial JSON results ==="
+
 wait
 
 # Merge all partial JSONs
 echo "{" > "$RESULT_JSON"
 echo "  \"$COMPONENT_NAME\": {" >> "$RESULT_JSON"
-echo "    \"Thingi10K\": {" >> "$RESULT_JSON"
+echo "    \"$DATASET_NAME\": {" >> "$RESULT_JSON"
 
 FIRST_ENTRY=true
 for FILE in "$TMP_RESULT_DIR"/*.json; do
@@ -114,3 +126,5 @@ echo "    }," >> "$RESULT_JSON"
 echo "    \"finished_at\": \"$TIMESTAMP\"" >> "$RESULT_JSON"
 echo "  }" >> "$RESULT_JSON"
 echo "}" >> "$RESULT_JSON"
+
+echo "=== Benchmark finished. Results saved to: $RESULT_JSON ==="

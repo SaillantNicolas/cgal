@@ -13,7 +13,7 @@ GRID_SIZE=$3
 ERASE_ALL_DUPLICATE=$4
 
 TMP_LOG=$(mktemp)
-timeout "$TIMEOUT"s quality_snap_polygon_soup "$INPUT_FILE" "$GRID_SIZE" "$ERASE_ALL_DUPLICATE"  > "$TMP_LOG"
+timeout "$TIMEOUT"s ./build-release/quality_snap_polygon_soup "$INPUT_FILE" "$GRID_SIZE" "$ERASE_ALL_DUPLICATE"  > "$TMP_LOG"
 
 cat $TMP_LOG
 rm -f "$TMP_LOG"
