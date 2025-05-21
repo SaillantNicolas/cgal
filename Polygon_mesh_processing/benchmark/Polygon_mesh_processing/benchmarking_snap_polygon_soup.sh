@@ -41,7 +41,7 @@ export -f process_file
 
 # Usage function
 usage() {
-    echo "Usage: $0 <project_dir> <input_data_dir> <output_results_dir> <timeout> <num_threads> [component_params...]"
+    echo "Usage: $0 <CGAL_DIR> <input_data_dir> <output_results_dir> <timeout> <num_threads> [component_params...]"
     exit 1
 }
 
@@ -51,7 +51,7 @@ if [ "$#" -lt 5 ]; then
 fi
 
 # Arguments
-PROJECT_DIR=$1
+CGAL_DIR=$1
 INPUT_DIR=$2
 OUTPUT_DIR=$3
 TIMEOUT=$4
@@ -60,7 +60,8 @@ GRID_SIZE=$6
 ERASE_ALL_DUPLICATE=$7
 
 # Get component name from the project directory name
-COMPONENT_NAME=$(basename "$PROJECT_DIR")
+COMPONENT_NAME="Snap_polygon_soup"
+PROJECT_DIR="$CGAL_DIR/Polygon_mesh_processing/benchmark/Polygon_mesh_processing"
 DATE_TAG=$(date +"%Y-%m-%d")
 TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
 RESULT_JSON="$OUTPUT_DIR/${COMPONENT_NAME}_results_${DATE_TAG}.json"
