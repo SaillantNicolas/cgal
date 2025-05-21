@@ -88,7 +88,7 @@ echo "    \"$DATASET_NAME\": {" >> "$RESULT_JSON"
 echo "=== Benchmark started on dataset '$DATASET_NAME' with $NUM_THREADS threads ==="
 #process_file "$INPUT_DIR/100036.stl" "$COMPONENT_NAME" "$PROJECT_DIR" "$TIMEOUT" "$OUTPUT_DIR" "$TMP_RESULT_FILE" "$GRID_SIZE" "$ERASE_ALL_DUPLICATE"
 # Loop input files and spawn parallel jobs
-for INPUT_FILE in "$INPUT_DIR"/*; do
+find "$INPUT_DIR" -type f | while read -r INPUT_FILE; do
     INPUT_ID=$(basename "$INPUT_FILE" | cut -d. -f1)
     TMP_RESULT_FILE="$TMP_RESULT_DIR/$INPUT_ID.json"
 
