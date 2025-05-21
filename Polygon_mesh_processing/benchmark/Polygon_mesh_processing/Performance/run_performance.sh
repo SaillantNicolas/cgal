@@ -2,6 +2,8 @@
 
 set -e
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 if [ "$#" -lt 4 ]; then
     echo "Usage: $0 <input_file> <timeout> [component_params...]"
     exit 1
@@ -16,7 +18,7 @@ ERASE_ALL_DUPLICATE=$4
 TMP_LOG=$(mktemp)
 
 # Run the benchmarked command
-/usr/bin/time -f "TIME:%e\nMEM:%M" timeout "$TIMEOUT"s ./build-release/performance_snap_polygon_soup "$INPUT_FILE" "$GRID_SIZE" "$ERASE_ALL_DUPLICATE" 2> "$TMP_LOG"
+/usr/bin/time -f "TIME:%e\nMEM:%M" timeout "$TIMEOUT"s $SCRIPT_DIR/../build-release/performance_snap_polygon_soup "$INPUT_FILE" "$GRID_SIZE" "$ERASE_ALL_DUPLICATE" 2> "$TMP_LOG"
 
 # Parse time and memory
 SECONDS=$(grep "TIME" "$TMP_LOG" | cut -d':' -f2)

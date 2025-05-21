@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 if [ "$#" -lt 4 ]; then
     echo "Usage: $0 <input_file> <timeout> [component_params...]"
     exit 1
@@ -15,7 +17,7 @@ GRID_SIZE=$3
 ERASE_ALL_DUPLICATE=$4
 
 # Run with timeout, capture exit code
-timeout "--foreground" "$TIMEOUT"s ./build-release/robustness_snap_polygon_soup "$INPUT_FILE" "$GRID_SIZE" "$ERASE_ALL_DUPLICATE"
+timeout "--foreground" "$TIMEOUT"s $SCRIPT_DIR/../build-release/robustness_snap_polygon_soup "$INPUT_FILE" "$GRID_SIZE" "$ERASE_ALL_DUPLICATE"
 EXIT_CODE=$?
 
 # Interpret exit codes
