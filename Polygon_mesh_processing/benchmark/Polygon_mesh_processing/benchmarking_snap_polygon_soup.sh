@@ -92,6 +92,7 @@ for INPUT_FILE in "$INPUT_DIR"/*; do
     INPUT_ID=$(basename "$INPUT_FILE" | cut -d. -f1)
     TMP_RESULT_FILE="$TMP_RESULT_DIR/$INPUT_ID.json"
 
+    echo "Processing file: $INPUT_FILE"
     process_file "$INPUT_FILE" "$COMPONENT_NAME" "$PROJECT_DIR" "$TIMEOUT" "$OUTPUT_DIR" "$TMP_RESULT_FILE" "$GRID_SIZE" "$ERASE_ALL_DUPLICATE" &
 
     ((JOBS+=1))
