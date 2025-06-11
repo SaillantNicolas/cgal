@@ -8,4 +8,4 @@ cd ..
 
 ./vcpkg/vcpkg install cgal[qt,eigen3,core] boost qt5
 
-export VCPKG_ROOT=$PWD/vcpkg
+echo "VCPKG_DIR=$PWD/vcpkg" >> $GITHUB_ENV
