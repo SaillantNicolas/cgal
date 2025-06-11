@@ -2,10 +2,9 @@
 set -ex
 
 FACTOR=$1
-VCPKG_DIR=$VCPKG_ROOT
 cd Lab/demo
 
-cmake -S Lab -B build -DCMAKE_TOOLCHAIN_FILE=$VCPKG_DIR/scripts/buildsystems/vcpkg.cmake
+cmake -S Lab -B build -DCMAKE_TOOLCHAIN_FILE=../../scripts/buildsystems/vcpkg.cmake
 
 LIST_OF_PLUGINS=$(cmake --build build -t help |& grep 'plugin$' | cut -d\  -f2)
 PLUGINS_ARRAY=(${LIST_OF_PLUGINS});
