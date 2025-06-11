@@ -38,3 +38,12 @@ jobs:
       run: .github/install.sh
     - name: run4
       run: ./.github/test.sh 3 ${{ github.workspace }}
+  batch_windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install dependencies
+      run: .github/install_windows.sh
+    - name: Compile using vcpkg
+      shell: bash
+      run: .github/test_windows.sh 0 ${{ github.workspace }}
