@@ -1,12 +1,11 @@
 [requires]
-boost
-eigen
-qt
-tbb
-mpfr
-ceres-solver
-opencv
-vtk
+boost/1.88.0
+eigen/3.4.0
+qt/6.7.3
+tbb/2020.3
+mpfr/4.2.1
+ceres-solver/2.2.0
+opencv/4.11.0
 
 [generators]
 CMakeToolchain

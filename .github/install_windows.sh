@@ -6,6 +6,7 @@ cd "$GITHUB_WORKSPACE"
 pip install conan
 
 conan profile detect --force
+cp .github/conanfile.txt Lab/demo/
 
 cd Lab/demo
-conan install $GITHUB_WORKSPACE/.github/conanfile.txt --output-folder=Lab/demo/build --build=missing
+conan install . --output-folder=build --build=missing
