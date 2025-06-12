@@ -7,7 +7,7 @@ cd Lab/demo
 TOOLCHAIN_WIN_PATH=$(cygpath -w "$GITHUB_WORKSPACE/vcpkg/scripts/buildsystems/vcpkg.cmake")
 
 echo "============================"
-ls -R "$GITHUB_WORKSPACE/vcpkg/scripts/"
+ls -R "$GITHUB_WORKSPACE/vcpkg/"
 
 ls "$GITHUB_WORKSPACE/vcpkg/scripts/buildsystems/vcpkg.cmake" || {
   echo "❌ vcpkg.cmake not found at expected location"
