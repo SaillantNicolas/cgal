@@ -10,4 +10,4 @@ cd vcpkg
 ./bootstrap-vcpkg.sh
 cd ..
 
-./vcpkg/vcpkg install cgal[qt,eigen3,core] boost qt5
+./vcpkg/vcpkg install cgal[qt,core] boost eigen3 qt5
