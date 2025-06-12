@@ -9,11 +9,15 @@ conan profile detect --force
 
 PROFILE_PATH=$(conan profile path default)
 
+TMP_PROFILE="${PROFILE_PATH}.tmp"
 if grep -q '^compiler.cppstd=' "$PROFILE_PATH"; then
-    sed -i 's/^compiler\.cppstd=.*/compiler.cppstd=17/' "$PROFILE_PATH"
+    sed 's/^compiler\.cppstd=.*/compiler.cppstd=17/' "$PROFILE_PATH" > "$TMP_PROFILE"
 else
-    echo "compiler.cppstd=17" >> "$PROFILE_PATH"
+    cat "$PROFILE_PATH" > "$TMP_PROFILE"
+    echo "compiler.cppstd=17" >> "$TMP_PROFILE"
 fi
+
+mv "$TMP_PROFILE" "$PROFILE_PATH"
 
 cp .github/conanfile.txt Lab/demo/
 
