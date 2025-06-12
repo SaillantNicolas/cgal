@@ -1,23 +1,11 @@
 #!/bin/bash
 set -ex
 
+cd "$GITHUB_WORKSPACE"
 
-cd $GITHUB_WORKSPACE
-git clone https://github.com/microsoft/vcpkg.git
-cd vcpkg
-./bootstrap-vcpkg.sh
-cd ..
+pip install conan
 
-./vcpkg/vcpkg install \
-    boost \
-    eigen3 \
-    qtbase \
-    qtdeclarative \
-    qtsvg \
-    qtwebsockets \
-    tbb \
-    mpfr \
-    ceres \
-    opencv \
-    vtk \
-    zlib
+conan profile detect --force
+
+cd Lab/demo
+conan install $GITHUB_WORKSPACE/.github/conanfile.txt --output-folder=Lab/demo/build --build=missing
