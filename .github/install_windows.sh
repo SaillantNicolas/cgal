@@ -1,6 +1,7 @@
 #!/bin/bash
 set -ex
 
+cd $GITHUB_WORKSPACE
 git clone https://github.com/microsoft/vcpkg.git
 cd vcpkg
 ./bootstrap-vcpkg.sh
