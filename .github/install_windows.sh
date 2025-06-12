@@ -1,11 +1,9 @@
 #!/bin/bash
 set -ex
 
-echo "============================"
-echo "Installing vcpkg dependencies for Windows"
+
 cd $GITHUB_WORKSPACE
 git clone https://github.com/microsoft/vcpkg.git
-ls vcpkg
 cd vcpkg
 ./bootstrap-vcpkg.sh
 cd ..
@@ -22,4 +20,4 @@ cd ..
     ceres \
     opencv \
     vtk \
-    zlibn3 qt5
+    zlib
