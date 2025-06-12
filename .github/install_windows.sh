@@ -13,10 +13,10 @@ cd ..
 ./vcpkg/vcpkg install \
     boost \
     eigen3 \
-    qt6-base \
-    qt6-declarative \
-    qt6-svg \
-    qt6-websockets \
+    qtbase \
+    qtdeclarative \
+    qtsvg \
+    qtwebsockets \
     tbb \
     mpfr \
     ceres \
