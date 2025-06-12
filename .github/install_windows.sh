@@ -3,6 +3,7 @@ set -ex
 
 cd $GITHUB_WORKSPACE
 git clone https://github.com/microsoft/vcpkg.git
+ls vcpkg
 cd vcpkg
 ./bootstrap-vcpkg.sh
 cd ..
