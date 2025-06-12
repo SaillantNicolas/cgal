@@ -43,6 +43,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Install dependencies
+      shell: bash
       run: .github/install_windows.sh
     - name: Compile using vcpkg
       shell: bash
