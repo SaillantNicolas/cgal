@@ -10,4 +10,16 @@ cd vcpkg
 ./bootstrap-vcpkg.sh
 cd ..
 
-./vcpkg/vcpkg install cgal[qt,core] boost eigen3 qt5
+./vcpkg/vcpkg install \
+    boost \
+    eigen3 \
+    qt6-base \
+    qt6-declarative \
+    qt6-svg \
+    qt6-websockets \
+    tbb \
+    mpfr \
+    ceres \
+    opencv \
+    vtk \
+    zlibn3 qt5
