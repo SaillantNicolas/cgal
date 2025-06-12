@@ -12,9 +12,9 @@ CMakeToolchain
 CMakeDeps
 
 [options]
-qt:shared=True
-qt:with_gui=True
-qt:with_qttools=True
-qt:with_widgets=True
-qt:with_opengl=True
-qt:with_svg=True
+qt/6.7.3:shared=True
+qt/6.7.3:with_gui=True
+qt/6.7.3:with_qttools=True
+qt/6.7.3:with_widgets=True
+qt/6.7.3:with_opengl=True
+qt/6.7.3:with_svg=True
