@@ -6,8 +6,7 @@ cd "$GITHUB_WORKSPACE"
 pip install conan
 
 conan profile detect --force
-conan profile update settings.compiler.cppstd=17 default
-
+conan profile set settings.compiler.cppstd=17 default
 cp .github/conanfile.txt Lab/demo/
 
 cd Lab/demo
