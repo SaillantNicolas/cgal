@@ -19,7 +19,7 @@ fi
 
 mv "$TMP_PROFILE" "$PROFILE_PATH"
 
-cp .github/conanfile.txt Lab/demo/
+cp .github/conanfile.txt Lab/demo/Lab
 
 cd Lab/demo
 conan install Lab --output-folder=build --build=missing
