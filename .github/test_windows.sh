@@ -4,7 +4,7 @@ set -ex
 FACTOR=$1
 cd Lab/demo
 
-cmake -S Lab -B build -DCMAKE_TOOLCHAIN_FILE=build/conan_toolchain.cmake
+cmake -S Lab -B build -DCMAKE_PREFIX_PATH=build
 
 LIST_OF_PLUGINS=$(cmake --build build -t help |& grep 'plugin$' | cut -d\  -f2)
 PLUGINS_ARRAY=(${LIST_OF_PLUGINS})
