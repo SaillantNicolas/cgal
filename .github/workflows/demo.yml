@@ -45,6 +45,6 @@ jobs:
     - name: Install dependencies
       shell: bash
       run: .github/install_windows.sh
-    - name: Compile using vcpkg
+    - name: Compile and test on Windows
       shell: bash
       run: .github/test_windows.sh 0 ${{ github.workspace }}
