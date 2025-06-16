@@ -4,7 +4,7 @@ set -ex
 FACTOR=$1
 cd Lab/demo
 
-cmake -S Lab -B build -DCMAKE_TOOLCHAIN_FILE=Lab/demo/build/conan_toolchain.cmake
+cmake -S Lab -B build -DCMAKE_TOOLCHAIN_FILE=build/conan_toolchain.cmake
 
 LIST_OF_PLUGINS=$(cmake --build build -t help |& grep 'plugin$' | cut -d\  -f2)
 PLUGINS_ARRAY=(${LIST_OF_PLUGINS})
