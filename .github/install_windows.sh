@@ -22,4 +22,4 @@ mv "$TMP_PROFILE" "$PROFILE_PATH"
 cp .github/conanfile.txt Lab/demo/
 
 cd Lab/demo
-conan install . --output-folder=build --build=missing
+conan install Lab --output-folder=build --build=missing
