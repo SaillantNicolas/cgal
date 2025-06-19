@@ -18,4 +18,4 @@ echo "Nombre de plugins : ${NB_OF_PLUGINS}"
 DEL=$(($NB_OF_PLUGINS / 4))
 
 cd build
-cmake --build . --config Release --target ${PLUGINS_ARRAY[@]:$(($FACTOR * $DEL)):$((($FACTOR + 1) * $DEL))}
+cmake --build . --config Release
