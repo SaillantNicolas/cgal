@@ -178,7 +178,7 @@ jobs:
             echo "$LIST_OF_PKGS" > allowed_packages.txt
             cd build_doc && make -j$(nproc) doc
             make -j$(nproc) doc_with_postprocessing 2>build.log
-            if [ -s build.log ]; then
+            if grep -i "error:" build.log; then
               delimiter="$(openssl rand -hex 8)"
               echo "DoxygenError<<${delimiter}" >> "${GITHUB_OUTPUT}"
               cat build.log >> "${GITHUB_OUTPUT}"
