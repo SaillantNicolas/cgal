@@ -220,6 +220,5 @@ results will suffer from round-off problems.
 
 */
 
-Broken links test : https://cgal.github.io/links_does_not_exist
 } /* namespace CGAL */
 
