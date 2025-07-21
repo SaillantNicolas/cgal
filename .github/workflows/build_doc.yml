@@ -186,7 +186,7 @@ jobs:
               exit 1
             fi
             cd ..
-            # git clone https://CGAL:${{ secrets.PUSH_TO_CGAL_GITHUB_IO_TOKEN }}@github.com/CGAL/cgal.github.io.git
+            git clone https://CGAL:${{ secrets.PUSH_TO_CGAL_GITHUB_IO_TOKEN }}@github.com/CGAL/cgal.github.io.git
             mkdir -p cgal.github.io/${PR_NUMBER}/$ROUND
             rm cgal.github.io/${PR_NUMBER}/$ROUND/* -rf
             for f in $LIST_OF_PKGS Manual
@@ -197,8 +197,8 @@ jobs:
             done
             cd ./cgal.github.io
             echo "<li><a href=https://cgal.github.io/${PR_NUMBER}/$ROUND/Manual/index.html>Manual for PR ${PR_NUMBER} ($ROUND).</a></li>" >> ./index.html
-            ./cleanup.bash
-            # git add ${PR_NUMBER}/$ROUND index.html && git commit -q --amend -m "sole commit" && git push -q -f -u origin master
+            # ./cleanup.bash
+            git add ${PR_NUMBER}/$ROUND index.html && git commit -q --amend -m "sole commit" && git push -q -f -u origin master
           else
             echo "DoxygenError=This round already exists. Overwrite it with /force-build." >> $GITHUB_OUTPUT
             exit 1
