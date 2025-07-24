@@ -223,7 +223,7 @@ jobs:
         with:
           script: |
             const round = "${{ env.doc_version }}"
-            const address = "The documentation is built. It will be available, after a few minutes, here: https://cgal.github.io/${{ env.pr_number }}/"+round+"/Manual/index.html"
+            const address = "The documentation is built. It will be available, after a few minutes"
             github.rest.issues.createComment({
               owner: "CGAL",
               repo: "cgal",
