@@ -225,7 +225,7 @@ jobs:
             const round = "${{ env.doc_version }}"
             const address = "The documentation is built. It will be available, after a few minutes"
             github.rest.issues.createComment({
-              owner: "CGAL",
+              owner: "SaillantNicolas",
               repo: "cgal",
               issue_number: ${{ github.event.issue.number }},
               body: address
@@ -242,7 +242,7 @@ jobs:
             const job_url = `${context.serverUrl}/CGAL/cgal/actions/runs/${context.runId}`
             const msg = "There was an error while building the doc: \n```\n"+error + "\n```\n" + job_url
             github.rest.issues.createComment({
-              owner: "CGAL",
+              owner: "SaillantNicolas",
               repo: "cgal",
               issue_number: ${{ github.event.issue.number }},
               body: msg
